@@ -7,7 +7,7 @@ assignees: 'BounSweFerhatSal'
 
 ---
 
-**Howrok Title**
+**Homework Title**
 A few keywords to represent this homework
 
 **Describe the homework**
