@@ -1,2 +1,3 @@
-# swe573
-All study , code and documentation for SWE 573 SOFTWARE DEVELOPMENT PRACTICE Course of Boğaziçi University 
+# Welcome to the SWE-573 Project - NutrAsisstant
+
+Everything you need to know about this repo is provided in the wiki : https://github.com/BounSweFerhatSal/swe573/wiki
