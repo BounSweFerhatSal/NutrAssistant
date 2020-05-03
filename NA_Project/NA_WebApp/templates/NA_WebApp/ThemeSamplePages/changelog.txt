@@ -1,0 +1,71 @@
+Changelog
+
+----------------------------------------------------------------------------------------
+
+25.07.2016
+
+- updated all plugins
+- removed wow animations
+- added 2100 custom font icons
+- added font awesome icons
+- improved and updated css files
+- improved and updated scripts
+
+Files changed:
+css/style.css
+css/style-rtl.css
+images/icons.png
+js/jquery-3.1.0.min.js
+js/jquery.slicknav.min.js
+js/jquery.uniform.min.js
+js/scripts.js
+*all HTML files
+
+
+Files added:
+css/icons.css
+fonts
+js/home.js
+icons.html
+
+
+Files removed
+animations.html
+css/animate.css
+images/form-elements.png
+js/wow.min.js
+js/jquery-1.11.1.min.js
+
+----------------------------------------------------------------------------------------
+
+07.04.2015
+
+- fixed mobile menu
+- added third level in primary menu
+- added RTL stylesheet
+- updated plugins
+
+Files changed:
+css/style.css
+js/scripts.js
+
+Files added
+css/style-rtl.css
+
+----------------------------------------------------------------------------------------
+
+21.8.2014
+
+- Improved CSS for the smallest screen resolutions and resolved some minor issues
+- Fixed HTML in index.html and recipe.html
+
+Files changed:
+css/style.css
+index.html
+recipe.html 
+
+----------------------------------------------------------------------------------------
+
+13.8.2014
+
+- Initial release
