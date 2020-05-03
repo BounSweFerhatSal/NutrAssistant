@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>enjoy</title>
+
+    <script src="{% static 'NA_WebApp/js/jquery-3.1.0.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script src="{% static 'NA_WebApp/js/enjoy/frontendtest.js' %}"></script>
+
+</head>
+<body>
+<h1>This is front end test</h1>
+
+<p id="p1">
+    change this text with Jquery
+</p>
+<input type="button" id="btnJQuery" value="test Jquery"/>
+
+<input type="button" id="btnAjaxget" value="test Ajax Get"/>
+
+<input type="button" id="btnAjaxpost" value="test Ajax Post"/>
+
+<hr>
+<p id="p_error"></p>
+</body>
+</html>
