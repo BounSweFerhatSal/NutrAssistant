@@ -7,7 +7,16 @@ def home(request):
     # return HttpResponse('<h1>Blog Home Page</h1>')
     # context = {'posts': posts} // the data ( get it from db / models )
     # return render(request, 'blogapp/home.html', context)
-    return render(request, 'NA_WebApp/_home.html', {'title': 'Title of the blog'})
+
+    if request.user.is_authenticated:
+        # Do something for authenticated users.
+
+        return render(request, 'NA_WebApp/_homeuser.html', {'title': 'Title of the blog'})
+
+    else:
+        # Do something for anonymous users.
+        return render(request, 'NA_WebApp/_home.html', {'title': 'Title of the blog'})
+
 
 
 def recipes(request):

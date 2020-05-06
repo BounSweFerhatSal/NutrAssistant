@@ -24,7 +24,8 @@
 	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 	<![endif]-->
 </head>
-<body class="home">
+<body>
+<!-- <body class="home"> -->
 	<!--preloader-->
 	<div class="preloader">
 		<div class="spinner"></div>
@@ -95,7 +96,7 @@
 	<!--call to action-->
 	<section class="cta">
 		<div class="wrap clearfix">
-			<a href="http://themeforest.net/item/socialchef-social-recipe-html-template/8568727?ref=themeenergy" class="button big white right">Purchase theme</a>
+			<a href="{% url 'NA_WebApp-logout' %}" class="button big white right">Log out</a>
 			<h2>Already convinced? This is a call to action section lorem ipsum dolor sit amet.</h2>
 		</div>
 	</section>
@@ -142,7 +143,7 @@
 	<script src="../../static/NA_WebApp/js/jquery.uniform.min.js"></script>
 	<script src="../../static/NA_WebApp/js/jquery.slicknav.min.js"></script>
 	<script src="../../static/NA_WebApp/js/scripts.js"></script>
-	<script src="../../static/NA_WebApp/js/home.js"></script>
+{% block scripts %}{% endblock %}
 </body>
 </html>
 

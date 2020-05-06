@@ -1,0 +1,53 @@
+{% extends 'NA_WebApp/_masterpage.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+    <!--wrap-->
+    <div class="wrap clearfix">
+        <!--row-->
+        <div class="row">
+            <!--content-->
+            <section class="content center full-width">
+                <div class="modal container">
+                    <h3>Login</h3>
+                    <form action="login" name="login" method="post">
+                        {% csrf_token %}
+                        <div class="f-row">
+                            <input type="email" placeholder="Your email" id="tx_email" name="email"/>
+                        </div>
+                        <div class="f-row">
+                            <input type="password" placeholder="Your password" id="tx_pass" name="password"/>
+                        </div>
+
+                        <div class="f-row">
+                            <input type="checkbox"/>
+                            <label>Remember me next time</label>
+                        </div>
+
+                        <div class="f-row bwrap">
+                            <input type="submit" value="login"/>
+                        </div>
+                    </form>
+                    <p><a href="{% url 'NA_WebApp-forget' %}">Forgotten password?</a></p>
+                    <p>Dont have an account yet? <a href="{% url 'NA_WebApp-register' %}">Sign up.</a></p>
+                </div>
+            </section>
+            <!--//content-->
+        </div>
+        <!--//row-->
+    </div>
+    <!--//wrap-->
+
+
+{% endblock content %}
+
+
+{% block scripts %}
+
+    <script src="{% static 'NA_WebApp/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'NA_WebApp/js/auth/login.js' %}"></script>
+
+{% endblock scripts %}
