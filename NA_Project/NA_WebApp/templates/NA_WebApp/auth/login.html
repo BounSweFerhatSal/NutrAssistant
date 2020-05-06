@@ -16,10 +16,10 @@
                     <form action="login" name="login" method="post">
                         {% csrf_token %}
                         <div class="f-row">
-                            <input type="email" placeholder="Your email" id="tx_email" name="email"/>
+                            <input type="email" placeholder="Your email" id="tx_email" name="email" value="{{ uname }}"/>
                         </div>
                         <div class="f-row">
-                            <input type="password" placeholder="Your password" id="tx_pass" name="password"/>
+                            <input type="password" placeholder="Your password" id="tx_pass" name="password" value=""/>
                         </div>
 
                         <div class="f-row">

@@ -84,6 +84,7 @@ nav a:hover,.button:hover,.generic-button a:hover,.quicklinks .button:hover {tex
 .alert-info 		{background:#3498db;}
 .alert-success	{background:#2ecc71;}
 .alert-warning	{background:#f1c40f;}
+.alert-error	{background:#e74c3c;}
 .alert-danger	{background:#e74c3c;}
 
 p.drop-cap::first-letter {color:#F4716A;font:74px Georgia,serif;margin:8px 10px 0 0;float:left;}

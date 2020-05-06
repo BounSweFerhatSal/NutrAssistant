@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login,logout
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 import json
 
 
@@ -12,18 +13,19 @@ def signin(request):
         # get email and password data
         uname = request.POST.get('email', '')
         passw = request.POST.get('password', '')
-        msg = "not yet"
+
         # authenticate the user :
         user = authenticate(request, username=uname, password=passw)
         if user is not None:
             # A backend authenticated the credentials
             login(request, user)
-            msg = "wellcome , your last login was : " + str(user.last_login)
+            messages.success(request, f'Wellcome {uname}')
+            return redirect('NA_WebApp-home')
         else:
             # No backend authenticated the credentials
-            msg = "ooops ! there is no user sorry !"
+            messages.error(request, f'Ooops! Username or Password is invalid !')
+            return render(request, 'NA_WebApp/auth/login.html', {'uname': uname})
 
-        return render(request, 'NA_WebApp/enjoy/responseform.html', {'message': msg})
 
 
 def register(request):
