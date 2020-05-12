@@ -1,0 +1,28 @@
+"WBS #","Name / Title",Type,"Start Date","End Date","Estimated Hours","Actual Hours","Percent Complete",Resources,Predecessors,Notes,Comments,"Task Color"
+1,"NutrAssistant Project",project,2020-02-20,2020-06-17,0,0,52.27,,,,,
+1.1,"Web App",group,2020-02-20,2020-06-17,0,0,52.27,,,,,
+1.1.1,"Req. Engineering + Discovery",subgroup,2020-02-20,2020-03-24,0,0,100,,,,,
+1.1.1.1,"Define Project Scope",task,2020-02-20,2020-02-20,0,0,100,"Ferhat SAL",,,,green1
+1.1.1.2,"Stakeholder Interviews",task,2020-02-21,2020-02-24,0,0,100,"Ferhat SAL",1.1.1.1,,,green1
+1.1.1.3,"Research Review/User Research",task,2020-02-25,2020-03-02,0,0,100,"Ferhat SAL",1.1.1.2,,,green1
+1.1.1.4,"Requirements Gathering",task,2020-03-03,2020-03-23,0,0,100,"Ferhat SAL",1.1.1.3,,,green1
+1.1.1.5,"SRS V.1.0 Publish",milestone,2020-03-24,2020-03-24,0,0,100,"Ferhat SAL",1.1.1.4,,,green1
+1.1.2,"Design Phase",subgroup,2020-03-26,2020-04-22,0,0,100,,,,,
+1.1.2.1,"High Level Design / UML Diagrams",task,2020-03-26,2020-04-10,0,0,100,"Ferhat SAL",1.1.1.5,,,blue2
+1.1.2.2,"Design Revisions (if needed)",task,2020-04-14,2020-04-21,0,0,100,"Ferhat SAL",1.1.2.1,,,blue2
+1.1.2.3,"Design Documents Publish",milestone,2020-04-22,2020-04-22,0,0,100,"Ferhat SAL",1.1.2.2,,,blue2
+1.1.3,"Development Phase",subgroup,2020-04-24,2020-06-03,0,0,23.77,,,,,
+1.1.3.1,"Learning Django Framework",task,2020-04-24,2020-05-22,0,0,50,"Ferhat SAL",1.1.2.3,,,purple1
+1.1.3.2,"Create Primitive Level Project",milestone,2020-05-04,2020-05-04,0,0,100,"Ferhat SAL",,,,purple1
+1.1.3.3,"User Features",task,2020-05-05,2020-05-12,0,0,50,"Ferhat SAL",,,,blue2
+1.1.3.4,"First Deploy",milestone,2020-05-13,2020-05-13,0,0,0,"Ferhat SAL",,,,blue2
+1.1.3.5,"Recipe Features",task,2020-05-14,2020-05-26,0,0,0,"Ferhat SAL",1.1.3.3,,,blue2
+1.1.3.6,"Second Deploy",milestone,2020-05-27,2020-05-27,0,0,0,,,,,blue2
+1.1.3.7,"Food Providers & Social Fatures",task,2020-05-28,2020-06-02,0,0,0,"Ferhat SAL",1.1.3.5,,,blue2
+1.1.3.8,"Third Deploy",milestone,2020-06-03,2020-06-03,0,0,0,,,,,blue2
+1.1.3.9,"Import Nutrient and Ingredient Data",task,2020-05-11,2020-06-02,0,0,0,"Ferhat SAL",,,,orange1
+1.1.4,"Testing + Revision Phase",subgroup,2020-06-10,2020-06-16,0,0,0,,,,,
+1.1.4.1,Testing,task,2020-06-10,2020-06-11,0,0,0,"Ferhat SAL",1.1.3.7,,,green2
+1.1.4.2,Revisions,task,2020-06-12,2020-06-16,0,0,0,"Ferhat SAL",1.1.4.1,,,green2
+1.1.5,"Deployment Phase",subgroup,,,0,0,0,,,,,
+1.1.6,"Deployment/Feature Complete",milestone,2020-06-17,2020-06-17,0,0,0,"Ferhat SAL",1.1.4.2,,,blue2
