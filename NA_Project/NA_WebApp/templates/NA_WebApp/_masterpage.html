@@ -86,7 +86,7 @@
             <ul>
                 <li class="light"><a href="ThemeSamplePages/find_recipe.html" title="Search for recipes"><i
                         class="icon icon-themeenergy_search"></i> <span>Search for recipes</span></a></li>
-                <li class="medium"><a href="ThemeSamplePages/my_profile.html" title="My account"><i
+                <li class="medium"><a href="ThemeSamplePages/my_profile.html" title=" Logged in as {{ user.get_full_name }} - {{ user.get_username }}"><i
                         class="icon icon-themeenergy_chef-hat"></i> <span>My account</span></a></li>
                 <li class="dark"><a href="ThemeSamplePages/submit_recipe.html" title="Submit a recipe"><i
                         class="icon icon-themeenergy_fork-spoon"></i> <span>Submit a recipe</span></a></li>
@@ -121,13 +121,15 @@
 <!--//main-->
 
 <!--call to action-->
-<section class="cta">
-    <div class="wrap clearfix">
-        <a href="{% url 'NA_WebApp-logout' %}" class="button big white right">Log out</a>
-        <h2>Already convinced? This is a call to action section lorem ipsum dolor sit amet.</h2>
-    </div>
-</section>
+{% if user.is_authenticated %}
+    <section class="cta">
+        <div class="wrap clearfix">
+            <a href="{% url 'NA_WebApp-logout' %}" class="button big white right">Log out</a>
+            <h2>You are Logged In as {{ user.get_full_name }} - {{ user.get_username }} </h2>
+        </div>
+    </section>
 <!--//call to action-->
+{% endif %}
 
 <!--footer-->
 <footer class="foot" role="contentinfo">

@@ -1,0 +1,85 @@
+{% extends 'NA_WebApp/_masterpage.html' %}
+{% load static %}
+{% block content %}
+
+    <!--wrap-->
+    <div class="wrap clearfix">
+        <!--row-->
+        <div class="row">
+            <!--content-->
+            <section class="content center full-width">
+
+
+                <div class="modal container">
+                    <h3>Register</h3>
+
+                    {% if form.errors and hideErrors != 'true' %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+
+
+
+                    <form action="register" name="register" method="post">
+                        {% csrf_token %}
+
+                        <div class="f-row">
+                            <input type="text" placeholder="Your first name" id="tx_first_name" name="first_name" value="{{ firstname }}"/>
+                        </div>
+                        <div class=" f-row">
+                            <input type="text" placeholder="Your last name" id="tx_last_name" name="last_name"
+                                   value="{{ lastname }}"/>
+                        </div>
+                        <div class="f-row">
+                            <input type="email" placeholder="Your email" id="tx_email" name="email"
+                                   value="{{ uname }}"/>
+                        </div>
+                        <div class="f-row">
+                            <input type="hidden" id="id_username" name="username" value="{{ uname }}"/>
+                        </div>
+
+                        <div class="f-row">
+                            <input type="password" placeholder="Your password" id="id_password1" name="password1"
+                                   value=""/>
+                        </div>
+                        <div class="f-row">
+                            <input type="password" placeholder="Retype password" id="id_password2" name="password2"
+                                   value=""/>
+                        </div>
+
+                        <div class="f-row bwrap">
+                            <input type="submit" value="register"/>
+                        </div>
+                    </form>
+                    <p>Already have an account ? <a href="{% url 'NA_WebApp-login' %}">Log in.</a></p>
+                </div>
+
+
+            </section>
+            <!--//content-->
+        </div>
+        <!--//row-->
+    </div>
+    <!--//wrap-->
+
+
+{% endblock content %}
+
+
+{% block scripts %}
+
+    <script src="{% static 'NA_WebApp/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'NA_WebApp/js/auth/register.js' %}"></script>
+
+{% endblock scripts %}
