@@ -52,7 +52,7 @@
                     <!--about-->
                     <div class="tab-content" id="about">
                         <div class="row">
-                            <div class="col col-md-8">
+                            <div class="col col-md-7">
 
 
                                 <div class="card">
@@ -64,16 +64,16 @@
                                         <form>
 
                                             <div class="form-group row">
-                                                <label for="txEmail" class="col-sm-4 col-form-label">e-Mail</label>
-                                                <div class="col-sm-8">
+                                                <label for="txEmail" class="col-md-4 col-form-label">e-Mail</label>
+                                                <div class="col-md-8">
                                                     <input type="email" readonly class="form-control plaintextbox-red" name="email"
                                                            id="txEmail"
                                                            placeholder="e-Mail" value="{{ user.email }}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="txFirstName" class="col-sm-4 col-form-label">First Name</label>
-                                                <div class="col-sm-8">
+                                                <label for="txFirstName" class="col-md-4 col-form-label">First Name</label>
+                                                <div class="col-md-8">
                                                     <input type="text" class="form-control textbox-red" name="firstname"
                                                            id="txFirstName"
                                                            placeholder="Your First Name" value="{{ user.first_name }}">
@@ -82,7 +82,7 @@
 
                                             <div class="form-group row">
                                                 <label for="txLastName" class="col-sm-4 col-form-label">Last Name</label>
-                                                <div class="col-sm-8">
+                                                <div class="col-md-8">
                                                     <input type="text" class="form-control textbox-red" name="lastname"
                                                            id="txLastName"
                                                            placeholder="Your Last Name" value="{{ user.last_name }}">
@@ -90,10 +90,10 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="txGender" class="col-sm-4 col-form-label">Gender</label>
-                                                <div class="col-sm-8">
+                                                <label for="txGender" class="col-md-4 col-form-label">Gender</label>
+                                                <div class="col-md-8">
                                                     <select id="txGender" class="form-control textbox-red" name="gender">
-                                                          <option value="" disabled selected hidden>Please Choose...</option>
+                                                        <option value="" disabled selected hidden>Please Choose...</option>
                                                         <option value="1">Male</option>
                                                         <option value="2">Female</option>
                                                         <option value="3">Other</option>
@@ -103,10 +103,10 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="txMartial" class="col-sm-4 col-form-label">Married</label>
-                                                <div class="col-sm-8">
+                                                <label for="txMartial" class="col-md-4 col-form-label">Married</label>
+                                                <div class="col-md-8">
                                                     <select id="txMartial" class="form-control textbox-red" name="martial">
-                                                         <option value="" disabled selected hidden>Please Choose...</option>
+                                                        <option value="" disabled selected hidden>Please Choose...</option>
                                                         <option value="0">Yes</option>
                                                         <option value="1">No</option>
                                                     </select>
@@ -115,10 +115,10 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="txKids" class="col-sm-4 col-form-label">Have Kids ?</label>
-                                                <div class="col-sm-8">
+                                                <label for="txKids" class="col-md-4 col-form-label">Have Kids ?</label>
+                                                <div class="col-md-8">
                                                     <select id="txKids" class="form-control textbox-red" name="kids">
-                                                         <option value="" disabled selected hidden>Please Choose...</option>
+                                                        <option value="" disabled selected hidden>Please Choose...</option>
                                                         <option value="0">Yes</option>
                                                         <option value="1">No</option>
                                                     </select>
@@ -135,15 +135,29 @@
 
                             </div>
 
-                            <div class="col col-md-4">
-                                  <div class="card">
+                            <div class="col col-md-5">
+                                <div class="card">
                                     <div class="card-header lightred">
                                         My Location
                                     </div>
                                     <div class="card-body">
 
+                                        <div id="Map_Geo" style="width: 250px; height: 200px;"></div>
+                                        <div class="clearfix">&nbsp;</div>
 
-
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label">Lat.:</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control textbox-red" readonly style="width: 110px" id="Map-lat"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label">Long.:</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control textbox-red" readonly style="width: 110px" id="Map-lon"/>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
 
                                     </div>
                                 </div>
@@ -392,5 +406,8 @@
 
     <script src="{% static 'NA_WebApp/js/jquery.validate.min.js' %}"></script>
     <script src="{% static 'NA_WebApp/js/auth/profile.js' %}"></script>
+
+    <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
+    <script src="{% static 'NA_WebApp/js/locationpicker.jquery.min.js' %}"></script>
 
 {% endblock scripts %}

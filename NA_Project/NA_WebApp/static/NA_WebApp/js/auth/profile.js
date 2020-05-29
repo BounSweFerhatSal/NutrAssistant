@@ -1,11 +1,38 @@
 $(document).ready(function () {
 
 
-$('#img_Avatar').click(function (){
+    $('#img_Avatar').click(function () {
 
-    alert("hi from profile !");
+        alert("hi from profile !");
+        //add upload profile avatar image codes here
 
-});
+    });
+
+    //here how to add google maps API key :
+    //add this :
+    //<script src="https://maps.googleapis.com/maps/api/jskey=YOUR_API_KEY&callback=initMap"async defer></script>
+    //and get the API key from :
+    //https://developers.google.com/maps/documentation/javascript/get-api-key
+
+    $('#Map_Geo').locationpicker({
+        location: {
+            latitude: 41.086203 ,
+            longitude: 29.044378
+        },
+        radius: 300,
+        inputBinding: {
+            latitudeInput: $('#Map-lat'), // Boğaziçi Kuzey Kampus
+            longitudeInput: $('#Map-lon'),
+            //radiusInput: $('#us3-radius'),
+            //locationNameInput: $('#us3-address')
+        },
+        enableAutocomplete: true,
+        onchanged: function (currentLocation, radius, isMarkerDropped) {
+            // Uncomment line below to show alert on each Location Changed event
+            //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+        }
+    });
+
 
     $("form[name='login']").validate({
         // Specify validation rules
@@ -39,7 +66,7 @@ $('#img_Avatar').click(function (){
         // Make sure the form is submitted to the destination defined
         // in the "action" attribute of the form when valid
         submitHandler: function (form) {
-             //alert('valid form submitted'); // for demo
+            //alert('valid form submitted'); // for demo
 
             form.submit();
         }
