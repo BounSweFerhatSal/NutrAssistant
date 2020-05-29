@@ -11,7 +11,8 @@
     <title>SocialChef</title>
 
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
 
     <link rel="stylesheet" href="{% static 'NA_WebApp/css/style.css' %}"/>
@@ -30,162 +31,166 @@
     <![endif]-->
 </head>
 <body>
-<!-- <body class="home"> -->
-<!--preloader-->
-<div class="preloader">
-    <div class="spinner"></div>
-</div>
-<!--//preloader-->
 
-<!--header-->
-<header class="head" role="banner">
-    <!--wrap-->
-    <div class="wrap clearfix">
-        <a href="{% url 'NA_WebApp-home' %}" title="SocialChef" class="logo"><img
-                src="{% static '/NA_WebApp/images/ico/logo.png' %}" alt="SocialChef logo"/></a>
-
-        <nav class="main-nav" role="navigation" id="menu">
-            <ul>
-                <li class="current-menu-item"><a href="{% url 'NA_WebApp-home' %}" title="Home"><span>Home</span></a>
-                </li>
-                <li><a href="{% url 'NA_WebApp-recipes' %}" title="Recipes"><span>Recipes</span></a>
-                    <ul>
-                        <li><a href="ThemeSamplePages/recipes2.html" title="Recipes 2">Recipes 2</a></li>
-                        <li><a href="ThemeSamplePages/recipe.html" title="Recipe">Recipe</a></li>
-                    </ul>
-                </li>
-                <li><a href="ThemeSamplePages/blog.html" title="Food Providers"><span>Food Providers</span></a>
-                    <ul>
-                        <li><a href="ThemeSamplePages/blog_single.html" title="Blog post">Blog post</a></li>
-                    </ul>
-                </li>
-                <li><a href="#" title="Pages"><span>Pages</span></a>
-                    <ul>
-                        <li><a href="ThemeSamplePages/left_sidebar.html" title="Left sidebar page">Left sidebar page</a>
-                        </li>
-                        <li><a href="ThemeSamplePages/right_sidebar.html" title="Right sidebar page">Right sidebar
-                            page</a></li>
-                        <li><a href="ThemeSamplePages/two_sidebars.html" title="Both sidebars page">Both sidebars
-                            page</a></li>
-                        <li><a href="ThemeSamplePages/full_width.html" title="Full width page">Full width page</a></li>
-                        <li><a href="ThemeSamplePages/login.html" title="Login page">Login page</a></li>
-                        <li><a href="ThemeSamplePages/register.html" title="Register page">Register page</a></li>
-                        <li><a href="ThemeSamplePages/error404.html" title="Error page">Error page</a></li>
-                    </ul>
-                </li>
-                <li><a href="#" title="Features"><span>Features</span></a>
-                    <ul>
-                        <li><a href="ThemeSamplePages/icons.html" title="Icons">Icons</a></li>
-                        <li><a href="ThemeSamplePages/grid.html" title="Grid">Grid</a></li>
-                        <li><a href="ThemeSamplePages/shortcodes.html" title="Shortcodes">Shortcodes</a></li>
-                        <li><a href="ThemeSamplePages/pricing.html" title="Pricing tables">Pricing tables</a></li>
-                    </ul>
-                </li>
-                <li><a href="ThemeSamplePages/contact.html" title="Contact"><span>Contact</span></a></li>
-                <li><a href="http://themeforest.net/item/socialchef-social-recipe-html-template/8568727?ref=themeenergy"
-                       title="Buy now"><span>Buy now</span></a></li>
-            </ul>
-        </nav>
-
-        <nav class="user-nav" role="navigation">
-            <ul>
-                <li class="light"><a href="ThemeSamplePages/find_recipe.html" title="Search for recipes"><i
-                        class="icon icon-themeenergy_search"></i> <span>Search for recipes</span></a></li>
-                <li class="medium"><a href="{% url 'NA_WebApp-profile' %}" title=" Logged in as {{ user.get_full_name }} - {{ user.get_username }}"><i
-                        class="icon icon-themeenergy_chef-hat"></i> <span>My Profile</span></a></li>
-                <li class="dark"><a href="ThemeSamplePages/submit_recipe.html" title="Submit a recipe"><i
-                        class="icon icon-themeenergy_fork-spoon"></i> <span>Submit a recipe</span></a></li>
-            </ul>
-        </nav>
+    <!-- <body class="home"> -->
+    <!--preloader-->
+    <div class="preloader">
+        <div class="spinner"></div>
     </div>
-    <!--//wrap-->
-</header>
-<!--//header-->
+    <!--//preloader-->
 
-<!--main-->
-<main class="main" role="main">
-    {% if messages %}
-        {% for message in messages %}
+    <!--header-->
+    <header class="head" role="banner">
+        <!--wrap-->
+        <div class="wrap clearfix">
+            <a href="{% url 'NA_WebApp-home' %}" title="SocialChef" class="logo"><img
+                    src="{% static '/NA_WebApp/images/ico/logo.png' %}" alt="SocialChef logo"/></a>
 
+            <nav class="main-nav" role="navigation" id="menu">
+                <ul>
+                    <li class="current-menu-item"><a href="{% url 'NA_WebApp-home' %}" title="Home"><span>Home</span></a>
+                    </li>
+                    <li><a href="{% url 'NA_WebApp-recipes' %}" title="Recipes"><span>Recipes</span></a>
+                        <ul>
+                            <li><a href="ThemeSamplePages/recipes2.html" title="Recipes 2">Recipes 2</a></li>
+                            <li><a href="ThemeSamplePages/recipe.html" title="Recipe">Recipe</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="ThemeSamplePages/blog.html" title="Food Providers"><span>Food Providers</span></a>
+                        <ul>
+                            <li><a href="ThemeSamplePages/blog_single.html" title="Blog post">Blog post</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" title="Pages"><span>Pages</span></a>
+                        <ul>
+                            <li><a href="ThemeSamplePages/left_sidebar.html" title="Left sidebar page">Left sidebar page</a>
+                            </li>
+                            <li><a href="ThemeSamplePages/right_sidebar.html" title="Right sidebar page">Right sidebar
+                                page</a></li>
+                            <li><a href="ThemeSamplePages/two_sidebars.html" title="Both sidebars page">Both sidebars
+                                page</a></li>
+                            <li><a href="ThemeSamplePages/full_width.html" title="Full width page">Full width page</a></li>
+                            <li><a href="ThemeSamplePages/login.html" title="Login page">Login page</a></li>
+                            <li><a href="ThemeSamplePages/register.html" title="Register page">Register page</a></li>
+                            <li><a href="ThemeSamplePages/error404.html" title="Error page">Error page</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" title="Features"><span>Features</span></a>
+                        <ul>
+                            <li><a href="ThemeSamplePages/icons.html" title="Icons">Icons</a></li>
+                            <li><a href="ThemeSamplePages/grid.html" title="Grid">Grid</a></li>
+                            <li><a href="ThemeSamplePages/shortcodes.html" title="Shortcodes">Shortcodes</a></li>
+                            <li><a href="ThemeSamplePages/pricing.html" title="Pricing tables">Pricing tables</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="ThemeSamplePages/contact.html" title="Contact"><span>Contact</span></a></li>
+                    <li><a href="http://themeforest.net/item/socialchef-social-recipe-html-template/8568727?ref=themeenergy"
+                           title="Buy now"><span>Buy now</span></a></li>
+                </ul>
+            </nav>
+
+            <nav class="user-nav" role="navigation">
+                <ul>
+                    <li class="light"><a href="ThemeSamplePages/find_recipe.html" title="Search for recipes"><i
+                            class="icon icon-themeenergy_search"></i> <span>Search for recipes</span></a></li>
+                    <li class="medium"><a href="{% url 'NA_WebApp-profile' %}" title=" Logged in as {{ user.get_full_name }} - {{ user.get_username }}"><i
+                            class="icon icon-themeenergy_chef-hat"></i> <span>My Profile</span></a></li>
+                    <li class="dark"><a href="ThemeSamplePages/submit_recipe.html" title="Submit a recipe"><i
+                            class="icon icon-themeenergy_fork-spoon"></i> <span>Submit a recipe</span></a></li>
+                </ul>
+            </nav>
+        </div>
+        <!--//wrap-->
+    </header>
+    <!--//header-->
+
+    <!--main-->
+    <main class="main" role="main">
+        {% if messages %}
+            {% for message in messages %}
+
+                <div class="wrap clearfix">
+                    <!--row-->
+                    <div class="row">
+                        <!--content-->
+                        <section class="content center full-width">
+                            <div class="alert alert-{{ message.tags }}" role="alert">
+                                <button class="close">x</button>
+                                {{ message }}
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+    <!--//main-->
+
+    <!--call to action-->
+    {% if user.is_authenticated %}
+        <section class="cta">
             <div class="wrap clearfix">
-                <!--row-->
-                <div class="row">
-                    <!--content-->
-                    <section class="content center full-width">
-                        <div class="alert alert-{{ message.tags }}" role="alert">
-                            <button class="close">x</button>
-                            {{ message }}
-                        </div>
-                    </section>
+                <a href="{% url 'NA_WebApp-logout' %}" class="button big white right">Log out</a>
+                <h2>You are Logged In as {{ user.get_full_name }} - {{ user.get_username }} </h2>
+            </div>
+        </section>
+        <!--//call to action-->
+    {% endif %}
+
+    <!--footer-->
+    <footer class="foot" role="contentinfo">
+        <div class="wrap clearfix">
+            <div class="row">
+                <article class="one-half">
+                    <h5>About SocialChef Community</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+                        laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci.</p>
+                </article>
+                <article class="one-fourth">
+                    <h5>Need help?</h5>
+                    <p>Contact us via phone or email</p>
+                    <p><em>T:</em> +1 555 555 555<br/><em>E:</em> <a href="#">socialchef@email.com</a></p>
+                </article>
+                <article class="one-fourth">
+                    <h5>Follow us</h5>
+                    <ul class="social">
+                        <li><a href="#" title="facebook"><i class="fa fa-fw fa-facebook"></i></a></li>
+                        <li><a href="#" title="youtube"><i class="fa  fa-fw fa-youtube"></i></a></li>
+                        <li><a href="#" title="rss"><i class="fa  fa-fw fa-rss"></i></a></li>
+                        <li><a href="#" title="gplus"><i class="fa fa-fw fa-google-plus"></i></a></li>
+                        <li><a href="#" title="linkedin"><i class="fa fa-fw fa-linkedin"></i></a></li>
+                        <li><a href="#" title="twitter"><i class="fa fa-fw fa-twitter"></i></a></li>
+                        <li><a href="#" title="pinterest"><i class="fa fa-fw fa-pinterest-p"></i></a></li>
+                        <li><a href="#" title="vimeo"><i class="fa fa-fw fa-vimeo"></i></a></li>
+                    </ul>
+                </article>
+
+                <div class="bottom">
+                    <p class="copy">Copyright 2016 SocialChef. All rights reserved</p>
+
+
                 </div>
             </div>
-        {% endfor %}
-    {% endif %}
-    {% block content %}{% endblock %}
-</main>
-<!--//main-->
-
-<!--call to action-->
-{% if user.is_authenticated %}
-    <section class="cta">
-        <div class="wrap clearfix">
-            <a href="{% url 'NA_WebApp-logout' %}" class="button big white right">Log out</a>
-            <h2>You are Logged In as {{ user.get_full_name }} - {{ user.get_username }} </h2>
         </div>
-    </section>
-<!--//call to action-->
-{% endif %}
-
-<!--footer-->
-<footer class="foot" role="contentinfo">
-    <div class="wrap clearfix">
-        <div class="row">
-            <article class="one-half">
-                <h5>About SocialChef Community</h5>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                    laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci.</p>
-            </article>
-            <article class="one-fourth">
-                <h5>Need help?</h5>
-                <p>Contact us via phone or email</p>
-                <p><em>T:</em> +1 555 555 555<br/><em>E:</em> <a href="#">socialchef@email.com</a></p>
-            </article>
-            <article class="one-fourth">
-                <h5>Follow us</h5>
-                <ul class="social">
-                    <li><a href="#" title="facebook"><i class="fa fa-fw fa-facebook"></i></a></li>
-                    <li><a href="#" title="youtube"><i class="fa  fa-fw fa-youtube"></i></a></li>
-                    <li><a href="#" title="rss"><i class="fa  fa-fw fa-rss"></i></a></li>
-                    <li><a href="#" title="gplus"><i class="fa fa-fw fa-google-plus"></i></a></li>
-                    <li><a href="#" title="linkedin"><i class="fa fa-fw fa-linkedin"></i></a></li>
-                    <li><a href="#" title="twitter"><i class="fa fa-fw fa-twitter"></i></a></li>
-                    <li><a href="#" title="pinterest"><i class="fa fa-fw fa-pinterest-p"></i></a></li>
-                    <li><a href="#" title="vimeo"><i class="fa fa-fw fa-vimeo"></i></a></li>
-                </ul>
-            </article>
-
-            <div class="bottom">
-                <p class="copy">Copyright 2016 SocialChef. All rights reserved</p>
+    </footer>
+    <!--//footer-->
 
 
-            </div>
-        </div>
-    </div>
-</footer>
-<!--//footer-->
+    <script src="../../static/NA_WebApp/js/jquery-3.1.0.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+
+    <script src="../../static/NA_WebApp/js/jquery.uniform.min.js"></script>
+    <script src="../../static/NA_WebApp/js/jquery.slicknav.min.js"></script>
+    <script src="../../static/NA_WebApp/js/scripts.js"></script>
+    {% block scripts %}{% endblock %}
 
 
 
-
-<script src="../../static/NA_WebApp/js/jquery-3.1.0.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
-<script src="../../static/NA_WebApp/js/jquery.uniform.min.js"></script>
-<script src="../../static/NA_WebApp/js/jquery.slicknav.min.js"></script>
-<script src="../../static/NA_WebApp/js/scripts.js"></script>
-{% block scripts %}{% endblock %}
 </body>
 </html>
 

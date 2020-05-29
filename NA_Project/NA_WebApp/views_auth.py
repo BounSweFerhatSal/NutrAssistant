@@ -93,6 +93,7 @@ def signout(request):
 
 @login_required(login_url='/auth/login')
 def profile(request):
+    profiledata = {'birthyear': '1980', 'height': '182', 'weight': '105'}
 
-
-    return render(request, 'NA_WebApp/auth/profile.html', {'avatar': 'https://medias.fashionnetwork.com/image/upload/v1/medias/ab4a10f7679ea2c38819c8c900904f2b2943745.jpg'})
+    return render(request, 'NA_WebApp/auth/profile.html',
+                  {'avatar': 'https://medias.fashionnetwork.com/image/upload/v1/medias/ab4a10f7679ea2c38819c8c900904f2b2943745.jpg', 'profile': profiledata})
