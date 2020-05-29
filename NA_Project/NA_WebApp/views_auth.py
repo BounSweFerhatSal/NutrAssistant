@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 import json
@@ -33,7 +34,7 @@ def signin(request):
 def register(request):
     form = UserCreationForm(request.POST)
     if request.method == 'GET':
-        return render(request, 'NA_WebApp/auth/register.html', {'form': form,'hideErrors' : 'true'})
+        return render(request, 'NA_WebApp/auth/register.html', {'form': form, 'hideErrors': 'true'})
     elif request.method == 'POST':
 
         # Actually I did not send an html data using this 'form thing'
@@ -46,8 +47,6 @@ def register(request):
         firstname = ""
         lastname = ""
         passw = ""
-
-
 
         if form.is_valid():
             # we should do something like this :   form.save() ,
@@ -81,10 +80,19 @@ def register(request):
 
                       {'form': form, 'uname': uname, 'firstname': firstname, 'lastname': lastname})
 
+
 def forget(request):
     return render(request, 'NA_WebApp/auth/forget.html', {'title': 'Title of the blog'})
+
 
 def signout(request):
     if request.user.is_authenticated:
         logout(request)
         return render(request, 'NA_WebApp/_home.html', {'title': 'Title of the blog'})
+
+
+@login_required(login_url='/auth/login')
+def profile(request):
+
+
+    return render(request, 'NA_WebApp/auth/profile.html', {'avatar': 'https://medias.fashionnetwork.com/image/upload/v1/medias/ab4a10f7679ea2c38819c8c900904f2b2943745.jpg'})

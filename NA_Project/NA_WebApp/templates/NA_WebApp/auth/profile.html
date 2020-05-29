@@ -1,0 +1,396 @@
+{% extends 'NA_WebApp/_masterpage.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+    <div class="wrap clearfix">
+        <!--breadcrumbs-->
+        <nav class="breadcrumbs">
+            <ul>
+                <li><a href="{% url 'NA_WebApp-home' %}" title="Home">Home</a></li>
+                <li>My Profile</li>
+            </ul>
+        </nav>
+
+
+        <!--//breadcrumbs-->
+
+
+        <!--content-->
+        <section class="content">
+            <!--row-->
+            <div class="row">
+                <!--profile left part-->
+                <div class="my_account one-fourth">
+                    <figure>
+                        {% if avatar == 'undefined' %}
+                            <img src="../../static/NA_WebApp/images/avatar.jpg" alt=""
+                                 title="click to upload a profile image." id="img_Avatar"/>
+                        {% else %}
+                            <img src={{ avatar }} alt="" title="click to upload a profile image." id="img_Avatar"/>
+                        {% endif %}
+
+                    </figure>
+                    <div class="container">
+                        <h2>{{ user.get_full_name }}</h2>
+                    </div>
+                </div>
+                <!--//profile left part-->
+
+                <div class="three-fourth">
+                    <nav class="tabs">
+                        <ul>
+                            <li class="active"><a href="#about" title="About me">About me</a></li>
+                            <li><a href="#recipes" title="My Recipes">My recipes</a></li>
+                            <li><a href="#favorites" title="My favorites">My favorites</a></li>
+                            <li><a href="#posts" title="Social Network">Social Network</a></li>
+                        </ul>
+                    </nav>
+
+                    <!--about-->
+                    <div class="tab-content" id="about">
+                        <div class="row">
+                            <div class="col col-md-8">
+
+
+                                <div class="card">
+                                    <div class="card-header lightred">
+                                        My Identity
+                                    </div>
+                                    <div class="card-body">
+
+                                        <form>
+
+                                            <div class="form-group row">
+                                                <label for="txEmail" class="col-sm-4 col-form-label">e-Mail</label>
+                                                <div class="col-sm-8">
+                                                    <input type="email" readonly class="form-control plaintextbox-red" name="email"
+                                                           id="txEmail"
+                                                           placeholder="e-Mail" value="{{ user.email }}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="txFirstName" class="col-sm-4 col-form-label">First Name</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control textbox-red" name="firstname"
+                                                           id="txFirstName"
+                                                           placeholder="Your First Name" value="{{ user.first_name }}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="txLastName" class="col-sm-4 col-form-label">Last Name</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control textbox-red" name="lastname"
+                                                           id="txLastName"
+                                                           placeholder="Your Last Name" value="{{ user.last_name }}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="txGender" class="col-sm-4 col-form-label">Gender</label>
+                                                <div class="col-sm-8">
+                                                    <select id="txGender" class="form-control textbox-red" name="gender">
+                                                          <option value="" disabled selected hidden>Please Choose...</option>
+                                                        <option value="1">Male</option>
+                                                        <option value="2">Female</option>
+                                                        <option value="3">Other</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="txMartial" class="col-sm-4 col-form-label">Married</label>
+                                                <div class="col-sm-8">
+                                                    <select id="txMartial" class="form-control textbox-red" name="martial">
+                                                         <option value="" disabled selected hidden>Please Choose...</option>
+                                                        <option value="0">Yes</option>
+                                                        <option value="1">No</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="txKids" class="col-sm-4 col-form-label">Have Kids ?</label>
+                                                <div class="col-sm-8">
+                                                    <select id="txKids" class="form-control textbox-red" name="kids">
+                                                         <option value="" disabled selected hidden>Please Choose...</option>
+                                                        <option value="0">Yes</option>
+                                                        <option value="1">No</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                        </form>
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col col-md-4">
+                                  <div class="card">
+                                    <div class="card-header lightred">
+                                        My Location
+                                    </div>
+                                    <div class="card-body">
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <!--//about-->
+
+                    <!--my recipes-->
+                    <div class="tab-content" id="recipes">
+                        <div class="entries row">
+                            <!--item-->
+                            <div class="entry one-third">
+                                <figure>
+                                    <img src="../../../static/scwebapp/images/img.jpg" alt=""/>
+                                    <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a>
+                                    </figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="recipe.html">Thai fried rice with fruit and vegetables</a></h2>
+                                    <div class="actions">
+                                        <div>
+                                            <div class="difficulty"><i class="ico i-medium"></i><a href="#">medium</a>
+                                            </div>
+                                            <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                            <div class="comments"><i class="fa fa-comment"></i><a
+                                                    href="recipe.html#comments">27</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--item-->
+
+                            <!--item-->
+                            <div class="entry one-third">
+                                <figure>
+                                    <img src="../../../static/scwebapp/images/img.jpg" alt=""/>
+                                    <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a>
+                                    </figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="recipe.html">Spicy Morroccan prawns with cherry tomatoes</a></h2>
+                                    <div class="actions">
+                                        <div>
+                                            <div class="difficulty"><i class="ico i-hard"></i><a href="#">hard</a></div>
+                                            <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                            <div class="comments"><i class="fa fa-comment"></i><a
+                                                    href="recipe.html#comments">27</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--item-->
+
+                            <!--item-->
+                            <div class="entry one-third">
+                                <figure>
+                                    <img src="../../../static/scwebapp/images/img.jpg" alt=""/>
+                                    <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a>
+                                    </figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="recipe.html">Super easy blueberry cheesecake</a></h2>
+                                    <div class="actions">
+                                        <div>
+                                            <div class="difficulty"><i class="ico i-easy"></i><a href="#">easy</a></div>
+                                            <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                            <div class="comments"><i class="fa fa-comment"></i><a
+                                                    href="recipe.html#comments">27</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--item-->
+                        </div>
+                    </div>
+                    <!--//my recipes-->
+
+
+                    <!--my favorites-->
+                    <div class="tab-content" id="favorites">
+                        <div class="entries row">
+                            <!--item-->
+                            <div class="entry one-third">
+                                <figure>
+                                    <img src="../../../static/scwebapp/images/img.jpg" alt=""/>
+                                    <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a>
+                                    </figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="recipe.html">Thai fried rice with fruit and vegetables</a></h2>
+                                    <div class="actions">
+                                        <div>
+                                            <div class="difficulty"><i class="ico i-medium"></i><a href="#">medium</a>
+                                            </div>
+                                            <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                            <div class="comments"><i class="fa fa-comment"></i><a
+                                                    href="recipe.html#comments">27</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--item-->
+
+                            <!--item-->
+                            <div class="entry one-third">
+                                <figure>
+                                    <img src="../../../static/scwebapp/images/img.jpg" alt=""/>
+                                    <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a>
+                                    </figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="recipe.html">Spicy Morroccan prawns with cherry tomatoes</a></h2>
+                                    <div class="actions">
+                                        <div>
+                                            <div class="difficulty"><i class="ico i-hard"></i><a href="#">hard</a></div>
+                                            <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                            <div class="comments"><i class="fa fa-comment"></i><a
+                                                    href="recipe.html#comments">27</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--item-->
+
+                            <!--item-->
+                            <div class="entry one-third">
+                                <figure>
+                                    <img src="../../../static/scwebapp/images/img.jpg" alt=""/>
+                                    <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a>
+                                    </figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="recipe.html">Super easy blueberry cheesecake</a></h2>
+                                    <div class="actions">
+                                        <div>
+                                            <div class="difficulty"><i class="ico i-easy"></i><a href="#">easy</a></div>
+                                            <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                            <div class="comments"><i class="fa fa-comment"></i><a
+                                                    href="recipe.html#comments">27</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--item-->
+                        </div>
+                    </div>
+                    <!--//my favorites-->
+
+                    <!--my posts-->
+                    <div class="tab-content" id="posts">
+                        <!--entries-->
+                        <div class="entries row">
+                            <!--item-->
+                            <div class="entry one-third">
+                                <figure>
+                                    <img src="../../../static/scwebapp/images/img.jpg" alt=""/>
+                                    <figcaption><a href="blog_single.html"><i class="icon icon-themeenergy_eye2"></i>
+                                        <span>View post</span></a></figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="blog_single.html">Barbeque party</a></h2>
+                                    <div class="actions">
+                                        <div>
+                                            <div class="date"><i class="fa fa-calendar"></i><a href="#">22 Dec 2014</a>
+                                            </div>
+                                            <div class="comments"><i class="fa fa-comment"></i><a
+                                                    href="blog_single.html#comments">27</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="excerpt">
+                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+                                            nibh euismod. Lorem ipsum dolor sit amet . . . </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--item-->
+
+                            <!--item-->
+                            <div class="entry one-third">
+                                <figure>
+                                    <img src="../../../static/scwebapp/images/img.jpg" alt=""/>
+                                    <figcaption><a href="blog_single.html"><i class="icon icon-themeenergy_eye2"></i>
+                                        <span>View post</span></a></figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="blog_single.html">How to make sushi</a></h2>
+                                    <div class="actions">
+                                        <div>
+                                            <div class="date"><i class="fa fa-calendar"></i><a href="#">22 Dec 2014</a>
+                                            </div>
+                                            <div class="comments"><i class="fa fa-comment"></i><a
+                                                    href="blog_single.html#comments">27</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="excerpt">
+                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+                                            nibh euismod. Lorem ipsum dolor sit amet . . . </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--item-->
+
+                            <!--item-->
+                            <div class="entry one-third">
+                                <figure>
+                                    <img src="../../../static/scwebapp/images/img.jpg" alt=""/>
+                                    <figcaption><a href="blog_single.html"><i class="icon icon-themeenergy_eye2"></i>
+                                        <span>View post</span></a></figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="blog_single.html">Make your own bread</a></h2>
+                                    <div class="actions">
+                                        <div>
+                                            <div class="date"><i class="fa fa-calendar"></i><a href="#">22 Dec 2014</a>
+                                            </div>
+                                            <div class="comments"><i class="fa fa-comment"></i><a
+                                                    href="blog_single.html#comments">27</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="excerpt">
+                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+                                            nibh euismod. Lorem ipsum dolor sit amet . . . </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--item-->
+                        </div>
+                        <!--//entries-->
+                    </div>
+                    <!--//my posts-->
+                </div>
+            </div>
+            <!--//row-->
+        </section>
+        <!--//content-->
+    </div>
+
+{% endblock content %}
+
+
+{% block scripts %}
+
+    <script src="{% static 'NA_WebApp/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'NA_WebApp/js/auth/profile.js' %}"></script>
+
+{% endblock scripts %}

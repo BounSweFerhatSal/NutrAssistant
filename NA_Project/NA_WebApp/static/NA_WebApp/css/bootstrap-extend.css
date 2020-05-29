@@ -1,0 +1,35 @@
+.lightbrown {
+
+    background-color: #DECEB9;
+}
+
+.lightred {
+    background-color: #ff7b74;
+    color: white;
+
+}
+
+.textbox-red {
+
+    background-color: #FF8E88 !important;
+    color: #FAFAFA !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+}
+
+.textbox-red:focus {
+
+    background-color: #FF8E88 !important;
+    color: white !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+}
+
+.plaintextbox-red {
+    color: darkgray !important;
+    border: none !important;
+    background: white !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+
+}

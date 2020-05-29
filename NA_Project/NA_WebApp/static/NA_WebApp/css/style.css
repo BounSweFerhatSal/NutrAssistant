@@ -15,7 +15,7 @@ audio, canvas, video { display: inline-block; *display: inline; *zoom: 1;max-wid
 .foot		{float:left;width:100%;}
 .wrap 		{margin:0 auto;width:1170px;text-align:left;position:relative;max-width:96%;}
 
-.row			 {margin:0 -15px;}
+/*.row			 {margin:0 -15px;}*/
 .full-width 	 	 {float:left;width:100%;padding:0 15px 30px;max-width:100%;}
 .three-fourth 	 {float:left;width:75%;padding:0 15px 30px;max-width:100%;}
 .one-half		 {float:left;width:50%;padding:0 15px 30px;max-width:100%;}
@@ -526,7 +526,7 @@ fieldset 							{display:inline-block;width:100%;}
 label 							{display:inline-block;cursor: pointer;color:#666;position:relative;}
 input,textarea 						{outline: none;}
 button, input, select, textarea 		{font-family:'Raleway',Arial,Helvetica,sans-serif;margin: 0; vertical-align: baseline; *vertical-align: middle;outline:none;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none; -webkit-transition:all 0.2s ease-in;-moz-transition:all 0.2s ease-in;-o-transition:all 0.2s ease-in;-ms-transition:all 0.2s ease-in;transition:all 0.2s ease-in;}
-button, input[type="button"], input[type="reset"], input[type="submit"] {border:none; cursor: pointer; text-transform:uppercase;-webkit-appearance: button; background:#FF7B74;color:#fff;text-align:center;font-size:13px;font-weight:700;padding:11px 14px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
+button, input[type="button"], input[type="reset"], input[type="submit"] {border:none; cursor: pointer; -webkit-appearance: button; background:#FF7B74;color:#fff;text-align:center;font-size:13px;font-weight:700;padding:11px 14px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
 button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover,
 button:focus, input[type="button"]:focus, input[type="reset"]:focus, input[type="submit"]:focus {background:#F4716A;}
 input[type="checkbox"], input[type="radio"] { box-sizing: border-box; width:100%;height:100%;}
@@ -578,7 +578,7 @@ input[type="search"]:active 			{-moz-appearance: none;-webkit-appearance: none; 
 div.selector		 				{font-size:13px;border:1px solid #ddd;line-height:37px;height:37px;position: relative;overflow: hidden;width:100% !important;padding-left:10px;background:#fff;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
 div.selector span 				{color:#999;position:relative;text-overflow: ellipsis;display: block;overflow: hidden;white-space: nowrap;height:37px;line-height:37px;background:#fff;cursor: pointer;width: 100% !important;display: block;}
 div.selector span:before		{content: "\f078";font-family: FontAwesome;color:#DBBC94;position:absolute;top:0;right:13px;}
-div.selector select 				{opacity: 0;filter: alpha(opacity=0);-moz-opacity: 0;border: none;background: none;position: absolute;height:37px;top:0;left:0;width: 100%;}
+div.selector select 				{filter: alpha(opacity=0);-moz-opacity: 0;border: none;background: none;position: absolute;height:37px;top:0;left:0;width: 100%;}
 div.selector.active,
 div.selector.focus 				{border-color:#aaa;}
 div.selector.hover span, 

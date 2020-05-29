@@ -16,7 +16,8 @@
                     <form action="login" name="login" method="post">
                         {% csrf_token %}
                         <div class="f-row">
-                            <input type="email" placeholder="Your email" id="tx_email" name="email" value="{{ uname }}"/>
+                            <input type="email"placeholder="Your email" id="tx_email" name="email"
+                                   value="{{ uname }}"/>
                         </div>
                         <div class="f-row">
                             <input type="password" placeholder="Your password" id="tx_pass" name="password" value=""/>
@@ -28,11 +29,12 @@
                         </div>
 
                         <div class="f-row bwrap">
-                            <input type="submit" value="login"/>
+                            <input type="submit" value="LOGIN"/>
                         </div>
                     </form>
                     <p><a href="{% url 'NA_WebApp-forget' %}">Forgotten password?</a></p>
                     <p>Dont have an account yet? <a href="{% url 'NA_WebApp-register' %}">Sign up.</a></p>
+
                 </div>
             </section>
             <!--//content-->
