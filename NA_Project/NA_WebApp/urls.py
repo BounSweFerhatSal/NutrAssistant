@@ -2,6 +2,9 @@ from django.urls import path
 from . import views
 from . import views_auth
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [path('', views.home, name='NA_WebApp-home'),
                path('auth/login', views_auth.signin, name='NA_WebApp-login'),
                path('auth/logout', views_auth.signout, name='NA_WebApp-logout'),
@@ -13,3 +16,4 @@ urlpatterns = [path('', views.home, name='NA_WebApp-home'),
                path('enjoy/ajaxget', views.ajax_getdata_test, name='NA_WebApp-ajaxget'),
                path('enjoy/ajaxpost', views.ajax_getdata_test, name='NA_WebApp-ajaxpost'),
                ]
+

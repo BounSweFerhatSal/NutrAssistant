@@ -11,7 +11,7 @@ audio, canvas, video { display: inline-block; *display: inline; *zoom: 1;max-wid
 .head 		{float:left;width:100%;position:relative;z-index:2;height:90px;}
 .home .head 	{position:absolute;}
 .head .wrap 	{height:100%;background:#fff;-webkit-box-shadow:0 1px 4px rgba(0,0,0,.2);-moz-box-shadow:0 1px 4px rgba(0,0,0,.2);box-shadow:0 1px 4px rgba(0,0,0,.2);display:inline-block;}
-.main		{float:left;width:100%;display:block;min-height:500px;padding:45px 0 120px;}
+.main		{float:left;width:100%;display:block;min-height:500px;padding:15px 0 120px;}
 .foot		{float:left;width:100%;}
 .wrap 		{margin:0 auto;width:1170px;text-align:left;position:relative;max-width:96%;}
 
@@ -174,7 +174,7 @@ tr:nth-child(2n+1) td{background:#f6f6f6;}
 .slicknav_menu {display:none;}
 
 /*CONTENT*/
-.breadcrumbs			{float:left;width:100%;max-width:100%;margin:0 0 70px;}
+.breadcrumbs			{float:left;width:100%;max-width:100%;margin:0 0 20px;}
 .breadcrumbs ul 			{float:left;width:100%;padding:0 0 6px;border-bottom:1px solid rgba(0,0,0,.15);-webkit-box-shadow:0 1px 0 rgba(255,255,255,1);-moz-box-shadow:0 1px 0 rgba(255,255,255,1);box-shadow:0 1px 0 rgba(255,255,255,1);}
 .breadcrumbs li 			{float:left;font-weight:700;color:#666;white-space:nowrap;-webkit-text-shadow:0 1px 0 rgba(255,255,255,.4);-moz-text-shadow:0 1px 0 rgba(255,255,255,.4);text-shadow:0 1px 0 rgba(255,255,255,.4);}
 .breadcrumbs li a 			{position:relative;color:#666;font-weight:400;}

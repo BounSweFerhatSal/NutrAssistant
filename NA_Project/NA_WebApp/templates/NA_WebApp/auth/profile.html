@@ -25,12 +25,7 @@
                 <!--profile left part-->
                 <div class="my_account one-fourth">
                     <figure>
-                        {% if avatar == 'undefined' %}
-                            <img src="../../static/NA_WebApp/images/avatar.jpg" alt=""
-                                 title="click to upload a profile image." id="img_Avatar"/>
-                        {% else %}
-                            <img src={{ avatar }} alt="" title="click to upload a profile image." id="img_Avatar"/>
-                        {% endif %}
+                        <img src={{ user.profile.image.url }} alt="Avatar" title="click to upload a profile image." id="img_Avatar"/>
 
                     </figure>
                     <div class="container">

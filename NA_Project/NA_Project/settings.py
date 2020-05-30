@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'w!4vzjmm)^cydj219(&4foo4f+e31&pyc+09a4o8z_#!1qkqen'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -71,7 +69,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'NA_Project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -80,9 +77,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'NutrAssistant_DB',
-        'USER' : 'postgreusr',
-        'PASSWORD' : '30071985',
-        'HOST' : '127.0.0.1',
+        'USER': 'postgreusr',
+        'PASSWORD': '30071985',
+        'HOST': '127.0.0.1',
         'PORT': '5432'
     }
 }
@@ -105,7 +102,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -119,8 +115,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# set where we will store uploaded files ( such as images, videos etc. )
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # create and use a folder named media where located in he base directory of he project
+MEDIA_URL = '/media/'  # we can access the medai folder using this
