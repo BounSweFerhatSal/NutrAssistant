@@ -15,5 +15,7 @@ urlpatterns = [path('', views.home, name='NA_WebApp-home'),
                path('enjoy/', views.frontendtest, name='NA_WebApp-enjoy'),
                path('enjoy/ajaxget', views.ajax_getdata_test, name='NA_WebApp-ajaxget'),
                path('enjoy/ajaxpost', views.ajax_getdata_test, name='NA_WebApp-ajaxpost'),
+               path('auth/diseaseSearch', views.diseaseSearch, name='NA_WebApp-diseaseSearch'),
+               path('auth/diseaseAddNew', views.diseaseAddNew, name='NA_WebApp-diseaseAddNew'),
                ]
 

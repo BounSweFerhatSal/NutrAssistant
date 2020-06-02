@@ -10,8 +10,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="{% static 'NA_WebApp/css/icons.css' %}"/>
+    <link rel="stylesheet" href="{% static 'NA_WebApp/css/bootstrap-extend.css' %}"/>
 
     <script src="{% static 'NA_WebApp/js/jquery-3.1.0.min.js' %}"></script>
+    <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 
 
@@ -24,6 +33,7 @@
 
 
     <script src="{% static 'NA_WebApp/js/enjoy/frontendtest.js' %}"></script>
+    <script src="{% static 'NA_WebApp/js/components/GlobalComponents.js' %}"></script>
 
 </head>
 <body>
@@ -52,27 +62,41 @@
 <div class="container">
 
     <div class="row">
-        <div class="col col-md8">
+        <div class="col col-md-12">
 
 
-            <form method="POST">
-                {% csrf_token %}
-                <fieldset class="form-group">
+            <div class="row">
 
-                    {{ form }}
-
-                </fieldset>
-
-
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Save</button>
+                <label for="txDis">Disease Name</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="icon icon-themeenergy_search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="txDis" placeholder="Enter a disease name" aria-describedby="diseaseHelp" selectorDiv="divSelectDiseases">
+                    <!--
+                     <div class="input-group-append">
+                        <button class="btn btn-info" type="button">Add</button>
+                    </div>
+                    -->
                 </div>
-            </form>
+            </div>
+            <div class="row">
+                <div id="divSelectDiseases" class="col-md-12" style="min-height:100px;border:solid 1px;margin-top: 5px;">
 
+                </div>
+
+
+            </div>
+
+            <div class="col-md-12">
+                <btn class="btn btn-primary float-right" id="btnsaveme">Save</btn>
+            </div>
 
         </div>
     </div>
+
 </div>
+
 
 </body>
 </html>

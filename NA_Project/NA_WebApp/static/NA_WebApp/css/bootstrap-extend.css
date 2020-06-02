@@ -35,5 +35,17 @@
 }
 
 .margin-20 {
-    margin-top:20px;
+    margin-top: 20px;
+}
+
+.badge .close {
+    margin-left: .25rem;
+    color: inherit;
+    font-size: 100%;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.ui-menu-item{
+
+    text-align: left !important;
 }

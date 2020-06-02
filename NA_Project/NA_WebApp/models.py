@@ -2,6 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Diseases(models.Model):
+    diseaseName = models.CharField(max_length=100)
+
+
 class Profile(models.Model):
     # yes no enum
     class EnYesNo(models.IntegerChoices):

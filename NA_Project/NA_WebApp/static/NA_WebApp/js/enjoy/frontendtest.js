@@ -38,7 +38,7 @@ $(document).ready(function () {
             headers: {'X-CSRFToken': csrftoken},
             method: "POST",
             url: 'ajaxpost',
-            data: {'data': JSON.stringify({'key1': 'value1', 'key2' : 'value2'})},
+            data: {'data': JSON.stringify({'key1': 'value1', 'key2': 'value2'})},
         }).done(function (data) {
 
             alert("ajax  post is ok , result is : " + data)
@@ -47,6 +47,31 @@ $(document).ready(function () {
 
             $('#p_error').html(jqXHR.statusText + ' ' + textStatus);
         });
+    });
+
+
+    //make searcher test :
+    $('#txDis').makeSearcher({
+        searchUrl: 'diseaseSearch',
+        addUrl: 'diseaseAddNew',
+        addNewText: "Click here to create this disease",
+        selectedListComponent: $('#divSelectDiseases'),
+        returnSelectedItemsCallBack: function (items) {
+
+            //this callback will be fired from the this plugin and items are selected item objects will be :
+            // items : [ {'id' : 1 , 'value' : 'xxxx' }, {'id' : 2 , 'value' : 'yyyyy' }...]
+
+            $.each(items, function (index, item) {
+                alert("item id : " + item.id + " item value : " + item.value);
+            });
+
+        }
+    });
+
+    $('#btnsaveme').click(function () {
+
+       $('#txDis').getSelectedItems();
+
     });
 
 });
