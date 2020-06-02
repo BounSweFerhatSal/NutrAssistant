@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .forms import ProfileUpdateForm
 
 import json
 
@@ -93,7 +94,24 @@ def signout(request):
 
 @login_required(login_url='/auth/login')
 def profile(request):
-    profiledata = {'birthyear': '1980', 'height': '182', 'weight': '105'}
+    if request.method == 'POST':
+        p_form = ProfileUpdateForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.profile)
 
-    return render(request, 'NA_WebApp/auth/profile.html',
-                  {'avatar': 'https://medias.fashionnetwork.com/image/upload/v1/medias/ab4a10f7679ea2c38819c8c900904f2b2943745.jpg', 'profile': profiledata})
+        if p_form.is_valid():
+            p_form.save()
+            messages.success(request, 'Your Profile is updated!')
+            # post get redirect pattern :
+            # to avoid to 'browser ask sure you wonna reload question?'
+            # redirect to the page so the browser sends a get request ! brilliant is int it ?
+            return redirect('NA_WebApp-profile')
+
+
+
+    else:
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    # Here we send the form data to template just for showing the errors
+    # Otherwise we had to create a message with a loop in errors and send it to template
+    return render(request, 'NA_WebApp/auth/profile.html', {'form': p_form})

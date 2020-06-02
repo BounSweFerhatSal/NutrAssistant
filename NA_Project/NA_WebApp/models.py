@@ -32,12 +32,12 @@ class Profile(models.Model):
 
     gender = models.IntegerField(choices=EnGender.choices, null=True)
     birthYear = models.IntegerField(null=True)
-    married = models.IntegerField(choices=EnYesNo.choices, null=True, default=EnYesNo.NO)
-    hasKids = models.IntegerField(choices=EnYesNo.choices, null=True, default=EnYesNo.NO)
+    married = models.IntegerField(choices=EnYesNo.choices, null=True)
+    hasKids = models.IntegerField(choices=EnYesNo.choices, null=True)
 
     # geo location points :
-    lat = models.DecimalField(max_digits=10, decimal_places=8, null=True, default=41.086203)
-    lng = models.DecimalField(max_digits=11, decimal_places=8, null=True, default=29.044378)
+    lat = models.DecimalField(max_digits=20, decimal_places=18, null=True, default=41.086203)
+    lng = models.DecimalField(max_digits=20, decimal_places=18, null=True, default=29.044378)
 
     def __str__(self):
         return self.user.username + ' Profile'

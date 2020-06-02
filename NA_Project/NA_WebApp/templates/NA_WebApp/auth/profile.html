@@ -1,8 +1,7 @@
 {% extends 'NA_WebApp/_masterpage.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
-
-
 
 
     <div class="wrap clearfix">
@@ -16,6 +15,9 @@
 
 
         <!--//breadcrumbs-->
+
+
+        <!--row-->
 
 
         <!--content-->
@@ -50,155 +52,77 @@
                     <div class="tab-content" id="about">
                         <div class="row">
                             <!-- My Identity -->
-                            <div class="col col-md-6">
+                            <div class="col col-md12">
+                                <form action="profile" method="POST" enctype="multipart/form-data" id="frmIdentity">
+                                    <div class="row">
+                                        <div class="col col-md-7">
 
 
-                                <div class="card">
-                                    <div class="card-header lightred">
-                                        My Identity
-                                    </div>
-                                    <div class="card-body">
+                                            {% csrf_token %}
 
-                                        <form>
 
-                                            <div class="form-group row">
-                                                <label for="txEmail" class="col-md-4 col-form-label">e-Mail</label>
-                                                <div class="col-md-8">
-                                                    <input type="email" readonly class="form-control plaintextbox-red" name="email"
-                                                           id="txEmail"
-                                                           placeholder="e-Mail" value="{{ user.email }}">
+                                            <div class="card">
+                                                <div class="card-header lightred">
+                                                    My Identity
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="txFirstName" class="col-md-4 col-form-label">First Name</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control textbox-red" name="firstname"
-                                                           id="txFirstName"
-                                                           placeholder="Your First Name" value="{{ user.first_name }}">
-                                                </div>
-                                            </div>
+                                                <div class="card-body">
 
-                                            <div class="form-group row">
-                                                <label for="txLastName" class="col-sm-4 col-form-label">Last Name</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control textbox-red" name="lastname"
-                                                           id="txLastName"
-                                                           placeholder="Your Last Name" value="{{ user.last_name }}">
-                                                </div>
-                                            </div>
 
-                                            <div class="form-group row">
-                                                <label for="txGender" class="col-md-4 col-form-label">Gender</label>
-                                                <div class="col-md-8">
-                                                    <select id="txGender" class="form-control textbox-red" name="gender">
-                                                        <option value="" disabled selected hidden>Please Choose...</option>
-                                                        <option value="1">Male</option>
-                                                        <option value="2">Female</option>
-                                                        <option value="3">Other</option>
-                                                    </select>
+                                                    <fieldset class="form-group">
+                                                        {{ form|crispy }}
+
+                                                    </fieldset>
+
+
+                                                    <div class="form-group">
+                                                        <button class="btn lightred float-right" type="submit">Update My Profile</button>
+                                                    </div>
+
 
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row">
-                                                <label for="txBirthYear" class="col-md-4 col-form-label">Birth Year</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control textbox-red" name="birthyear"
-                                                           id="txBirthYear"
-                                                           placeholder="Your First Name" value="{{ profile.birthyear }}">
+
+                                        </div>
+                                        <!-- Geo Location -->
+                                        <div class="col col-md-5">
+                                            <div class="card">
+                                                <div class="card-header lightred">
+                                                    My Location
                                                 </div>
-                                            </div>
+                                                <div class="card-body">
 
-                                            <hr>
-                                            <div class="form-group row">
-                                                <label for="txMartial" class="col-md-4 col-form-label">Married</label>
-                                                <div class="col-md-8">
-                                                    <select id="txMartial" class="form-control textbox-red" name="martial">
-                                                        <option value="" disabled selected hidden>Please Choose...</option>
-                                                        <option value="0">Yes</option>
-                                                        <option value="1">No</option>
-                                                    </select>
+                                                    <div id="Map_Geo" style="width: auto; height: 410px;"></div>
+
+                                                    <div class="clearfix"></div>
+                                                    <br>
+                                                    <fieldset class="form-group" id="fldsetGeoLocation">
+
+                                                        <div class="form-group row">
+                                                            <label for="txlat" class="col-md-4 col-form-label">Lat</label>
+                                                            <div class="col-md-8">
+                                                                <input type="text" class="form-control textbox-red"
+                                                                       id="txLat"
+                                                                       placeholder="Use the map above" value="{{ user.profile.lat }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="txLng" class="col-md-4 col-form-label">Lng</label>
+                                                            <div class="col-md-8">
+                                                                <input type="text" class="form-control textbox-red"
+                                                                       id="txLng"
+                                                                       placeholder="Use the map above" value="{{ user.profile.lng }}">
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+
 
                                                 </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="txKids" class="col-md-4 col-form-label">Have Kids ?</label>
-                                                <div class="col-md-8">
-                                                    <select id="txKids" class="form-control textbox-red" name="kids">
-                                                        <option value="" disabled selected hidden>Please Choose...</option>
-                                                        <option value="0">Yes</option>
-                                                        <option value="1">No</option>
-                                                    </select>
-
-                                                </div>
-                                            </div>
-
-                                            <hr>
-                                            <div class="form-group row">
-                                                <label for="txHeight" class="col-md-4 col-form-label">Height-Cm</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control textbox-red" name="Height"
-                                                           id="txHeight"
-                                                           placeholder="Your Height in Cm." value="{{ profile.height }}">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="txHeight" class="col-md-4 col-form-label">Weight-Kg</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control textbox-red" name="Weight"
-                                                           id="txWeight"
-                                                           placeholder="Your Weight in Kg." value="{{ profile.weight }}">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="txBmi" class="col-md-4 col-form-label">BMI</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" readonly class="form-control plaintextbox-red" name="bmi"
-                                                           id="txBmi"
-                                                           placeholder="e-Mail" value="0">
-                                                </div>
-                                            </div>
-
-
-                                        </form>
-
-
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <!-- Geo Location -->
-                            <div class="col col-md-6">
-                                <div class="card">
-                                    <div class="card-header lightred">
-                                        My Location
-                                    </div>
-                                    <div class="card-body">
-
-                                        <div id="Map_Geo" style="width: auto; height: 450px;"></div>
-                                        <div class="clearfix">&nbsp;</div>
-
-                                        <div class="form-group row">
-                                            <label class="col-md-4 control-label">Lat.:</label>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control textbox-red" readonly style="width: 110px" id="Map-lat"/>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-4 control-label">Long.:</label>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control textbox-red" readonly style="width: 110px" id="Map-lon"/>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-
                                     </div>
-                                </div>
+                                </form>
                             </div>
-
-
                         </div>
 
 

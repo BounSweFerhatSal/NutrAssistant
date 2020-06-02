@@ -30,12 +30,14 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'NA_WebApp.apps.NaWebappConfig',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
 
 MIDDLEWARE = [
@@ -123,3 +125,5 @@ STATIC_URL = '/static/'
 # set where we will store uploaded files ( such as images, videos etc. )
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # create and use a folder named media where located in he base directory of he project
 MEDIA_URL = '/media/'  # we can access the medai folder using this
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

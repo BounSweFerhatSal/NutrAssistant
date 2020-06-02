@@ -8,21 +8,39 @@ $(document).ready(function () {
 
     });
 
+
+    //hide original form inputs for lat and lng :
+   // $('#div_id_lat').hide();
+  //  $('#div_id_lng').hide();
+
+    //set their value to the visible mock ones ,  if they changed
+    $("[name='lat']").change(function () {
+        $('#txLat').val($(this).val());
+    });
+
+    $("[name='lng']").change(function () {
+        $('#txLng').val($(this).val());
+    });
+
+
     //here how to add google maps API key :
     //add this :
     //<script src="https://maps.googleapis.com/maps/api/jskey=YOUR_API_KEY&callback=initMap"async defer></script>
     //and get the API key from :
     //https://developers.google.com/maps/documentation/javascript/get-api-key
 
+
+    var deflat = $('#id_lat').val();// 41.086203 // Boğaziçi Kuzey Kampus
+    var deflng = $('#id_lng').val();//29.044378 // Boğaziçi Kuzey Kampus
     $('#Map_Geo').locationpicker({
         location: {
-            latitude: 41.086203 ,
-            longitude: 29.044378
+            latitude: deflat,
+            longitude: deflng
         },
         radius: 300,
         inputBinding: {
-            latitudeInput: $('#Map-lat'), // Boğaziçi Kuzey Kampus
-            longitudeInput: $('#Map-lon'),
+            latitudeInput:$('#id_lat'),
+            longitudeInput: $('#id_lng'),
             //radiusInput: $('#us3-radius'),
             //locationNameInput: $('#us3-address')
         },

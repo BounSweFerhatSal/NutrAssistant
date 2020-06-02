@@ -25,7 +25,7 @@ audio, canvas, video { display: inline-block; *display: inline; *zoom: 1;max-wid
 .one-fifth 		 {float:left;width:20%;padding:0 15px 30px;max-width:100%;}
 .one-sixth 		 {float:left;width:16.66%;padding:0 15px 30px;max-width:100%;}
 
-.content 				{float:left;}
+.content 				{}
 .cwrap					{float:left;width:100%;overflow-x:hidden;border-bottom:1px solid rgba(0,0,0,.15);-webkit-box-shadow:0 1px 0 rgba(255,255,255,1);-moz-box-shadow:0 1px 0 rgba(255,255,255,1);box-shadow:0 1px 0 rgba(255,255,255,1);margin:0 0 30px;}
 .cwrap:last-child		{border:none;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;margin:0;}
 
@@ -578,7 +578,7 @@ input[type="search"]:active 			{-moz-appearance: none;-webkit-appearance: none; 
 div.selector		 				{font-size:13px;border:1px solid #ddd;line-height:37px;height:37px;position: relative;overflow: hidden;width:100% !important;padding-left:10px;background:#fff;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
 div.selector span 				{color:#999;position:relative;text-overflow: ellipsis;display: block;overflow: hidden;white-space: nowrap;height:37px;line-height:37px;background:#fff;cursor: pointer;width: 100% !important;display: block;}
 div.selector span:before		{content: "\f078";font-family: FontAwesome;color:#DBBC94;position:absolute;top:0;right:13px;}
-div.selector select 				{filter: alpha(opacity=0);-moz-opacity: 0;border: none;background: none;position: absolute;height:37px;top:0;left:0;width: 100%;}
+div.selector select 			 {opacity: 0;filter: alpha(opacity=0);-moz-opacity: 0;border: none;background: none;position: absolute;height:37px;top:0;left:0;width: 100%;}
 div.selector.active,
 div.selector.focus 				{border-color:#aaa;}
 div.selector.hover span, 
