@@ -92,27 +92,57 @@ $(document).ready(function () {
 
 //------------------------------------------------------------------- my prefrences -------------------------------------
 
-    //make searcher test :
     $('#txDis').makeSearcher({
         searchUrl: 'diseaseSearch',
         addUrl: 'diseaseAddNew',
         addNewText: "Click here to create this disease",
-        selectedListComponent: $('#divSelectDiseases'),
-        returnSelectedItemsCallBack: function (items) {
-
-            //this callback will be fired from the this plugin and items are selected item objects will be :
-            // items : [ {'id' : 1 , 'value' : 'xxxx' }, {'id' : 2 , 'value' : 'yyyyy' }...]
-
-            $.each(items, function (index, item) {
-                alert("item id : " + item.id + " item value : " + item.value);
-            });
-
-        }
+        badgeStyle: "danger",
+        selectedListComponent: $('#divSelectDiseases')
     });
+
+
+    $('#txAllergies').makeSearcher({
+        searchUrl: 'search_allergies',
+        addUrl: 'add_allergy',
+        addNewText: "Click here to create this allergy record",
+        badgeStyle: "warning",
+        selectedListComponent: $('#divSelectAllergies')
+    });
+
+
+
+    $('#txFoodPreferences').makeSearcher({
+        searchUrl: 'search_labels',
+        addUrl: 'add_label',
+        addNewText: "Click here to create this new label record" ,
+        badgeStyle: "success",
+        selectedListComponent: $('#divSelectedFoodPreferences')
+    });
+
+
+
+
+    $('#txAwayFrom').makeSearcher({
+        searchUrl: 'search_labels',
+        addUrl: 'add_label',
+        addNewText: "Click here to create this new label record" ,
+        badgeStyle: "warning",
+        selectedListComponent: $('#divSelectedAwayFrom')
+    });
+
+
+
 
     $('#btnsaveme').click(function () {
 
-        $('#txDis').getSelectedItems();
+        //debugger
+
+        let sels = $('#txDis').getSelectedItems();// [{'value':val,'label':label}]
+        let str = '';
+        $.each(sels, function (idx, item) {
+            str += "Label : " + item.label + ' val : ' + item.value + "    \n";
+        });
+        alert(str);
 
     });
 

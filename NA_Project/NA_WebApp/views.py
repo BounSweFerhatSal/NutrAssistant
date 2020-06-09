@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+
+
 import json
 
 
@@ -37,23 +39,3 @@ def ajax_getdata_test(request):
 
         return HttpResponse('You Send Me this : ' + sonuc['key1'])
 
-
-def diseaseSearch(request):
-    res = [
-        {'label': 'Java', 'value': 1},
-        {'label': 'Java1', 'value': 2},
-        {'label': 'Java2', 'value': 3},
-    ]
-
-    prm = request.POST.get('term', '')
-    if prm == 'new':
-        res = []
-
-    return HttpResponse(json.dumps(res))
-
-
-def diseaseAddNew(request):
-    prm = request.POST.get('term', '')
-    # add this to db here
-    res = {'label': prm, 'value': 145}
-    return HttpResponse(json.dumps(res))

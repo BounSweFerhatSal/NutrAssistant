@@ -137,124 +137,116 @@
 
                             <!-- My Preferences -->
                             <div class="col col-md-12">
+                                <form>
+                                    <div class="row">
+                                        <div class="col col-md-7">
 
-                                <div class="card">
-                                    <div class="card-header lightred">
-                                        My Dieatery / Preferences
-                                    </div>
-                                    <div class="card-body">
+                                            {% csrf_token %}
 
-
-                                        <div class="row">
-                                            <div class="col col-md-12">
-
-
-                                                <div class="row">
-
-                                                    <label for="txDis">Disease Name</label>
-
-                                                    <input type="text" class="form-control" id="txDis" placeholder="Enter a disease name" aria-describedby="diseaseHelp"
-                                                           selectorDiv="divSelectDiseases">
-
-
+                                            <div class="card">
+                                                <div class="card-header lightred">
+                                                    My Dieatery / Preferences
                                                 </div>
-                                                <div class="row">
-                                                    <div id="divSelectDiseases" class="col-md-12" style="min-height:100px;border:solid 1px;margin-top:5px;">
+                                                <div class="card-body">
 
+
+                                                    <fieldset class="form-group">
+                                                        <!-- Diseses Component -->
+                                                        <div class="form-group ">
+                                                            <div class="col col-md-12">
+                                                                <div class="row">
+
+                                                                    <label for="txDis">My Diseases:</label>
+
+                                                                    <input type="text" class="form-control" id="txDis" placeholder="Enter a disease name"
+                                                                           aria-describedby="diseaseHelp"
+                                                                           selectorDiv="divSelectDiseases">
+
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div id="divSelectDiseases" class="col-md-12 makeSearchSelectedContainer">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Allergies Component -->
+                                                        <div class="form-group ">
+                                                            <div class="col col-md-12">
+                                                                <div class="row">
+
+                                                                    <label for="txDis">My Allergies:</label>
+
+                                                                    <input type="text" class="form-control" id="txAllergies" placeholder="Enter an Allergy name name"
+                                                                           aria-describedby="diseaseHelp"
+                                                                           selectorDiv="divSelectAllergies">
+
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div id="divSelectAllergies" class="col-md-12 makeSearchSelectedContainer">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <!-- Food Preferences Component -->
+                                                        <div class="form-group ">
+                                                            <div class="col col-md-12">
+                                                                <div class="row">
+
+                                                                    <label for="txDis">My Food Preferences:</label>
+
+                                                                    <input type="text" class="form-control" id="txFoodPreferences" placeholder="Enter an Preference (chinese,fish,vegan,fries..)"
+                                                                           aria-describedby="diseaseHelp"
+                                                                           selectorDiv="divSelectedFoodPreferences">
+
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div id="divSelectedFoodPreferences" class="col-md-12 makeSearchSelectedContainer">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Resticted Labels Component -->
+                                                        <div class="form-group ">
+                                                            <div class="col col-md-12">
+                                                                <div class="row">
+
+                                                                    <label for="txDis">Away From</label>
+
+                                                                    <input type="text" class="form-control" id="txAwayFrom" placeholder="Enter a food category (chinese,fish,vegan,fries..)"
+                                                                           aria-describedby="diseaseHelp"
+                                                                           selectorDiv="divSelectedAwayFrom">
+
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div id="divSelectedAwayFrom" class="col-md-12 makeSearchSelectedContainer">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </fieldset>
+                                                    <div class="form-group">
+                                                        <btn class="btn lightred float-right" id="btnsaveme">Save</btn>
                                                     </div>
 
-                                                    <div class="col-md-12">
-                                                        <btn class="btn btn-primary float-right" id="btnsaveme">Save</btn>
-                                                    </div>
-
                                                 </div>
-
-
                                             </div>
                                         </div>
-
-
-                                        <hr>
-
-                                        <form>
-
-                                            <div class="form-group row">
-                                                <label for="txHeight" class="col-md-4 col-form-label">Height-Cm</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control textbox-red" name="Height"
-                                                           id="txHeight"
-                                                           placeholder="Your Height in Cm." value="{{ profile.height }}">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="txHeight" class="col-md-4 col-form-label">Weight-Kg</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control textbox-red" name="Weight"
-                                                           id="txWeight"
-                                                           placeholder="Your Weight in Kg." value="{{ profile.weight }}">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="txBmi" class="col-md-4 col-form-label">BMI</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" readonly class="form-control plaintextbox-red" name="bmi"
-                                                           id="txBmi"
-                                                           placeholder="e-Mail" value="0">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="txLastName" class="col-sm-4 col-form-label">Last Name</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control textbox-red" name="lastname"
-                                                           id="txLastName"
-                                                           placeholder="Your Last Name" value="{{ user.last_name }}">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="txGender" class="col-md-4 col-form-label">Gender</label>
-                                                <div class="col-md-8">
-                                                    <select id="txGender" class="form-control textbox-red" name="gender">
-                                                        <option value="" disabled selected hidden>Please Choose...</option>
-                                                        <option value="1">Male</option>
-                                                        <option value="2">Female</option>
-                                                        <option value="3">Other</option>
-                                                    </select>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="txMartial" class="col-md-4 col-form-label">Married</label>
-                                                <div class="col-md-8">
-                                                    <select id="txMartial" class="form-control textbox-red" name="martial">
-                                                        <option value="" disabled selected hidden>Please Choose...</option>
-                                                        <option value="0">Yes</option>
-                                                        <option value="1">No</option>
-                                                    </select>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="txKids" class="col-md-4 col-form-label">Have Kids ?</label>
-                                                <div class="col-md-8">
-                                                    <select id="txKids" class="form-control textbox-red" name="kids">
-                                                        <option value="" disabled selected hidden>Please Choose...</option>
-                                                        <option value="0">Yes</option>
-                                                        <option value="1">No</option>
-                                                    </select>
-
-                                                </div>
-                                            </div>
-
-                                        </form>
-
-
                                     </div>
-                                </div>
-
+                                </form>
                             </div>
 
                         </div>

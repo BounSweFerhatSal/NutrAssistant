@@ -61,7 +61,7 @@ em 			{font-weight:700;font-style:normal;color:#FF7A73;}
 
 ul 				{margin:0 0 20px;}
 ul > li	  		{list-style:none;position:relative;padding:0 0 10px 15px;}
-ul > li:before 	{content:"\2022";font-size:30px;color:#DBBC94;position:absolute;top:-10px;left:0;}
+/*ul > li:before 	{content:"\2022";font-size:30px;color:#DBBC94;position:absolute;top:-10px;left:0;}*/
 ul ul 				{margin:10px 0 -10px 2px;}
 ul ul li:before		{content:"\00af";font-size:25px;top:0;left:-2px;} 			
 ol			{margin:0 0 20px 25px;}

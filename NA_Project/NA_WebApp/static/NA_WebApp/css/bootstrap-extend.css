@@ -45,7 +45,22 @@
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
 }
 
-.ui-menu-item{
+.ui-menu-item {
 
     text-align: left !important;
 }
+
+.makeSearchSelectedContainer {
+
+    font-size: 18px;
+    min-height: 50px;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+    padding: 5px;
+
+}
+
+.makeSearchSelectedContainer .badge {
+    margin-right: 5px;
+}
+

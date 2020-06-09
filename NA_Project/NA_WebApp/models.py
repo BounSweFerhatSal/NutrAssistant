@@ -5,6 +5,23 @@ from django.contrib.auth.models import User
 class Diseases(models.Model):
     diseaseName = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.diseaseName + ' (id: ' + str(self.id) + ')'
+
+
+class Allergies(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name + ' (id: ' + str(self.id) + ')'
+
+
+class Labels(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name + ' (id: ' + str(self.id) + ')'
+
 
 class Profile(models.Model):
     # yes no enum

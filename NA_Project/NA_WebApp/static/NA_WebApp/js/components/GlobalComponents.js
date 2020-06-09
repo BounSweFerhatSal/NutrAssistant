@@ -14,18 +14,8 @@
         $('#txDis').makeSearcher({
             searchUrl: 'urltosearch',
             addUrl: 'urltoaddnewitems',
-            addNewText: "Click here to create this disease",
-            returnSelectedItemsCallBack : function (items) {
+            addNewText: "Click here to create this disease"
 
-                //this callback will be fired from the this plugin and items are selected item objects will be :
-                // items : [ {'id' : 1 , 'value' : 'xxxx' }, {'id' : 2 , 'value' : 'yyyyy' }...]
-
-                $.each(items, function (index, item) {
-                    console.log("item id : " + item.id + " item value : " + item.value);
-
-                })
-
-            }
         });
 
 
@@ -37,15 +27,18 @@
             searchUrl: "",
             addUrl: "",
             addNewText: "Click here to create",
+            badgeStyle: 'warning',
             selectedListComponent: $('#' + $(this).attr('selectorDiv')),
-            addToSelectedListFunction: function addToSelectedList(id, val) {
+            addToSelectedListFunction: function addToSelectedList(val, label) {
+
+              //debugger
 
                 const remove_btn = '<button type="button" class="close"  aria-label="Close">\n' +
                     '    <span aria-hidden="true">×</span>\n' +
                     '  </button>';
 
-                let new_item = '<span class="badge badge-pill badge-primary" data-itemid="' + id + '">' + val + ' ' + remove_btn + '</span>';
-                new_item = '<span class="badge badge-pill badge-primary" makeSelectorItem  data-itemid="' + id + '">' + val + ' ' +
+
+                let new_item = '<span class="badge  badge-' + options.badgeStyle + '" makeSelectorItem  data-itemval="' + val + '" data-itemlabel="' + label + '" >' + label + ' ' +
                     '  <button type="button" class="close" aria-label="Dismiss">' +
                     '    <span aria-hidden="true">x</span>' +
                     '  </button>' +
@@ -90,6 +83,8 @@
                         if (data.length === 0) {
                             data = [{'label': options.addNewText, "value": -1}];
                         }
+                      //  debugger
+
                         response(data);
                     }
                 });
@@ -141,7 +136,7 @@
         }).data("ui-autocomplete")._renderItem = function (ul, item) {
 
             return $("<li></li>")
-                .data("item.autocomplete", item)
+                .data("ui-autocomplete-item", item)
                 .append("<a>" + item.label + "</a>")
                 .appendTo(ul);
         };
@@ -154,7 +149,7 @@
     //this plugin is to get the selected item from a makeselector plugin
     $.fn.getSelectedItems = function () {
 
-        debugger;
+     //   debugger;
 
         const selDiv = $('#' + $(this).attr('selectorDiv'));
         // items : [ {'id' : 1 , 'value' : 'xxxx' }, {'id' : 2 , 'value' : 'yyyyy' }...]
@@ -164,8 +159,8 @@
 
         $.each(items, function (index, item) {
 
-            const val= $(this).data('itemid');
-            const label = $(this).text();
+            const val= $(this).data('itemval');
+            const label = $(this).data('itemlabel');
             retData.push({'value':val,'label':label});
 
             //console.log("item label : " +  label + " item value : " + val);

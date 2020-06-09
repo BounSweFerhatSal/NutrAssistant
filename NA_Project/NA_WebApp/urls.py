@@ -1,6 +1,5 @@
 from django.urls import path
-from . import views
-from . import views_auth
+from . import views, views_auth, views_defs
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -15,7 +14,11 @@ urlpatterns = [path('', views.home, name='NA_WebApp-home'),
                path('enjoy/', views.frontendtest, name='NA_WebApp-enjoy'),
                path('enjoy/ajaxget', views.ajax_getdata_test, name='NA_WebApp-ajaxget'),
                path('enjoy/ajaxpost', views.ajax_getdata_test, name='NA_WebApp-ajaxpost'),
-               path('auth/diseaseSearch', views.diseaseSearch, name='NA_WebApp-diseaseSearch'),
-               path('auth/diseaseAddNew', views.diseaseAddNew, name='NA_WebApp-diseaseAddNew'),
-               ]
+               path('auth/diseaseSearch', views_defs.diseaseSearch, name='NA_WebApp-diseaseSearch'),
+               path('auth/diseaseAddNew', views_defs.diseaseAddNew, name='NA_WebApp-diseaseAddNew'),
+               path('auth/search_allergies', views_defs.search_allergies, name='NA_WebApp-search_allergies'),
+               path('auth/add_allergy', views_defs.add_allergy, name='NA_WebApp-add_allergy'),
+               path('auth/search_labels', views_defs.search_labels, name='NA_WebApp-search_allergies'),
+               path('auth/add_label', views_defs.add_label, name='NA_WebApp-add_allergy'),
 
+               ]
