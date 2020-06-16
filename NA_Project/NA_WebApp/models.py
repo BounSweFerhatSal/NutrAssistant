@@ -23,6 +23,15 @@ class Labels(models.Model):
         return self.name + ' (id: ' + str(self.id) + ')'
 
 
+class Ingredient(models.Model):
+    name = models.CharField(max_length=100)
+    calorie = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=0)
+    FDC_ID = models.CharField(max_length=8)
+
+    def __str__(self):
+        return self.name + ' (id: ' + str(self.id) + ',FDC_ID: ' + self.FDC_ID + ')'
+
+
 class Profile(models.Model):
     # yes no enum
     class EnYesNo(models.IntegerChoices):

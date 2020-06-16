@@ -115,3 +115,16 @@ def profile(request):
     # Here we send the form data to template just for showing the errors
     # Otherwise we had to create a message with a loop in errors and send it to template
     return render(request, 'NA_WebApp/auth/profile.html', {'form': p_form})
+
+
+@login_required(login_url='/auth/login')
+def profile_preferences(request):
+    if request.method == 'POST':
+        data = json.loads(request.POST.get('posted_data', ''))
+        return HttpResponse(json.dumps(data), content_type="application/json")
+
+        # data.diseases
+        # data.allergies
+        # data.foodpreferences
+        # data.awayfrom
+        # data.restrictedIngredient

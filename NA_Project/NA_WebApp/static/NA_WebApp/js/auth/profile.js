@@ -110,41 +110,75 @@ $(document).ready(function () {
     });
 
 
-
     $('#txFoodPreferences').makeSearcher({
         searchUrl: 'search_labels',
         addUrl: 'add_label',
-        addNewText: "Click here to create this new label record" ,
+        addNewText: "Click here to create this new label record",
         badgeStyle: "success",
         selectedListComponent: $('#divSelectedFoodPreferences')
     });
 
 
-
-
     $('#txAwayFrom').makeSearcher({
         searchUrl: 'search_labels',
         addUrl: 'add_label',
-        addNewText: "Click here to create this new label record" ,
+        addNewText: "Click here to create this new label record",
         badgeStyle: "warning",
         selectedListComponent: $('#divSelectedAwayFrom')
     });
 
 
+    $('#txRestrictedIngredient').makeSearcher({
+        searchUrl: 'search_ingredients',
+        addUrl: 'add_ingredients',
+        addNewText: "No Ingredient Suggested, Check Spelling...",
+        badgeStyle: "warning",
+        selectedListComponent: $('#divRestrictedIngredient')
+    });
 
 
     $('#btnsaveme').click(function () {
 
+
         //debugger
 
-        let sels = $('#txDis').getSelectedItems();// [{'value':val,'label':label}]
-        let str = '';
-        $.each(sels, function (idx, item) {
-            str += "Label : " + item.label + ' val : ' + item.value + "    \n";
-        });
-        alert(str);
+
+        let data = {
+            'diseases': [],
+            'allergies': [],
+            'foodpreferences': [],
+            'awayfrom': [],
+        };
+        data.diseases = $('#txDis').getSelectedItemsVals();
+        data.allergies = $('#txAllergies').getSelectedItemsVals();
+        data.foodpreferences = $('#txFoodPreferences').getSelectedItemsVals();
+        data.awayfrom = $('#txAwayFrom').getSelectedItemsVals();
+        data.restrictedIngredient = $('#txRestrictedIngredient').getSelectedItemsVals();
+        console.log(data);
+        sendPost('profile_preferences',data);
+
 
     });
 
 
 });
+
+
+function sendPost(target, post_data) {
+
+    const csrftoken = Cookies.get('csrftoken');
+
+    $.ajax({
+        headers: {'X-CSRFToken': csrftoken},
+        method: "POST",
+        url: target,
+        data: {'posted_data': JSON.stringify(post_data)},
+    }).done(function (result) {
+
+        alert("ajax  post is ok , result is : " + result)
+
+    }).fail(function (jqXHR, textStatus) {
+        $('#preferences_error').html(jqXHR.statusText + ' ' + textStatus).css('display','block');
+    });
+
+}

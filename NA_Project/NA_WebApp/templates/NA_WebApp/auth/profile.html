@@ -201,7 +201,8 @@
 
                                                                     <label for="txDis">My Food Preferences:</label>
 
-                                                                    <input type="text" class="form-control" id="txFoodPreferences" placeholder="Enter an Preference (chinese,fish,vegan,fries..)"
+                                                                    <input type="text" class="form-control" id="txFoodPreferences"
+                                                                           placeholder="Enter an Preference (chinese,fish,vegan,fries..)"
                                                                            aria-describedby="diseaseHelp"
                                                                            selectorDiv="divSelectedFoodPreferences">
 
@@ -222,7 +223,8 @@
 
                                                                     <label for="txDis">Away From</label>
 
-                                                                    <input type="text" class="form-control" id="txAwayFrom" placeholder="Enter a food category (chinese,fish,vegan,fries..)"
+                                                                    <input type="text" class="form-control" id="txAwayFrom"
+                                                                           placeholder="Enter a food category (chinese,fish,vegan,fries..)"
                                                                            aria-describedby="diseaseHelp"
                                                                            selectorDiv="divSelectedAwayFrom">
 
@@ -237,8 +239,33 @@
                                                         </div>
 
 
+                                                        <!-- Resticted Ingredients Component -->
+                                                        <div class="form-group ">
+                                                            <div class="col col-md-12">
+                                                                <div class="row">
+
+                                                                    <label for="txRestrictedIngredient">Restricted Ingredients</label>
+
+                                                                    <input type="text" class="form-control" id="txRestrictedIngredient"
+                                                                           placeholder="Enter a Restricted Ingredient for you (peanut,tomato,garlic...)"
+                                                                           aria-describedby="diseaseHelp"
+                                                                           selectorDiv="divRestrictedIngredient">
+
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div id="divRestrictedIngredient" class="col-md-12 makeSearchSelectedContainer">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                     </fieldset>
                                                     <div class="form-group">
+                                                        <div class="alert alert-danger" role="alert" id="preferences_error">
+
+                                                        </div>
                                                         <btn class="btn lightred float-right" id="btnsaveme">Save</btn>
                                                     </div>
 

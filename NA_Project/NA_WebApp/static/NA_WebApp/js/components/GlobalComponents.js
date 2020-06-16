@@ -31,7 +31,7 @@
             selectedListComponent: $('#' + $(this).attr('selectorDiv')),
             addToSelectedListFunction: function addToSelectedList(val, label) {
 
-              //debugger
+                //debugger
 
                 const remove_btn = '<button type="button" class="close"  aria-label="Close">\n' +
                     '    <span aria-hidden="true">×</span>\n' +
@@ -83,7 +83,7 @@
                         if (data.length === 0) {
                             data = [{'label': options.addNewText, "value": -1}];
                         }
-                      //  debugger
+                        //  debugger
 
                         response(data);
                     }
@@ -149,7 +149,7 @@
     //this plugin is to get the selected item from a makeselector plugin
     $.fn.getSelectedItems = function () {
 
-     //   debugger;
+        //   debugger;
 
         const selDiv = $('#' + $(this).attr('selectorDiv'));
         // items : [ {'id' : 1 , 'value' : 'xxxx' }, {'id' : 2 , 'value' : 'yyyyy' }...]
@@ -159,9 +159,9 @@
 
         $.each(items, function (index, item) {
 
-            const val= $(this).data('itemval');
+            const val = $(this).data('itemval');
             const label = $(this).data('itemlabel');
-            retData.push({'value':val,'label':label});
+            retData.push({'value': val, 'label': label});
 
             //console.log("item label : " +  label + " item value : " + val);
 
@@ -170,4 +170,19 @@
         // console.log(retData);
         return retData;
     }
+
+    //this plugin is to get the selected item values and return them as an array
+    $.fn.getSelectedItemsVals = function () {
+
+
+        let sels = $(this).getSelectedItems();
+        let dataArray = [];
+        $.each(sels, function (idx, item) {
+            dataArray.push(item.value);
+        });
+
+
+        return dataArray;
+    }
+
 }(jQuery));
