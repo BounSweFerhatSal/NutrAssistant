@@ -71,3 +71,43 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username + ' Profile'
+
+
+class Profile_Diseases(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    disease = models.ForeignKey(Diseases, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.profile.user.username + ' ' + self.disease.diseaseName
+
+
+class Profile_Allergies(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    allergy = models.ForeignKey(Allergies, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.profile.user.username + ' ' + self.allergy.name
+
+
+class Profile_FoodPreferences(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    label = models.ForeignKey(Labels, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.profile.user.username + ' ' + self.label.name
+
+
+class Profile_RestrictedLabels(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    label = models.ForeignKey(Labels, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.profile.user.username + ' ' + self.label.name
+
+
+class Profile_RestrictedIngredients(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    Ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.profile.user.username + ' ' + self.label.name

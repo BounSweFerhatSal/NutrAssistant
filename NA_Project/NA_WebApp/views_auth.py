@@ -5,7 +5,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_protect
+
 from .forms import ProfileUpdateForm
+from .models import Diseases, Allergies, Labels, Ingredient, Profile_Diseases, Profile_Allergies, Profile_FoodPreferences, Profile_RestrictedIngredients, Profile_RestrictedLabels
 
 import json
 
@@ -118,10 +121,38 @@ def profile(request):
 
 
 @login_required(login_url='/auth/login')
+@csrf_protect
 def profile_preferences(request):
     if request.method == 'POST':
-        data = json.loads(request.POST.get('posted_data', ''))
-        return HttpResponse(json.dumps(data), content_type="application/json")
+
+        dat = json.loads(request.POST.get('posted_data', ''))
+
+        # get and save the diseases to profile :
+        for d in dat['diseases']:
+            dis = Diseases.objects.get(id=d)
+            if dis is not None:
+                new_rec = Profile_Diseases.objects.create(profile=request.user.profile, disease=dis)  # add this to db here
+
+        # get and save the allergies to profile :
+        for a in dat['allergies']:
+            alg = Allergies.objects.get(id=a)
+            if alg is not None:
+                new_rec = Profile_Allergies.objects.create(profile=request.user.profile, allergy=alg)  # add this to db here
+
+        # get and save the food preferences to profile :
+        for fp in dat['foodpreferences']:
+            foodp = Labels.objects.get(id=fp)
+            if foodp is not None:
+                new_rec = Profile_FoodPreferences.objects.create(profile=request.user.profile, label=foodp)  # add this to db here
+
+        # get and save the RestrictedLabels to profile :
+        for aw in dat['awayfrom']:
+            restlab = Labels.objects.get(id=aw)
+            if restlab is not None:
+                new_rec = Profile_RestrictedLabels.objects.create(profile=request.user.profile, label=restlab)  # add this to db here
+
+
+        return HttpResponse(json.dumps(dat), content_type="application/json")
 
         # data.diseases
         # data.allergies
