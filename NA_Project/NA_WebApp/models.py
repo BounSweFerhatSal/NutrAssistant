@@ -25,11 +25,31 @@ class Labels(models.Model):
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=100)
-    calorie = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=0)
+
+    # energy unit is kcal and it is for only and only 100 gram of the ingredient
+    calorie = models.DecimalField(max_digits=15, decimal_places=10, null=True, default=0)
     FDC_ID = models.CharField(max_length=8)
 
     def __str__(self):
         return self.name + ' (id: ' + str(self.id) + ',FDC_ID: ' + self.FDC_ID + ')'
+
+
+class Nutrient(models.Model):
+    FDC_ID = models.IntegerField
+    name = models.CharField(max_length=100)
+
+
+# which nutrient is exists in this ingredient as what amount
+class Ingredient_Composition(models.Model):
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    nutrient = models.ForeignKey(Nutrient, on_delete=models.CASCADE)
+
+    # amount(weight) must be in grams ( if it is in miligrams or micrograms it has to be converted to grams)
+    # amount must be for 100 gram of the Ingredient !!!
+    amount = models.DecimalField(max_digits=18, decimal_places=10, null=True, default=0)
+
+    def __str__(self):
+        return self.ingredient.name + '-' + self.nutrient.name
 
 
 class Profile(models.Model):
@@ -111,3 +131,46 @@ class Profile_RestrictedIngredients(models.Model):
 
     def __str__(self):
         return self.profile.user.username + ' ' + self.label.name
+
+
+# Recipe models :
+class Recipe(models.Model):
+    title = models.CharField(max_length=150)
+    description = models.CharField(max_length=500)
+
+    # time unit is minutes
+    prepTime = models.IntegerField()
+    cookTime = models.IntegerField()
+
+    portions = models.IntegerField()
+
+    instructions = models.CharField(max_length=3000)
+
+    # diff enum
+    class EnDifficulity(models.IntegerChoices):
+        Easy = 1
+        Medium = 2
+        Hard = 3
+
+    difficulity = models.IntegerField(choices=EnDifficulity.choices, null=True)
+
+    totalEnergy = models.DecimalField(max_digits=15, decimal_places=10, null=True, default=0)
+
+
+class Recipe_Ingredients(models.Model):
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+
+    # amount(weight) must be in grams
+    amount = models.DecimalField(max_digits=8, decimal_places=2, null=True, default=0)
+
+    # this is a calculated field : Get the calorie of the Ingredient , multiple it with amount
+    # ingredient calorie value ( from Ingredient object ) is for 100 grams , so it must be divided by 100 to cal energy for 1 gram.
+    # amount is in grams unit
+    # so total energy for this ingredient in recipe = (Ingredient calorie / 100 ) * amount
+    energy = models.DecimalField(max_digits=15, decimal_places=10, null=True, default=0)
+
+
+class Recipe_Labels(models.Model):
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    label = models.ForeignKey(Labels, on_delete=models.CASCADE)

@@ -152,11 +152,10 @@ def profile_preferences(request):
                 if restlab is not None:
                     new_rec = Profile_RestrictedLabels.objects.create(profile=request.user.profile, label=restlab)  # add this to db here
 
-            raise Exception("Sorry, no numbers below zero")
+            # raise Exception("Sorry, no numbers below zero")
 
-            # return HttpResponse(json.dumps(dat), content_type="application/json")
-            # messages.success(request, 'Your Preferenes are updated!')
-            # return redirect('NA_WebApp-profile')
+            return HttpResponse(json.dumps({"message": "Preferences has been updated."}), content_type="application/json")
+
 
 
     except Exception as e:

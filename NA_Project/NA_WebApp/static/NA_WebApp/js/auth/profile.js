@@ -176,10 +176,12 @@ function sendPost(target, post_data) {
         data: {'posted_data': JSON.stringify(post_data)},
     }).done(function (result) {
 
-        // alert("ajax  post is ok , result is : " + result)
+
+        // alert(result.message);
+        $("#dialog").html("<p>" + result.message + "</p>").dialog();
 
     }).fail(function (jqXHR, textStatus) {
-        debugger
+        //debugger
 
         console.log(jqXHR.responseText);
 
