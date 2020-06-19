@@ -155,7 +155,7 @@ $(document).ready(function () {
         data.awayfrom = $('#txAwayFrom').getSelectedItemsVals();
         data.restrictedIngredient = $('#txRestrictedIngredient').getSelectedItemsVals();
         console.log(data);
-        sendPost('profile_preferences',data);
+        sendPost('profile_preferences', data);
 
 
     });
@@ -166,6 +166,7 @@ $(document).ready(function () {
 
 function sendPost(target, post_data) {
 
+
     const csrftoken = Cookies.get('csrftoken');
 
     $.ajax({
@@ -175,10 +176,17 @@ function sendPost(target, post_data) {
         data: {'posted_data': JSON.stringify(post_data)},
     }).done(function (result) {
 
-        alert("ajax  post is ok , result is : " + result)
+        // alert("ajax  post is ok , result is : " + result)
 
     }).fail(function (jqXHR, textStatus) {
-        $('#preferences_error').html(jqXHR.statusText + ' ' + textStatus).css('display','block');
+        debugger
+
+        console.log(jqXHR.responseText);
+
+        alert(jqXHR.status); // the status code
+        alert(jqXHR.responseJSON.error); // the message
+
+        $('#preferences_error').html('<span>' + jqXHR.status + ': ' + jqXHR.statusText + '</span><p>' + jqXHR.responseJSON.error + '</p>').css('display', 'block');
     });
 
 }

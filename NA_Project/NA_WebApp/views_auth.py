@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
@@ -123,39 +123,48 @@ def profile(request):
 @login_required(login_url='/auth/login')
 @csrf_protect
 def profile_preferences(request):
-    if request.method == 'POST':
+    try:
 
-        dat = json.loads(request.POST.get('posted_data', ''))
+        if request.method == 'POST':
+            dat = json.loads(request.POST.get('posted_data', ''))
 
-        # get and save the diseases to profile :
-        for d in dat['diseases']:
-            dis = Diseases.objects.get(id=d)
-            if dis is not None:
-                new_rec = Profile_Diseases.objects.create(profile=request.user.profile, disease=dis)  # add this to db here
+            # get and save the diseases to profile :
+            for d in dat['diseases']:
+                dis = Diseases.objects.get(id=d)
+                if dis is not None:
+                    new_rec = Profile_Diseases.objects.create(profile=request.user.profile, disease=dis)  # add this to db here
 
-        # get and save the allergies to profile :
-        for a in dat['allergies']:
-            alg = Allergies.objects.get(id=a)
-            if alg is not None:
-                new_rec = Profile_Allergies.objects.create(profile=request.user.profile, allergy=alg)  # add this to db here
+            # get and save the allergies to profile :
+            for a in dat['allergies']:
+                alg = Allergies.objects.get(id=a)
+                if alg is not None:
+                    new_rec = Profile_Allergies.objects.create(profile=request.user.profile, allergy=alg)  # add this to db here
 
-        # get and save the food preferences to profile :
-        for fp in dat['foodpreferences']:
-            foodp = Labels.objects.get(id=fp)
-            if foodp is not None:
-                new_rec = Profile_FoodPreferences.objects.create(profile=request.user.profile, label=foodp)  # add this to db here
+            # get and save the food preferences to profile :
+            for fp in dat['foodpreferences']:
+                foodp = Labels.objects.get(id=fp)
+                if foodp is not None:
+                    new_rec = Profile_FoodPreferences.objects.create(profile=request.user.profile, label=foodp)  # add this to db here
 
-        # get and save the RestrictedLabels to profile :
-        for aw in dat['awayfrom']:
-            restlab = Labels.objects.get(id=aw)
-            if restlab is not None:
-                new_rec = Profile_RestrictedLabels.objects.create(profile=request.user.profile, label=restlab)  # add this to db here
+            # get and save the RestrictedLabels to profile :
+            for aw in dat['awayfrom']:
+                restlab = Labels.objects.get(id=aw)
+                if restlab is not None:
+                    new_rec = Profile_RestrictedLabels.objects.create(profile=request.user.profile, label=restlab)  # add this to db here
+
+            raise Exception("Sorry, no numbers below zero")
+
+            # return HttpResponse(json.dumps(dat), content_type="application/json")
+            # messages.success(request, 'Your Preferenes are updated!')
+            # return redirect('NA_WebApp-profile')
 
 
-        return HttpResponse(json.dumps(dat), content_type="application/json")
+    except Exception as e:
 
-        # data.diseases
-        # data.allergies
-        # data.foodpreferences
-        # data.awayfrom
-        # data.restrictedIngredient
+        resp = HttpResponse(json.dumps({"error": str(e)}), content_type="application/json")
+        resp.status_code = 500
+        return resp
+
+        # response = JsonResponse({"error": e.message[0:50]})
+        # response.status_code = 500  # This is a server side error
+        # return response
