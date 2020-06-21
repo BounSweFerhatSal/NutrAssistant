@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('NA_WebApp.urls'))
+    path('', include('NA_WebApp.urls')),
+    path('api/', include('NA_RestApi.urls')),
     # alternative :
     # path('folderinapp/',include('NA_WebApp.urls')) // add this line to route to the 'socialwebapp' path
 ]
