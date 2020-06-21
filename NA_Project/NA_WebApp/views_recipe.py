@@ -32,13 +32,15 @@ def recipe_create(request):
             return render(request, 'NA_WebApp/recipe/recipe_create.html', {'form': recipe_form, 'done': 'false'})
 
 
+@login_required(login_url='/auth/login')
+@csrf_protect
 def recipeAddIngredient(request):
     try:
 
         if request.method == 'POST':
-            new_ingredient = json.loads( request.POST.get('new_ingredient', ''))
+            new_ingredient = json.loads(request.POST.get('new_ingredient', ''))
 
-            same = Recipe_Ingredients.objects.filter( recipe_id=new_ingredient['recipeId'], ingredient_id=new_ingredient['ingredientId']).count()
+            same = Recipe_Ingredients.objects.filter(recipe_id=new_ingredient['recipeId'], ingredient_id=new_ingredient['ingredientId']).count()
             if same != 0:
                 resp = HttpResponse(json.dumps({"error": "This Ingredient is already Exists İn This Recipe !"}), content_type="application/json")
                 resp.status_code = 500
@@ -57,3 +59,18 @@ def recipeAddIngredient(request):
         return resp
 
 
+@login_required(login_url='/auth/login')
+@csrf_protect
+def recipeDeleteIngredient(request):
+    try:
+
+        if request.method == 'POST':
+            del_ingredient = json.loads(request.POST.get('del_ingredient', ''))
+
+            ing = Recipe_Ingredients.objects.filter(recipe_id=del_ingredient['recipeId'], ingredient_id=del_ingredient['ingredientId']).delete()
+            return HttpResponse(json.dumps({'success': 'true'}))
+
+    except Exception as e:
+        resp = HttpResponse(json.dumps({"error": str(e)}), content_type="application/json")
+        resp.status_code = 500
+        return resp
