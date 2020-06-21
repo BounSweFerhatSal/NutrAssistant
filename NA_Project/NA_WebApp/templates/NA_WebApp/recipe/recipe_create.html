@@ -106,15 +106,14 @@
                                         <div class="small"><input type="number" min="0" placeholder="Quantity" id="txQuantity"></div>
                                         <div class="third">
                                             <select class="select form-control" id="txUnit">
-                                                <option value="" selected="">Pick a unit</option>
-                                                <option value="1">100 gr</option>
-                                                <option value="2">1 Medium</option>
-                                                <option value="3">2 Hard</option>
+                                                <option value="" selected="">Pick a Portion</option>
+
                                             </select>
 
                                         </div>
                                         <button class="remove btn-success" id="btn_addIngredient">+</button>
                                     </div>
+
                                     <div class="f-row full">
 
                                         <table id="Tbl_Ingredients">
@@ -137,7 +136,9 @@
                                     </div>
 
                                 </section>
-
+                                <section>
+                                    <div class="text-danger" id="apiErrors"></div>
+                                </section>
                                 <section>
                                     <h2>Instructions</h2>
                                     <div class="f-row instruction">

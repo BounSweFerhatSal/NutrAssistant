@@ -50,12 +50,33 @@ $(document).ready(function () {
     });
 
 
-
     $("#example-basic").steps({
         headerTag: "h3",
         bodyTag: "section",
         transitionEffect: "slideLeft",
         autoFocus: true
     });
+
+
+    $('#btnTestRestPost').click(function () {
+
+        const csrftoken = Cookies.get('csrftoken');
+
+        $.ajax({
+            headers: {'X-CSRFToken': csrftoken},
+            method: "POST",
+            url: '../api/test/',
+            data: {'ingredientId': '787522'},
+        }).done(function (data) {
+
+            alert("ajax  post is ok");
+            $('#pTestResults1').text(JSON.stringify(data));
+
+        }).fail(function (jqXHR, textStatus) {
+
+            $('#p_error').html(jqXHR.statusText + ' ' + textStatus);
+        });
+    });
+
 
 });

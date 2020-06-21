@@ -35,16 +35,19 @@ $(document).ready(function () {
             //our source is a server side api
             $.ajax({
                 method: "POST",
-                url: '../auth/search_ingredients',
+                url: '../api/getFoods/',
                 headers: {'X-CSRFToken': my_csrf_token},
                 dataType: "json",
                 cache: false,
                 data: {term: request.term},
                 success: function (data) {
-
+                    $('#apiErrors').html('');
                     response(data);
                 }
+            }).fail(function (jqXHR, textStatus) {
+                $('#apiErrors').html('<span>' + jqXHR.status + ': ' + jqXHR.statusText + '</span><p class="text-danger">' + jqXHR.responseJSON.error + '</p>').css('display', 'block');
             });
+
         },
         minLength: 1,
         select: function (event, ui) {
@@ -52,8 +55,27 @@ $(document).ready(function () {
             $(this).data("value", ui.item.value);
             $(this).data("name", ui.item.label);
 
-            // //clear the search text
+            //set searchtext manually ( otherwise it sets value to text !)
             $(this).val(ui.item.label);
+
+            //send the selected ingredient to our api
+            $.ajax({
+                method: "POST",
+                url: '../api/getNutrients/',
+                headers: {'X-CSRFToken': my_csrf_token},
+                dataType: "json",
+                cache: false,
+                data: {'ingredientIdddddd': ui.item.value},
+                success: function (data) {
+
+                    //we have now the portions , set them to select element
+
+
+                }
+            }).fail(function (jqXHR, textStatus) {
+                $('#apiErrors').html('<span>' + jqXHR.status + ': ' + jqXHR.statusText + '</span><p class="text-danger">' + jqXHR.responseJSON.error + '</p>').css('display', 'block');
+            });
+
             return false;
 
         },
@@ -210,7 +232,7 @@ class IngredientManager {
             recipeId: recipe_ing.recipeId,
             ingredientId: recipe_ing.ingredient.id
         }
-       const csrftoken = Cookies.get('csrftoken');
+        const csrftoken = Cookies.get('csrftoken');
 
         $.ajax({
             headers: {'X-CSRFToken': csrftoken},

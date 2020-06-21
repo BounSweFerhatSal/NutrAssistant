@@ -2,20 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Diseases(models.Model):
-    diseaseName = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.diseaseName + ' (id: ' + str(self.id) + ')'
-
-
-class Allergies(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name + ' (id: ' + str(self.id) + ')'
-
-
+# Food Models
 class Labels(models.Model):
     name = models.CharField(max_length=100)
 
@@ -48,8 +35,42 @@ class Ingredient_Composition(models.Model):
     # amount must be for 100 gram of the Ingredient !!!
     amount = models.DecimalField(max_digits=18, decimal_places=10, null=True, default=0)
 
+    # this is unit not the portion !!!!
+    unitname = models.CharField(max_length=50, null=True, default="?")
+
     def __str__(self):
         return self.ingredient.name + '-' + self.nutrient.name
+
+
+class Portion(models.Model):
+    FDC_ID = models.IntegerField
+    name = models.CharField(max_length=100)
+    gramWeight = models.DecimalField(max_digits=10, decimal_places=4, null=True, default=0)
+
+
+class Ingredient_Portions(models.Model):
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    portion = models.ForeignKey(Portion, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.ingredient.name + '-' + self.portion.name
+
+
+#  Profile Models
+
+
+class Diseases(models.Model):
+    diseaseName = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.diseaseName + ' (id: ' + str(self.id) + ')'
+
+
+class Allergies(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name + ' (id: ' + str(self.id) + ')'
 
 
 class Profile(models.Model):
@@ -158,6 +179,7 @@ class Recipe(models.Model):
 
     # later do : photo = models.ImageField(default='recipe_default.jpg', upload_to='profile_pics')
 
+
 class Recipe_Ingredients(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
@@ -175,5 +197,3 @@ class Recipe_Ingredients(models.Model):
 class Recipe_Labels(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     label = models.ForeignKey(Labels, on_delete=models.CASCADE)
-
-
