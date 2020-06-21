@@ -7,6 +7,7 @@ $(document).ready(function () {
 
     });
 
+
     $("form[name='register']").validate({
         // Specify validation rules
         rules: {
@@ -57,7 +58,7 @@ $(document).ready(function () {
         // Make sure the form is submitted to the destination defined
         // in the "action" attribute of the form when valid
         submitHandler: function (form) {
-             //alert('valid form submitted'); // for demo
+             alert('valid form submitted'); // for demo
 
             form.submit();
         }

@@ -1,0 +1,213 @@
+{% extends 'NA_WebApp/_masterpage.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+    <!--wrap-->
+    <div class="wrap clearfix">
+        <!--breadcrumbs-->
+        <nav class="breadcrumbs">
+            <ul>
+                <li><a href="index.html" title="Home">Home</a></li>
+                <li>Submit a recipe</li>
+            </ul>
+        </nav>
+        <!--//breadcrumbs-->
+
+        <!--row-->
+        <div class="row">
+            <header class="s-title">
+                <h1>Add a new recipe</h1>
+            </header>
+
+            <!--content-->
+            <section class="content full-width">
+                <div class="submit_recipe container">
+
+
+                    <form action="recipe_create" method="POST" enctype="multipart/form-data" name="frmrecipe" id="frmrecipe">
+
+                        {% csrf_token %}
+                        <input type="hidden" id="done" value="{{ done }}">
+
+                        <div id="Recipe-wizard">
+                            <h3>Recipe Basics</h3>
+                            <section>
+
+                                <section>
+                                    <h2>Basics <span>( Id : <span id="recipeId">{{ recipeId }}</span>)</span></h2>
+                                    <p>All fields are required.</p>
+                                    <div class="f-row">
+                                        <div class="full">
+                                            <input type="text" placeholder="Recipe title" name="title" maxlength="150" class="textinput textInput form-control" required
+                                                   id="id_title" value="{{ form.title.value }}"/>
+                                        </div>
+                                    </div>
+                                    <div class="f-row">
+                                        <div class="third"><input placeholder="Preparation time" type="number" min="0" name="prepTime" class="numberinput form-control" required
+                                                                  id="id_prepTime" value="{{ form.prepTime.value }}"/></div>
+                                        <div class="third"><input placeholder="Cooking time" type="number" min="1" name="cookTime" class="numberinput form-control" required
+                                                                  id="id_cookTime" value="{{ form.cookTime.value }}"/>
+                                        </div>
+                                        <div class="third">
+                                            <select name="difficulity" class="select form-control" required id="id_difficulity">
+                                                <option value="" selected="">---------</option>
+                                                <option value="1">Easy</option>
+                                                <option value="2">Medium</option>
+                                                <option value="3">Hard</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="f-row">
+                                        <div class="third"><input placeholder="Serves how many people?" type="number" min="1" name="portions" class="numberinput form-control"
+                                                                  required
+                                                                  id="id_portions" value="{{ form.portions.value }}"/></div>
+                                        {#                                <div class="third"><select>#}
+                                        {#                                    <option selected="selected">Select a category</option>#}
+                                        {#                                </select></div>#}
+                                    </div>
+                                </section>
+
+                                <section>
+                                    <h2>Description</h2>
+                                    <div class="f-row">
+                                        <div class="full"><textarea placeholder="Recipe description" name="description" maxlength="500" class="textInput" required
+                                                                    id="id_description">{{ form.description.value }}</textarea></div>
+                                    </div>
+                                </section>
+
+                                <section>
+                                    {% if form.errors %}
+                                        <h4>Errors: </h4>
+                                        <ol>
+                                            {% for field in form %}
+                                                {% for error in field.errors %}
+
+                                                    <li><strong class="text-danger"> {{ field.label }}: {{ error|escape }}</strong></li>
+
+                                                {% endfor %}
+
+                                            {% endfor %}
+                                        </ol>
+                                    {% endif %}
+                                </section>
+
+                            </section>
+                            <h3>Ingredients & Instructions</h3>
+                            <section>
+
+                                <section>
+                                    <h2>Ingredients</h2>
+                                    <div class="f-row ingredient">
+                                        <div class="large"><input type="text" placeholder="Ingredient" id="txIngredient"></div>
+                                        <div class="small"><input type="number" min="0" placeholder="Quantity" id="txQuantity"></div>
+                                        <div class="third">
+                                            <select class="select form-control" id="txUnit">
+                                                <option value="" selected="">Pick a unit</option>
+                                                <option value="1">100 gr</option>
+                                                <option value="2">1 Medium</option>
+                                                <option value="3">2 Hard</option>
+                                            </select>
+
+                                        </div>
+                                        <button class="remove btn-success" id="btn_addIngredient">+</button>
+                                    </div>
+                                    <div class="f-row full">
+
+                                        <table id="Tbl_Ingredients">
+                                            <tbody>
+                                            <tr>
+                                                <th style="width: 50%">Ingredient</th>
+                                                <th style="width: 10%">Quantity</th>
+                                                <th>Unit</th>
+                                                <th style="width: 10%">As Grams</th>
+                                                <th style="width: 5%"></th>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <div class="f-row full">
+                                        <p id="p_error" class="text-danger"></p>
+
+                                    </div>
+
+                                </section>
+
+                                <section>
+                                    <h2>Instructions</h2>
+                                    <div class="f-row instruction">
+                                        <div class="full"><textarea placeholder="Instructions" name="instructions" maxlength="3000" class="textinput textInput" required=""
+                                                                    id="id_instructions"></textarea></div>
+
+                                    </div>
+
+                                </section>
+
+
+                            </section>
+                            <h3>Photo</h3>
+                            <section>
+                                <h2>Photo</h2>
+                                <div class="f-row full">
+                                    <input type="file"/>
+                                </div>
+
+
+                                <div class="featured full-width">
+                                    <header class="s-title">
+                                        <h2 class="ribbon">Preview</h2>
+                                    </header>
+                                    <article class="entry">
+                                        <figure>
+                                            <img src="/static/NA_WebApp/images/img.jpg" alt="">
+                                            <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
+                                        </figure>
+
+                                    </article>
+                                </div>
+                            </section>
+
+
+                        </div>
+
+
+                        <section>
+                            <h2>Status <span>(would you like to further edit this recipe or are you ready to publish it?)</span></h2>
+                            <div class="f-row full">
+                                <input type="radio" id="r1" name="radio"/>
+                                <label for="r1">I am still working on it</label>
+                            </div>
+                            <div class="f-row full">
+                                <input type="radio" id="r2" name="radio"/>
+                                <label for="r2">I am ready to publish this recipe</label>
+                            </div>
+                        </section>
+
+                        <div class="f-row full">
+                            <input type="button" class="button float-right" value="Save this recipe" id="saverecipe"/>
+                            {#                            <input type="submit" class="button" id="submitRecipe" value="Publish this recipe"/>#}
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <!--//content-->
+        </div>
+        <!--//row-->
+    </div>
+    <!--//wrap-->
+
+{% endblock content %}
+
+{% block scripts %}
+
+    <script src="{% static 'NA_WebApp/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'NA_WebApp/js/components/GlobalComponents.js' %}"></script>
+    <script src="{% static 'NA_WebApp/js/jquery.steps.js' %}"></script>
+    <script src="{% static 'NA_WebApp/js/recipe/recipe_create.js' %}"></script>
+
+{% endblock scripts %}

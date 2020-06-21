@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views, views_auth, views_defs
+from . import views, views_auth, views_defs, views_recipe
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -23,4 +23,6 @@ urlpatterns = [path('', views.home, name='NA_WebApp-home'),
                path('auth/add_label', views_defs.add_label, name='NA_WebApp-add_allergy'),
                path('auth/search_ingredients', views_defs.search_ingredients, name='NA_WebApp-search_ingredients'),
                path('auth/add_ingredient', views_defs.add_ingredient, name='NA_WebApp-add_ingredient'),
+               path('recipe/recipe_create', views_recipe.recipe_create, name='NA_WebApp-recipe_create'),
+               path('recipe/recipeAddIngredient', views_recipe.recipeAddIngredient, name='NA_WebApp-recipeAddIngredient'),
                ]

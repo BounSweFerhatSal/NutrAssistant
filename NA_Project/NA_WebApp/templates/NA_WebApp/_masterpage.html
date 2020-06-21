@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-   <link rel="stylesheet" href="{% static 'NA_WebApp/css/themes/blitzer/jquery-ui.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'NA_WebApp/css/themes/blitzer/jquery-ui.min.css' %}"/>
 
-
+    <link rel="stylesheet" href="{% static 'NA_WebApp/css/jquery.steps.css' %}"/>
 
 
     <link rel="stylesheet" href="{% static 'NA_WebApp/css/style.css' %}"/>
@@ -100,7 +100,7 @@
                         class="icon icon-themeenergy_search"></i> <span>Search for recipes</span></a></li>
                 <li class="medium"><a href="{% url 'NA_WebApp-profile' %}" title=" Logged in as {{ user.get_full_name }} - {{ user.get_username }}"><i
                         class="icon icon-themeenergy_chef-hat"></i> <span>My Profile</span></a></li>
-                <li class="dark"><a href="ThemeSamplePages/submit_recipe.html" title="Submit a recipe"><i
+                <li class="dark"><a href="{% url 'NA_WebApp-recipe_create' %}" title="Submit a recipe"><i
                         class="icon icon-themeenergy_fork-spoon"></i> <span>Submit a recipe</span></a></li>
             </ul>
         </nav>

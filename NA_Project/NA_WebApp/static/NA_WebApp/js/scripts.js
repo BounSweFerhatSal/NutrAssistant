@@ -10,7 +10,7 @@
 	
 		init: function () {
 			//CUSTOM FORM ELEMENTS
-			$('select, input[type=radio],input[type=checkbox],input[type=file]').uniform();
+			$(' input[type=radio],input[type=checkbox],input[type=file]').uniform();
 			
 			//MOBILE MENU
 			$('.main-nav').slicknav({
@@ -46,36 +46,7 @@
 				$(this).closest('.alert').hide(400);
 			});
 			
-			//CONTACT FORM 
-			$('#contactform').submit(function(){
-			
-				var action = $(this).attr('action');
-				
-				$("#message").show(400,function() {
-				$('#message').hide();
-				
-				$('#submit')
-					.after('<img src="images/contact-ajax-loader.gif" class="loader" />')
-					.attr('disabled','disabled');
-				
-				$.post(action, { 
-					name: $('#name').val(),
-					email: $('#email').val(),
-					phone: $('#phone').val(),
-					comments: $('#comments').val()
-				},
-					function(data){
-						document.getElementById('message').innerHTML = data;
-						$('#message').slideDown('slow');
-						$('#contactform img.loader').fadeOut('slow',function(){$(this).remove()});
-						$('#submit').removeAttr('disabled'); 
-						//if(data.match('success') != null) $('#contactform').slideUp(3000);
-						
-					}
-				);
-				});
-				return false; 
-			});
+
 			
 			//PRELOADER
 			$('.preloader').fadeOut();

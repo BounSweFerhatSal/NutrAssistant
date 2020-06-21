@@ -99,7 +99,7 @@ def search_ingredients(request):
 
     if query_results.count() >= 0:
         for r in query_results:
-            res.append({'label': r.name, 'value': r.id})
+            res.append({'value': r.id, 'label': r.name})
 
     return HttpResponse(json.dumps(res))
 

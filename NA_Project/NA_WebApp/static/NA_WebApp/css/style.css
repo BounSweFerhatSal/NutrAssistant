@@ -541,7 +541,7 @@ input[type="number"]:focus,
 input[type="search"]:focus,
 textarea:focus 	{border-color:#bbb;}
 input[type="file"] {border:1px solid #ddd;font-size:14px;font-weight:600;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;color:#666;padding:6px;margin:5px 0;}
-form .alert {display:none;}
+/*form .alert {display:none;}*/
 
 .f-row 		{float:left;display:block;width:100%;padding-bottom:20px !important;position:relative;}
 .req		{color:#FF7A73;font-size:35px;font-weight:600;display:inline-block;vertical-align:middle;}

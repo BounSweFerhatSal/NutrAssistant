@@ -185,8 +185,8 @@ function sendPost(target, post_data) {
 
         console.log(jqXHR.responseText);
 
-        alert(jqXHR.status); // the status code
-        alert(jqXHR.responseJSON.error); // the message
+        // alert(jqXHR.status); // the status code
+        // alert(jqXHR.responseJSON.error); // the message
 
         $('#preferences_error').html('<span>' + jqXHR.status + ': ' + jqXHR.statusText + '</span><p>' + jqXHR.responseJSON.error + '</p>').css('display', 'block');
     });

@@ -50,28 +50,12 @@ $(document).ready(function () {
     });
 
 
-    //make searcher test :
-    $('#txDis').makeSearcher({
-        searchUrl: 'diseaseSearch',
-        addUrl: 'diseaseAddNew',
-        addNewText: "Click here to create this disease",
-        selectedListComponent: $('#divSelectDiseases'),
-        returnSelectedItemsCallBack: function (items) {
 
-            //this callback will be fired from the this plugin and items are selected item objects will be :
-            // items : [ {'id' : 1 , 'value' : 'xxxx' }, {'id' : 2 , 'value' : 'yyyyy' }...]
-
-            $.each(items, function (index, item) {
-                alert("item id : " + item.id + " item value : " + item.value);
-            });
-
-        }
-    });
-
-    $('#btnsaveme').click(function () {
-
-       $('#txDis').getSelectedItems();
-
+    $("#example-basic").steps({
+        headerTag: "h3",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        autoFocus: true
     });
 
 });
