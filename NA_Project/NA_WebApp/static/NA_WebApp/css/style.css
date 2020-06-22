@@ -533,7 +533,7 @@ input[type="checkbox"], input[type="radio"] { box-sizing: border-box; width:100%
 input[type="search"] { -webkit-appearance: textfield;}
 input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
 input[type="search"],input[type="email"],input[type="text"],input[type="number"],input[type="password"],textarea {width:100% !important;border:1px solid #ddd;color:#666;font-size:13px;font-weight:400;padding:9px 10px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
-textarea	{resize: none;height:150px;}
+textarea	{resize: none;min-height:150px;}
 select {height:37px;font-size:13px;line-height:1;font-weight:600;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;border:1px solid #ddd;color:#666;}
 input[type="text"]:focus,
 input[type="email"]:focus,

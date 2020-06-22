@@ -34,21 +34,45 @@ def recipe_create(request):
 
 @login_required(login_url='/auth/login')
 @csrf_protect
+def recipeUpdateInstructions(request):
+    try:
+        if request.method == 'POST':
+            r_id = json.loads(request.POST.get('recipeId', ''))
+            ins = json.loads(request.POST.get('instructions', ''))
+
+            if Recipe.objects.filter(id=r_id).count() != 0:
+                rec = Recipe.objects.get(id=r_id)
+                rec.instructions =ins
+                rec.save()
+
+                return HttpResponse(json.dumps({'success': 'true'}))
+
+    except Exception as e:
+        resp = HttpResponse(json.dumps({"error": str(e)}), content_type="application/json")
+        resp.status_code = 500
+        return resp
+
+
+
+@login_required(login_url='/auth/login')
+@csrf_protect
 def recipeAddIngredient(request):
     try:
 
         if request.method == 'POST':
             new_ingredient = json.loads(request.POST.get('new_ingredient', ''))
 
-            same = Recipe_Ingredients.objects.filter(recipe_id=new_ingredient['recipeId'], ingredient_id=new_ingredient['ingredientId']).count()
+            same = Recipe_Ingredients.objects.filter(recipe_id=new_ingredient['recipeId'],
+                                                     ingredient=Ingredient.objects.get(FDC_ID=new_ingredient['ingredientId'])).count()
             if same != 0:
                 resp = HttpResponse(json.dumps({"error": "This Ingredient is already Exists İn This Recipe !"}), content_type="application/json")
                 resp.status_code = 500
                 return resp
 
             # add this to db here
+            ingObj = Ingredient.objects.get(FDC_ID=new_ingredient['ingredientId'])
             new_rec = Recipe_Ingredients.objects.create(recipe_id=new_ingredient['recipeId'],
-                                                        ingredient_id=new_ingredient['ingredientId'],
+                                                        ingredient=ingObj,
                                                         amount=new_ingredient['amount'])
 
             return HttpResponse(json.dumps({'success': 'true'}))
@@ -67,7 +91,8 @@ def recipeDeleteIngredient(request):
         if request.method == 'POST':
             del_ingredient = json.loads(request.POST.get('del_ingredient', ''))
 
-            ing = Recipe_Ingredients.objects.filter(recipe_id=del_ingredient['recipeId'], ingredient_id=del_ingredient['ingredientId']).delete()
+            ing = Recipe_Ingredients.objects.filter(recipe_id=del_ingredient['recipeId'],
+                                                    ingredient=Ingredient.objects.get(FDC_ID=del_ingredient['ingredientId'])).delete()
             return HttpResponse(json.dumps({'success': 'true'}))
 
     except Exception as e:

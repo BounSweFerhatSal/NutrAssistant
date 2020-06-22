@@ -22,7 +22,7 @@ class Ingredient(models.Model):
 
 
 class Nutrient(models.Model):
-    FDC_ID = models.IntegerField
+    FDC_ID = models.IntegerField()
     name = models.CharField(max_length=100)
 
 
@@ -43,7 +43,7 @@ class Ingredient_Composition(models.Model):
 
 
 class Portion(models.Model):
-    FDC_ID = models.IntegerField
+    FDC_ID = models.IntegerField()
     name = models.CharField(max_length=100)
     gramWeight = models.DecimalField(max_digits=10, decimal_places=4, null=True, default=0)
 

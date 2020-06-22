@@ -1,7 +1,11 @@
+import decimal
+
 import requests
 from django.http import JsonResponse
 from django.shortcuts import render
+from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from NA_RestApi.serializers import RecipeSerializer
 from NA_WebApp.models import Recipe, Ingredient, Ingredient_Composition, Ingredient_Portions, Nutrient, Portion
@@ -28,7 +32,7 @@ def GetFoods(request):
             return JsonResponse(foods, safe=False)
 
     except Exception as e:
-        return JsonResponse({"error": str(e)}, safe=False)
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @api_view(['POST'])
@@ -42,11 +46,13 @@ def GetNutrients(request):
             portions = []
 
             # check if we already have this in db :
-            ingredient = Ingredient.objects.get(FDC_ID=ingredientId)
-            if ingredient is not None:
-                ing_portions = Ingredient_Portions.objects.filter(ingredient_id=ingredientId)
+            ingredient = Ingredient.objects.filter(FDC_ID=ingredientId)
+            if ingredient.count() != 0:
+                # we got it , just return the portions :
+                ing_portions = Ingredient_Portions.objects.filter(ingredient=Ingredient.objects.get(FDC_ID=ingredientId))
                 for p in ing_portions:
-                    portions.append({'value': p.portion.id, 'text': p.portion.name})
+                    portions.append({'value': p.portion.id,
+                                     'text': p.portion.name + ' (' + str(decimal.Decimal(p.portion.gramWeight).normalize()) + ' gr)', 'gramWeight': p.portion.gramWeight})
 
                 return JsonResponse(portions, safe=False)
             else:
@@ -63,17 +69,32 @@ def GetNutrients(request):
                     # to get more info about data structure visit : https://github.com/BounSweFerhatSal/NutrAssistant/wiki/USDA-FDC-API-&-Data-Structure
                     nutrient = foodNutrient['nutrient']
 
-                    # first check if we have this nutrient in db, if not create it
-                    if Nutrient.objects.get(FDC_ID=nutrient['id']) is None:
+                    # check if we have this nutrient in db, if not create it
+                    if Nutrient.objects.filter(FDC_ID=nutrient['id']).count() == 0:
                         Nutrient.objects.create(FDC_ID=nutrient['id'],
                                                 name=nutrient['name'])
 
+                    # check if we have this Ingredient in db, if not create it
+                    if Ingredient.objects.filter(FDC_ID=ingredientId).count() == 0:
+                        Ingredient.objects.create(FDC_ID=ingredientId,
+                                                  name=searchResults['description'])
+
                     # check if we have this ingredient_Composition in db, if not create it
-                    if Ingredient_Composition.objects.get(ingredient_id=ingredientId, nutrient_id=nutrient['id']) is None:
-                        Ingredient_Composition.objects.create(ingredient_id=ingredientId,
-                                                              nutrient_id=nutrient['id'],
-                                                              amount=nutrient['amount'],
-                                                              unitname=nutrient['unitName'])
+                    if Ingredient_Composition.objects.filter(ingredient_id=ingredientId, nutrient_id=nutrient['id']).count() == 0:
+
+                        if 'amount' in foodNutrient:
+                            if foodNutrient['amount'] > 0:
+
+                                Ingredient_Composition.objects.create(ingredient=Ingredient.objects.get(FDC_ID=ingredientId),
+                                                                      nutrient=Nutrient.objects.get(FDC_ID=nutrient['id']),
+                                                                      amount=foodNutrient['amount'],
+                                                                      unitname=nutrient['unitName'])
+
+                                # update the energy value to the ingredient
+                                if nutrient['id'] == 1008:  # this the energy !
+                                    ing_update = Ingredient.objects.get(FDC_ID=ingredientId)
+                                    ing_update.calorie = amount = foodNutrient['amount']
+                                    ing_update.save()
 
                 # then get the portions
                 for foodPortion in searchResults['foodPortions']:
@@ -89,23 +110,23 @@ def GetNutrients(request):
                     portionWeight = foodPortion['gramWeight']
 
                     # first check if we have this portion in db, if not create it
-                    if Portion.objects.get(FDC_ID=portionId) is None:
+                    if Portion.objects.filter(FDC_ID=portionId).count() == 0:
                         Portion.objects.create(FDC_ID=portionId,
                                                name=portionName,
                                                gramWeight=portionWeight)
 
                     # Check if we have this Ingredient_Portions in db, if not create it
-                    if Ingredient_Portions.objects.get(ingredient_id=ingredientId, portion_id=portionId):
-                        Ingredient_Portions.objects.create(ingredient_id=ingredientId,
-                                                           portion_id=portionId)
+                    if Ingredient_Portions.objects.filter(ingredient_id=ingredientId, portion_id=portionId).count() == 0:
+                        Ingredient_Portions.objects.create(ingredient=Ingredient.objects.get(FDC_ID=ingredientId),
+                                                           portion=Portion.objects.get(FDC_ID=portionId))
 
                     # now add to list to return :
-                    portions.append({'value': portionId, 'text': portionName})
+                    portions.append({'value': portionId, 'text': portionName + ' (' + str(decimal.Decimal(portionWeight).normalize()) + ' gr)', 'gramWeight': portionWeight})
 
                 return JsonResponse(portions, safe=False)
 
     except Exception as e:
-        return JsonResponse({"error": str(e)}, safe=False)
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @api_view(['GET', 'POST'])

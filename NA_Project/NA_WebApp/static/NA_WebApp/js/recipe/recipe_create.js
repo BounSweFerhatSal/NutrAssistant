@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+     const csrf_token = Cookies.get('csrftoken');
+
 
     $("#Recipe-wizard").steps({
         headerTag: "h3",
@@ -15,6 +17,22 @@ $(document).ready(function () {
                 $("#frmrecipe").submit();
             }
 
+            if (currentIndex === 2) {
+                //update instructions
+                $.ajax({
+                    headers: {'X-CSRFToken': csrf_token},
+                    method: "POST",
+                    url: 'recipeUpdateInstructions',
+                    data: {'recipeId':$('#recipeId').text() , 'instructions': JSON.stringify( $('#txinstructions').val())},
+                }).fail(function (jqXHR, textStatus) {
+                    alert(jqXHR.responseJSON.error); // the message
+                    // $('#p_error').html('<span>' + jqXHR.status + ': ' + jqXHR.statusText + '</span><p class="text-danger">' + jqXHR.responseJSON.error + '</p>').css('display', 'block');
+                });
+
+
+            }
+
+
             return true;
         },
         onStepChanged: function (event, currentIndex, priorIndex) {
@@ -29,14 +47,14 @@ $(document).ready(function () {
     }
 
     //ingredient auto complete :
-    const my_csrf_token = Cookies.get('csrftoken');
+
     $('#txIngredient').autocomplete({
         source: function (request, response) {
             //our source is a server side api
             $.ajax({
                 method: "POST",
                 url: '../api/getFoods/',
-                headers: {'X-CSRFToken': my_csrf_token},
+                headers: {'X-CSRFToken': csrf_token},
                 dataType: "json",
                 cache: false,
                 data: {term: request.term},
@@ -45,7 +63,7 @@ $(document).ready(function () {
                     response(data);
                 }
             }).fail(function (jqXHR, textStatus) {
-                $('#apiErrors').html('<span>' + jqXHR.status + ': ' + jqXHR.statusText + '</span><p class="text-danger">' + jqXHR.responseJSON.error + '</p>').css('display', 'block');
+                $('#apiErrors').html('<span>' + jqXHR.status + ': ' + jqXHR.statusText + '</span><hr/><span >' + jqXHR.responseJSON.error + '</span>').css('display', 'block');
             });
 
         },
@@ -62,18 +80,26 @@ $(document).ready(function () {
             $.ajax({
                 method: "POST",
                 url: '../api/getNutrients/',
-                headers: {'X-CSRFToken': my_csrf_token},
+                headers: {'X-CSRFToken': csrf_token},
                 dataType: "json",
                 cache: false,
-                data: {'ingredientIdddddd': ui.item.value},
+                data: {'ingredientId': ui.item.value},
                 success: function (data) {
 
-                    //we have now the portions , set them to select element
 
+                    //we have now the portions , set them to select element
+                    $('#txUnit').empty()
+                    $.each(data, function (i, item) {
+
+                        $('#txUnit').append($('<option>', {
+                            value: Number(item.gramWeight), // item.value,
+                            text: item.text
+                        }));
+                    });
 
                 }
             }).fail(function (jqXHR, textStatus) {
-                $('#apiErrors').html('<span>' + jqXHR.status + ': ' + jqXHR.statusText + '</span><p class="text-danger">' + jqXHR.responseJSON.error + '</p>').css('display', 'block');
+                $('#apiErrors').html('<span>' + jqXHR.status + ': ' + jqXHR.statusText + '</span><hr/><span>' + jqXHR.responseJSON.error + '</span>').css('display', 'block');
             });
 
             return false;
@@ -126,7 +152,7 @@ class Unit {
 
 
     getFrom_TextBox() {
-        this.id = $('#txUnit').val();
+        this.grams = $('#txUnit').val();
         this.text = $('#txUnit option:selected').text();
     }
 
@@ -137,9 +163,11 @@ class Recipe_Ingredient {
     constructor(_ingredient, _unit, _quantity) {
         this.recipeId = $('#recipeId').text();
         this.ingredient = _ingredient;
-        this.unit = _unit;
-        this.quantity = _quantity;
-        this.calcGrams = 100;
+        if (_unit !== null) {
+            this.unit = _unit;
+            this.quantity = _quantity;
+            this.calcGrams = _unit.grams * _quantity;
+        }
     }
 }
 
@@ -151,7 +179,7 @@ class IngredientManager {
         let r = recipe_ingredient;
 
 
-        if (r.ingredient.id > 0 && r.quantity > 0 && r.unit.id > 0) {
+        if (r.ingredient.id > 0 && r.quantity > 0 && r.unit.grams > 0) {
 
             let new_ingredient = {
                 recipeId: r.recipeId,
@@ -198,7 +226,7 @@ class IngredientManager {
             "<tr>" +
             "<td data-ingredient='" + r.ingredient.id + "'>" + r.ingredient.text + "</td>" +
             "<td>" + r.quantity + "</td>" +
-            "<td data-unit='" + r.unit.id + "'>" + r.unit.text + "</td>" +
+            "<td data-unit='" + r.unit.grams + "'>" + r.unit.text + "</td>" +
             "<td>" + r.calcGrams + "</td>" +
             "<td><a class='btn btn-danger btn-sm text-white'>x</a></td>" +
             "</tr>"

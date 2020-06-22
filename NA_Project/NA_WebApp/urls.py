@@ -30,4 +30,6 @@ urlpatterns = [path('', views.home, name='NA_WebApp-home'),
                path('recipe/recipe_create', views_recipe.recipe_create, name='NA_WebApp-recipe_create'),
                path('recipe/recipeAddIngredient', views_recipe.recipeAddIngredient, name='NA_WebApp-recipeAddIngredient'),
                path('recipe/recipeDeleteIngredient', views_recipe.recipeDeleteIngredient , name='NA_WebApp-recipeDeleteIngredient'),
+               path('recipe/recipeUpdateInstructions', views_recipe.recipeUpdateInstructions, name='NA_WebApp-recipeUpdateInstructions'),
+
                ]
