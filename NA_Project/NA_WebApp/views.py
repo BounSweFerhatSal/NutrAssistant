@@ -1,7 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-
 import json
 
 
@@ -24,6 +23,10 @@ def recipes(request):
     return render(request, 'NA_WebApp/recipes.html', {'data': 'pass the value'})
 
 
+def error(request):
+    return render(request, 'NA_WebApp/Error.html', {'errorcode': '???', 'errorname': '?????', 'errortext': '????????????????'})
+
+
 def frontendtest(request):
     return render(request, 'NA_WebApp/enjoy/frontendtest.html')
 
@@ -38,4 +41,3 @@ def ajax_getdata_test(request):
         sonuc = json.loads(request.POST.get('data', ''))
 
         return HttpResponse('You Send Me this : ' + sonuc['key1'])
-

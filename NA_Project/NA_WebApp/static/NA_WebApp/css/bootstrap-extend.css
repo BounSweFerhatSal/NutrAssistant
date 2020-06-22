@@ -77,4 +77,21 @@
 
 .ui-autocomplete-loading {
     background: white url('../images/ajaxloader.gif') right center no-repeat;
-  }
+}
+
+/*this is for ajax area overlay loader*/
+
+.ajaxloader {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    /*background: pink url('../images/ajaxloader.gif') center no-repeat;*/
+    background: wheat url('../images/loader-ajax_food.gif') center no-repeat;
+
+    background-size: 250px;
+    z-index: 10000000;
+    opacity: 0.6;
+    /*filter: alpha(opacity=40);*/
+}

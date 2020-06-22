@@ -1,8 +1,8 @@
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 
-from .forms import RecipeCreateForm
+from .forms import RecipeCreateForm, RecipeImageForm
 from .models import Recipe, Ingredient, Recipe_Ingredients, Recipe_Labels
 from django.contrib.auth.decorators import login_required
 import json
@@ -26,8 +26,7 @@ def recipe_create(request):
         if recipe_form.is_valid():
             newrecipe = recipe_form.save()
             messages.success(request, 'Your Recipe is Saved!')
-            return redirect(request, 'NA_WebApp/recipe/recipe_create.html',
-                            {'form': recipe_form, 'recipeId': newrecipe.id, 'done': 'true'})
+            return render(request, 'NA_WebApp/recipe/recipe_create.html', {'form': recipe_form, 'recipeId': newrecipe.id, 'done': 'true'})
 
         else:
             return render(request, 'NA_WebApp/recipe/recipe_create.html', {'form': recipe_form, 'done': 'false'})
@@ -99,3 +98,35 @@ def recipeDeleteIngredient(request):
         resp = HttpResponse(json.dumps({"error": str(e)}), content_type="application/json")
         resp.status_code = 500
         return resp
+
+
+@login_required(login_url='/auth/login')
+@csrf_protect
+def recipe_updateimage(request):
+    if request.method == 'POST':
+
+        if Recipe.objects.filter(id=request.POST['recipe_imageid']).count() > 0:
+
+            rec = Recipe.objects.get(id=request.POST['recipe_imageid'])
+            recipe_imageform = RecipeImageForm(request.POST,
+                                               request.FILES, instance=rec)
+
+            if recipe_imageform.is_valid():
+                recipe_imageform.save()
+                return JsonResponse({'error': False, 'filename': request.FILES['photo'].name})
+                # return render(request, 'NA_WebApp/recipe/recipe_create.html', {'recipeId': newrecipe.id})
+            else:
+                return JsonResponse({'error': True, 'errors': recipe_imageform.errors})
+
+
+@login_required(login_url='/auth/login')
+@csrf_protect
+def recipe_details(request):
+    rid = id = request.GET['recipeId']
+    if Recipe.objects.filter(id=rid).count() > 0:
+        rec = Recipe.objects.get(id=rid)
+
+        return render(request, 'NA_WebApp/recipe/recipe_details.html', {'recipe': rec})
+
+    else:
+        return render(request, 'NA_WebApp/Error.html', {'errorcode': '500', 'errorname': 'Internal Server', 'errortext': 'There is no recipe with this recipe ID : (' + rid + ')'})

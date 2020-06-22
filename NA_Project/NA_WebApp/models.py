@@ -177,7 +177,7 @@ class Recipe(models.Model):
 
     totalEnergy = models.DecimalField(max_digits=15, decimal_places=10, null=True, default=0)
 
-    # later do : photo = models.ImageField(default='recipe_default.jpg', upload_to='profile_pics')
+    photo = models.ImageField(default='recipe_default.jpg', upload_to='profile_pics')
 
 
 class Recipe_Ingredients(models.Model):

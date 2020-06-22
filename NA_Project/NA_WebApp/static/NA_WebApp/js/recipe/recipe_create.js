@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
-     const csrf_token = Cookies.get('csrftoken');
+    $('#ingredient_loader').hide();
+    const csrf_token = Cookies.get('csrftoken');
 
 
     $("#Recipe-wizard").steps({
@@ -23,7 +24,7 @@ $(document).ready(function () {
                     headers: {'X-CSRFToken': csrf_token},
                     method: "POST",
                     url: 'recipeUpdateInstructions',
-                    data: {'recipeId':$('#recipeId').text() , 'instructions': JSON.stringify( $('#txinstructions').val())},
+                    data: {'recipeId': $('#recipeId').text(), 'instructions': JSON.stringify($('#txinstructions').val())},
                 }).fail(function (jqXHR, textStatus) {
                     alert(jqXHR.responseJSON.error); // the message
                     // $('#p_error').html('<span>' + jqXHR.status + ': ' + jqXHR.statusText + '</span><p class="text-danger">' + jqXHR.responseJSON.error + '</p>').css('display', 'block');
@@ -35,7 +36,13 @@ $(document).ready(function () {
 
             return true;
         },
-        onStepChanged: function (event, currentIndex, priorIndex) {
+        // onStepChanged: function (event, currentIndex, priorIndex) {
+        // },
+        onFinished: function (event, currentIndex) {
+
+            //go to recipe details page
+            window.location.replace('recipe_details?recipeid=' + $('#recipeId').text());
+
         }
 
     });
@@ -69,6 +76,8 @@ $(document).ready(function () {
         },
         minLength: 1,
         select: function (event, ui) {
+            $('#ingredient_loader').show();
+
 
             $(this).data("value", ui.item.value);
             $(this).data("name", ui.item.label);
@@ -86,7 +95,10 @@ $(document).ready(function () {
                 data: {'ingredientId': ui.item.value},
                 success: function (data) {
 
+                    if (data.length == 0) {
 
+                        ShowMessage('Oooops !', 'The Food You Searched Found on USDA, but there were no Portions Info! <br> Please Select Another !')
+                    }
                     //we have now the portions , set them to select element
                     $('#txUnit').empty()
                     $.each(data, function (i, item) {
@@ -100,6 +112,12 @@ $(document).ready(function () {
                 }
             }).fail(function (jqXHR, textStatus) {
                 $('#apiErrors').html('<span>' + jqXHR.status + ': ' + jqXHR.statusText + '</span><hr/><span>' + jqXHR.responseJSON.error + '</span>').css('display', 'block');
+            }).always(function () {
+
+
+                $('#ingredient_loader').hide();
+
+
             });
 
             return false;
@@ -129,7 +147,35 @@ $(document).ready(function () {
 
     });
 
+    $('#frmrecipe_image').submit(function (e) {
+        e.preventDefault();
+        let form = $(this)
+        let formData = new FormData(this);
+        $.ajax({
+            url: 'recipe_updateimage',
+            type: 'POST',
+            data: formData,
+            success: function (response) {
 
+
+                if (response.error) {
+                    // $.each(response.errors, function (name, error) {
+                    //     error = '<small class="text-muted error">' + error + '</small>'
+                    //     $form.find('[name=' + name + ']').after(error);
+                    // })
+                    ShowMessage('Oooops !', 'Something was wrong, we could not upload your image !');
+                } else {
+                    $('#imgPhoto').attr('src', '/media/profile_pics/' + response.filename);
+                    ShowMessage('Goood !', 'Photo Uploaded');
+
+
+                }
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
 });
 
 

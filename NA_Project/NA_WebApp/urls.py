@@ -5,6 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [path('', views.home, name='NA_WebApp-home'),
+               path('errorpage', views.error, name='NA_WebApp-error'),
                path('auth/login', views_auth.signin, name='NA_WebApp-login'),
                path('auth/logout', views_auth.signout, name='NA_WebApp-logout'),
                path('auth/forget', views_auth.forget, name='NA_WebApp-forget'),
@@ -29,7 +30,10 @@ urlpatterns = [path('', views.home, name='NA_WebApp-home'),
 
                path('recipe/recipe_create', views_recipe.recipe_create, name='NA_WebApp-recipe_create'),
                path('recipe/recipeAddIngredient', views_recipe.recipeAddIngredient, name='NA_WebApp-recipeAddIngredient'),
-               path('recipe/recipeDeleteIngredient', views_recipe.recipeDeleteIngredient , name='NA_WebApp-recipeDeleteIngredient'),
+               path('recipe/recipeDeleteIngredient', views_recipe.recipeDeleteIngredient, name='NA_WebApp-recipeDeleteIngredient'),
                path('recipe/recipeUpdateInstructions', views_recipe.recipeUpdateInstructions, name='NA_WebApp-recipeUpdateInstructions'),
+               path('recipe/recipe_updateimage', views_recipe.recipe_updateimage, name='NA_WebApp-recipe_updateimage'),
+               path('recipe/recipe_details', views_recipe.recipe_details, name='NA_WebApp-recipe_details'),
+
 
                ]

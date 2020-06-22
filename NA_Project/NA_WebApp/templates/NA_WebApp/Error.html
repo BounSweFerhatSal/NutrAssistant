@@ -1,0 +1,47 @@
+{% extends 'NA_WebApp/_masterpage.html' %}
+{% load static %}
+{% block content %}
+
+   	<div class="wrap clearfix">
+			<!--row-->
+			<div class="row">
+				<!--content-->
+				<section class="content three-fourth">
+					<!--row-->
+					<div class="row">
+						<div class="one-third">
+							<div class="error-container">
+								<span class="error_type">{{ errorcode }}</span>
+								<span class="error_text">{{ errorname }}</span>
+							</div>
+						</div>
+
+						<div class="two-third">
+							<div class="container">
+								<p>{{ errortext}}</p>
+
+								<p>You can go <a href="/">back home</a></p>
+							</div>
+						</div>
+					</div>
+					<!--//row-->
+				</section>
+				<!--//content-->
+
+
+			</div>
+			<!--//row-->
+		</div>
+		<!--//wrap-->
+
+
+
+{% endblock content %}
+
+
+{% block scripts %}
+
+    {#    <script src="{% static 'NA_WebApp/js/jquery.validate.min.js' %}"></script>#}
+    {#    <script src="{% static 'NA_WebApp/js/auth/login.js' %}"></script>#}
+
+{% endblock scripts %}

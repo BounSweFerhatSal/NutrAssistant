@@ -13,3 +13,9 @@ class RecipeCreateForm(forms.ModelForm):
         model = Recipe
         fields = ['title', 'description', 'prepTime', 'cookTime', 'portions',
                   'difficulity']
+
+
+class RecipeImageForm(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        fields = [ 'photo']

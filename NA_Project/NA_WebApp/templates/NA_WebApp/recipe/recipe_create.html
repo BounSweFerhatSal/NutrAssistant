@@ -27,15 +27,13 @@
                 <div class="submit_recipe container">
 
 
-                    <form action="recipe_create" method="POST" enctype="multipart/form-data" name="frmrecipe" id="frmrecipe">
+                    <div id="Recipe-wizard">
+                        <h3>Recipe Basics</h3>
+                        <section>
+                            <form action="recipe_create" method="POST" enctype="multipart/form-data" name="frmrecipe" id="frmrecipe">
 
-                        {% csrf_token %}
-                        <input type="hidden" id="done" value="{{ done }}">
-
-                        <div id="Recipe-wizard">
-                            <h3>Recipe Basics</h3>
-                            <section>
-
+                                {% csrf_token %}
+                                <input type="hidden" name="done" id="done" value="{{ done }}">
                                 <section>
                                     <h2>Basics <span>( Id : <span id="recipeId">{{ recipeId }}</span>)</span></h2>
                                     <p>All fields are required.</p>
@@ -65,9 +63,7 @@
                                         <div class="third"><input placeholder="Serves how many people?" type="number" min="1" name="portions" class="numberinput form-control"
                                                                   required
                                                                   id="id_portions" value="{{ form.portions.value }}"/></div>
-                                        {#                                <div class="third"><select>#}
-                                        {#                                    <option selected="selected">Select a category</option>#}
-                                        {#                                </select></div>#}
+
                                     </div>
                                 </section>
 
@@ -95,114 +91,124 @@
                                     {% endif %}
                                 </section>
 
-                            </section>
+                            </form>
 
-                            <h3>Ingredients & Instructions</h3>
+                        </section>
+
+                        <h3>Ingredients & Instructions</h3>
+                        <section>
+
                             <section>
 
-                                <section>
-                                    <h2>Ingredients</h2>
-                                    <div class="f-row ingredient">
-                                        <div class="large"><input type="text" placeholder="Ingredient" id="txIngredient"></div>
-                                        <div class="small"><input type="number" min="0" placeholder="Quantity" id="txQuantity"></div>
-                                        <div class="third">
-                                            <select class="select form-control" id="txUnit">
-                                                <option value="" selected="">Pick a Portion</option>
 
-                                            </select>
+                                <div class="ajaxloader" id="ingredient_loader"></div>
 
-                                        </div>
-                                        <button class="remove btn-success" id="btn_addIngredient">+</button>
-                                    </div>
 
-                                    <div class="f-row full">
+                                <h2>Ingredients</h2>
+                                <div class="f-row ingredient">
+                                    <div class="large"><input type="text" placeholder="Ingredient" id="txIngredient"></div>
+                                    <div class="small"><input type="number" min="0" placeholder="Quantity" id="txQuantity"></div>
+                                    <div class="third">
+                                        <select class="select form-control" id="txUnit">
+                                            <option value="" selected="">Pick a Portion</option>
 
-                                        <table id="Tbl_Ingredients">
-                                            <tbody>
-                                            <tr>
-                                                <th style="width: 50%">Ingredient</th>
-                                                <th style="width: 10%">Quantity</th>
-                                                <th>Unit</th>
-                                                <th style="width: 10%">As Grams</th>
-                                                <th style="width: 5%"></th>
-                                            </tr>
-
-                                            </tbody>
-                                        </table>
+                                        </select>
 
                                     </div>
-                                    <div class="f-row full">
-                                        <p id="p_error" class="text-danger"></p>
+                                    <button class="remove btn-success" id="btn_addIngredient">+</button>
+                                </div>
 
-                                    </div>
+                                <div class="f-row full">
 
-                                </section>
-                                <section>
+                                    <table id="Tbl_Ingredients">
+                                        <tbody>
+                                        <tr>
+                                            <th style="width: 50%">Ingredient</th>
+                                            <th style="width: 10%">Quantity</th>
+                                            <th>Unit</th>
+                                            <th style="width: 10%">As Grams</th>
+                                            <th style="width: 5%"></th>
+                                        </tr>
 
-                                    <div id="apiErrors" class="alert alert-danger" role="alert" style="display:none">
+                                        </tbody>
+                                    </table>
 
-
-                                    </div>
-
-                                </section>
-
-
-                            </section>
-
-                            <h3>Instructions</h3>
-                            <section>
-                                <h2>Instructions</h2>
-                                <div class="f-row instruction">
-                                    <div class="full"><textarea placeholder="Instructions" name="instructions" maxlength="3000" style="height: 400px" rows="10"
-                                                                class="textinput textInput" required=""
-                                                                id="txinstructions"></textarea></div>
+                                </div>
+                                <div class="f-row full">
+                                    <p id="p_error" class="text-danger"></p>
 
                                 </div>
 
                             </section>
-                            <h3>Photo</h3>
                             <section>
+
+                                <div id="apiErrors" class="alert alert-danger" role="alert" style="display:none">
+
+
+                                </div>
+
+                            </section>
+
+
+                        </section>
+
+                        <h3>Instructions</h3>
+                        <section>
+                            <h2>Instructions</h2>
+                            <div class="f-row instruction">
+                                <div class="full"><textarea placeholder="Instructions" name="instructions" maxlength="3000" style="height: 400px" rows="10"
+                                                            class="textinput textInput" required=""
+                                                            id="txinstructions"></textarea></div>
+
+                            </div>
+
+                        </section>
+                        <h3>Photo</h3>
+                        <section>
+                            <form action="recipe_updateimage" method="POST" enctype="multipart/form-data" name="frmrecipe_image" id="frmrecipe_image">
+                                {% csrf_token %}
                                 <h2>Photo</h2>
                                 <div class="f-row full">
-                                    <input type="file"/>
+                                    <input type="file" name="photo" id="photo"/>
                                 </div>
+                                <input type="hidden" name="recipe_imageid" value="{{ recipeId }}">
 
+                                <input type="submit" class="float-right" value="Upload Picture">
 
-                                <div class="featured full-width">
-                                    <header class="s-title">
-                                        <h2 class="ribbon">Preview</h2>
-                                    </header>
-                                    <article class="entry">
-                                        <figure>
-                                            <img src="/static/NA_WebApp/images/img.jpg" alt="">
-                                            <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
-                                        </figure>
+                            </form>
+                              <hr/>
 
-                                    </article>
-                                </div>
-                            </section>
+                            <div class="featured full-width">
+                                <header class="s-title">
+                                    <h2 class="ribbon">Preview</h2>
+                                </header>
+                                <article class="entry">
+                                    <figure>
+                                        <img src="/static/NA_WebApp/images/img.jpg" alt="" id="imgPhoto">
+                                        <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
+                                    </figure>
 
-
-                        </div>
-
-
-                        <section>
-                            <h2>Status <span>(would you like to further edit this recipe or are you ready to publish it?)</span></h2>
-                            <div class="f-row full">
-                                <input type="radio" id="r1" name="radio"/>
-                                <label for="r1">I am still working on it</label>
-                            </div>
-                            <div class="f-row full">
-                                <input type="radio" id="r2" name="radio"/>
-                                <label for="r2">I am ready to publish this recipe</label>
+                                </article>
                             </div>
                         </section>
 
+
+                    </div>
+
+
+                    <section>
+                        <h2>Status <span>(would you like to further edit this recipe or are you ready to publish it?)</span></h2>
                         <div class="f-row full">
-                            <input type="button" class="button float-right" value="Save this recipe" id="saverecipe"/>
-                            {#                            <input type="submit" class="button" id="submitRecipe" value="Publish this recipe"/>#}
+                            <input type="radio" id="r1" name="radio"/>
+                            <label for="r1">I am still working on it</label>
                         </div>
-                    </form>
+                        <div class="f-row full">
+                            <input type="radio" id="r2" name="radio"/>
+                            <label for="r2">I am ready to publish this recipe</label>
+                        </div>
+                    </section>
+
+
                 </div>
             </section>
             <!--//content-->
@@ -217,6 +223,7 @@
 
     <script src="{% static 'NA_WebApp/js/jquery.validate.min.js' %}"></script>
     <script src="{% static 'NA_WebApp/js/components/GlobalComponents.js' %}"></script>
+    <script src="{% static 'NA_WebApp/js/components/GlobalFunctions.js' %}"></script>
     <script src="{% static 'NA_WebApp/js/jquery.steps.js' %}"></script>
     <script src="{% static 'NA_WebApp/js/recipe/recipe_create.js' %}"></script>
 
