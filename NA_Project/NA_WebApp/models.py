@@ -184,7 +184,7 @@ class Recipe_Ingredients(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
 
-    # amount(weight) must be in grams
+    # amount(weight) must be in grams ( this is being calculated in client side by this formula : "quantity x gramweigth of selected portion"
     amount = models.DecimalField(max_digits=8, decimal_places=2, null=True, default=0)
 
     # this is a calculated field : Get the calorie of the Ingredient , multiple it with amount
@@ -192,6 +192,10 @@ class Recipe_Ingredients(models.Model):
     # amount is in grams unit
     # so total energy for this ingredient in recipe = (Ingredient calorie / 100 ) * amount
     energy = models.DecimalField(max_digits=15, decimal_places=10, null=True, default=0)
+
+    # quantity
+    quantity = models.IntegerField(null=True , default=1)
+    portion_name = models.CharField(max_length=200, null=True, default='')
 
 
 class Recipe_Labels(models.Model):

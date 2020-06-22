@@ -1,13 +1,13 @@
 from django.db.models import Q
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
-
 from .forms import RecipeCreateForm, RecipeImageForm
-from .models import Recipe, Ingredient, Recipe_Ingredients, Recipe_Labels
+from .models import Recipe, Ingredient, Recipe_Ingredients, Recipe_Labels, Ingredient_Composition, Nutrient
 from django.contrib.auth.decorators import login_required
 import json
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
+from django.db import connection
 
 
 @login_required(login_url='/auth/login')
@@ -72,7 +72,10 @@ def recipeAddIngredient(request):
             ingObj = Ingredient.objects.get(FDC_ID=new_ingredient['ingredientId'])
             new_rec = Recipe_Ingredients.objects.create(recipe_id=new_ingredient['recipeId'],
                                                         ingredient=ingObj,
-                                                        amount=new_ingredient['amount'])
+                                                        amount=new_ingredient['amount'],
+                                                        quantity=new_ingredient['quantity'],
+                                                        portion_name=new_ingredient['portion_name']
+                                                        )
 
             return HttpResponse(json.dumps({'success': 'true'}))
 
@@ -126,7 +129,48 @@ def recipe_details(request):
     if Recipe.objects.filter(id=rid).count() > 0:
         rec = Recipe.objects.get(id=rid)
 
-        return render(request, 'NA_WebApp/recipe/recipe_details.html', {'recipe': rec})
+
+        # we are getting nutrient composition of this recipe by raw queries
+        # explanataion for : Sum((Ing_com.amount/100) * RI.amount) :
+        #                   Ingredeint composiiton table provides the amount of nutritios in this ingredient for 100 grams of the Ingredient
+        #                   Recipe Ingredients provides how much ingredient exists in this recipe
+        #                   so whe have toc multiply the  RI.amount ( which is grams) with the nutrient amount in the 1 gram of the Ingredient
+        #                   therefore :     (Ing_com.amount/100) * RI.amount  gives us nutrient in 1 gram of Ingredient X quaniity of the ongredient in this recipe
+        #                   Sum((Ing_com.amount/100) * RI.amount) we are getting the sum of this values of each nutrient in this recipe !
+
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT  " +
+                           " Ing_com.nutrient_id as N_Id," +
+                           " N.name as N_Name," +
+                           " Sum((Ing_com.amount/100) * RI.amount) as TotalAmountofNutrient," +
+                           " Ing_com.unitname as N_Unit" +
+                           " FROM public.\"NA_WebApp_recipe_ingredients\"  as RI" +
+                           "              inner join public.\"NA_WebApp_ingredient_composition\" as Ing_com" +
+                           "                    on RI.ingredient_id = Ing_com.ingredient_id" +
+                           "              inner join public.\"NA_WebApp_nutrient\" as N" +
+                           "                    on Ing_com.nutrient_id = N.id" +
+                           " WHERE RI.recipe_id= %s" +
+                           " GROUP BY Ing_com.nutrient_id,Ing_com.unitname,N.name" +
+                           " ORDER BY N_Id", [rid])
+
+            rows = cursor.fetchall()
+
+            nutrient_comp = []
+            energy = 0
+            for row in rows:
+                if row[1] != 'Energy':
+                    nut = {'nutrient': row[1],
+                           'amount': row[2],
+                           'unit': row[3]}
+
+                    nutrient_comp.append(nut)
+                else:
+                    energy = row[2]
+
+
+
+
+        return render(request, 'NA_WebApp/recipe/recipe_details.html', {'recipe': rec , 'nutrients': nutrient_comp, 'energy' : energy})
 
     else:
         return render(request, 'NA_WebApp/Error.html', {'errorcode': '500', 'errorname': 'Internal Server', 'errortext': 'There is no recipe with this recipe ID : (' + rid + ')'})

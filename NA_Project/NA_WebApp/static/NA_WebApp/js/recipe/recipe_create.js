@@ -41,7 +41,8 @@ $(document).ready(function () {
         onFinished: function (event, currentIndex) {
 
             //go to recipe details page
-            window.location.replace('recipe_details?recipeid=' + $('#recipeId').text());
+            window.location.replace('recipe_details?recipeId=' + $('#recipeId').text());
+
 
         }
 
@@ -222,6 +223,8 @@ class IngredientManager {
 
     addNewIngredient(recipe_ingredient) {
 
+
+
         let r = recipe_ingredient;
 
 
@@ -230,7 +233,9 @@ class IngredientManager {
             let new_ingredient = {
                 recipeId: r.recipeId,
                 ingredientId: r.ingredient.id,
-                amount: r.calcGrams
+                amount: r.calcGrams,
+                quantity: r.quantity,
+                portion_name: r.unit.text
             };
 
             //first send to back end for adding to db
