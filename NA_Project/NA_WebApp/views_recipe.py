@@ -26,8 +26,9 @@ def recipe_create(request):
         if recipe_form.is_valid():
             newrecipe = recipe_form.save()
             messages.success(request, 'Your Recipe is Saved!')
-            return render(request, 'NA_WebApp/recipe/recipe_create.html',
-                          {'form': recipe_form, 'recipeId': newrecipe.id, 'done': 'true'})
+            return redirect(request, 'NA_WebApp/recipe/recipe_create.html',
+                            {'form': recipe_form, 'recipeId': newrecipe.id, 'done': 'true'})
+
         else:
             return render(request, 'NA_WebApp/recipe/recipe_create.html', {'form': recipe_form, 'done': 'false'})
 
@@ -42,7 +43,7 @@ def recipeUpdateInstructions(request):
 
             if Recipe.objects.filter(id=r_id).count() != 0:
                 rec = Recipe.objects.get(id=r_id)
-                rec.instructions =ins
+                rec.instructions = ins
                 rec.save()
 
                 return HttpResponse(json.dumps({'success': 'true'}))
@@ -51,7 +52,6 @@ def recipeUpdateInstructions(request):
         resp = HttpResponse(json.dumps({"error": str(e)}), content_type="application/json")
         resp.status_code = 500
         return resp
-
 
 
 @login_required(login_url='/auth/login')
