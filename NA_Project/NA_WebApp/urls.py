@@ -1,11 +1,12 @@
 from django.urls import path
-from . import views, views_auth, views_defs, views_recipe
+from . import views, views_auth, views_defs, views_recipe, views_social
 
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [path('', views.home, name='NA_WebApp-home'),
                path('errorpage', views.error, name='NA_WebApp-error'),
+               path('recipe/recipe_search', views_recipe.recipe_search, name='NA_WebApp-recipe_search'),
                path('auth/login', views_auth.signin, name='NA_WebApp-login'),
                path('auth/logout', views_auth.signout, name='NA_WebApp-logout'),
                path('auth/forget', views_auth.forget, name='NA_WebApp-forget'),
@@ -13,7 +14,7 @@ urlpatterns = [path('', views.home, name='NA_WebApp-home'),
                path('auth/profile', views_auth.profile, name='NA_WebApp-profile'),
                path('auth/profile_preferences', views_auth.profile_preferences, name='NA_WebApp-preferences'),
 
-               path('recipes/', views.recipes, name='NA_WebApp-recipes'),
+
 
                path('enjoy/', views.frontendtest, name='NA_WebApp-enjoy'),
                path('enjoy/ajaxget', views.ajax_getdata_test, name='NA_WebApp-ajaxget'),
@@ -34,6 +35,8 @@ urlpatterns = [path('', views.home, name='NA_WebApp-home'),
                path('recipe/recipeUpdateInstructions', views_recipe.recipeUpdateInstructions, name='NA_WebApp-recipeUpdateInstructions'),
                path('recipe/recipe_updateimage', views_recipe.recipe_updateimage, name='NA_WebApp-recipe_updateimage'),
                path('recipe/recipe_details', views_recipe.recipe_details, name='NA_WebApp-recipe_details'),
+               path('recipe/recipe_search', views_recipe.recipe_search, name='NA_WebApp-recipe_search'),
 
+               path('social/show_profile', views_social.show_profile, name='NA_WebApp-show_profile'),
 
                ]

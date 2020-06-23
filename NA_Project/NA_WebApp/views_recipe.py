@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from .forms import RecipeCreateForm, RecipeImageForm
-from .models import Recipe, Ingredient, Recipe_Ingredients, Recipe_Labels, Ingredient_Composition, Nutrient
+from .models import Recipe, Ingredient, Recipe_Ingredients, Recipe_Labels, Ingredient_Composition, Nutrient, Labels
 from django.contrib.auth.decorators import login_required
 import json
 from django.contrib import messages
@@ -25,11 +25,14 @@ def recipe_create(request):
 
         if recipe_form.is_valid():
             newrecipe = recipe_form.save()
+            # update with user :
+            newrecipe.user_id = request.user.id
+            newrecipe.save()
             messages.success(request, 'Your Recipe is Saved!')
             return render(request, 'NA_WebApp/recipe/recipe_create.html', {'form': recipe_form, 'recipeId': newrecipe.id, 'done': 'true'})
 
-        else:
-            return render(request, 'NA_WebApp/recipe/recipe_create.html', {'form': recipe_form, 'done': 'false'})
+    else:
+        return render(request, 'NA_WebApp/recipe/recipe_create.html', {'form': recipe_form, 'done': 'false'})
 
 
 @login_required(login_url='/auth/login')
@@ -39,11 +42,20 @@ def recipeUpdateInstructions(request):
         if request.method == 'POST':
             r_id = json.loads(request.POST.get('recipeId', ''))
             ins = json.loads(request.POST.get('instructions', ''))
+            labels = json.loads(request.POST.get('labels', ''))
 
             if Recipe.objects.filter(id=r_id).count() != 0:
                 rec = Recipe.objects.get(id=r_id)
                 rec.instructions = ins
                 rec.save()
+
+                # first delete every label of this recipe
+                Recipe_Labels.objects.filter(recipe_id=r_id).delete()
+                #      then add selecteds :
+                for l in labels:
+                    lab = Labels.objects.get(id=l)
+                    Recipe_Labels.objects.create(recipe_id=r_id,label=lab)
+
 
                 return HttpResponse(json.dumps({'success': 'true'}))
 
@@ -125,10 +137,9 @@ def recipe_updateimage(request):
 @login_required(login_url='/auth/login')
 @csrf_protect
 def recipe_details(request):
-    rid = id = request.GET['recipeId']
+    rid = request.GET['recipeId']
     if Recipe.objects.filter(id=rid).count() > 0:
         rec = Recipe.objects.get(id=rid)
-
 
         # we are getting nutrient composition of this recipe by raw queries
         # explanataion for : Sum((Ing_com.amount/100) * RI.amount) :
@@ -167,10 +178,22 @@ def recipe_details(request):
                 else:
                     energy = row[2]
 
-
-
-
-        return render(request, 'NA_WebApp/recipe/recipe_details.html', {'recipe': rec , 'nutrients': nutrient_comp, 'energy' : energy})
+        return render(request, 'NA_WebApp/recipe/recipe_details.html', {'recipe': rec, 'nutrients': nutrient_comp, 'energy': energy})
 
     else:
         return render(request, 'NA_WebApp/Error.html', {'errorcode': '500', 'errorname': 'Internal Server', 'errortext': 'There is no recipe with this recipe ID : (' + rid + ')'})
+
+
+@login_required(login_url='/auth/login')
+@csrf_protect
+def recipe_search(request):
+    try:
+        term = ''
+        if 'term' in request.GET:
+            term = request.GET['term']
+
+        recipes = Recipe.objects.filter(title__icontains=term, description__icontains=term, instructions__icontains=term)
+        return render(request, 'NA_WebApp/recipe/recipe_search.html', {'recipes': recipes})
+
+    except Exception as e:
+        return render(request, 'NA_WebApp/Error.html', {'errorcode': '500', 'errorname': 'Internal Server', 'errortext': str(e)})

@@ -8,7 +8,8 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
 
 from .forms import ProfileUpdateForm
-from .models import Diseases, Allergies, Labels, Ingredient, Profile_Diseases, Profile_Allergies, Profile_FoodPreferences, Profile_RestrictedIngredients, Profile_RestrictedLabels
+from .models import Diseases, Allergies, Labels, Ingredient, Profile_Diseases, Profile_Allergies, Profile_FoodPreferences, Profile_RestrictedIngredients, Profile_RestrictedLabels, \
+    Recipe
 
 import json
 
@@ -117,7 +118,10 @@ def profile(request):
 
     # Here we send the form data to template just for showing the errors
     # Otherwise we had to create a message with a loop in errors and send it to template
-    return render(request, 'NA_WebApp/auth/profile.html', {'form': p_form})
+
+    recipes = Recipe.objects.filter(user_id=request.user.id)
+
+    return render(request, 'NA_WebApp/auth/profile.html', {'form': p_form, 'recipes': recipes})
 
 
 @login_required(login_url='/auth/login')

@@ -19,12 +19,16 @@ $(document).ready(function () {
             }
 
             if (currentIndex === 2) {
-                //update instructions
+                //update instructions and labels
                 $.ajax({
                     headers: {'X-CSRFToken': csrf_token},
                     method: "POST",
                     url: 'recipeUpdateInstructions',
-                    data: {'recipeId': $('#recipeId').text(), 'instructions': JSON.stringify($('#txinstructions').val())},
+                    data: {
+                        'recipeId': $('#recipeId').text(),
+                        'instructions': JSON.stringify($('#txinstructions').val()),
+                        'labels': JSON.stringify($('#txRecipeLabels').getSelectedItemsVals())
+                    },
                 }).fail(function (jqXHR, textStatus) {
                     alert(jqXHR.responseJSON.error); // the message
                     // $('#p_error').html('<span>' + jqXHR.status + ': ' + jqXHR.statusText + '</span><p class="text-danger">' + jqXHR.responseJSON.error + '</p>').css('display', 'block');
@@ -177,6 +181,18 @@ $(document).ready(function () {
             processData: false
         });
     });
+
+
+    //recipe label adding :
+
+    $('#txRecipeLabels').makeSearcher({
+        searchUrl: '../auth/search_labels',
+        addUrl: '../auth/add_label',
+        addNewText: "Click here to create this new label record",
+        badgeStyle: "success",
+        selectedListComponent: $('#divSelectedRecipeLabels')
+    });
+
 });
 
 
@@ -222,7 +238,6 @@ class IngredientManager {
 
 
     addNewIngredient(recipe_ingredient) {
-
 
 
         let r = recipe_ingredient;

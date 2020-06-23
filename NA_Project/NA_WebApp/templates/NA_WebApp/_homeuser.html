@@ -46,12 +46,12 @@
 									<h2 class="ribbon star">Featured member</h2>
 								</header>
 								<article class="entry">
-									<figure>
-										<img src="{% static '/NA_WebApp/images/avatar.jpg'%}" alt="" />
-										<figcaption><a href="my_profile.html"><i class="icon icon-themeenergy_eye2"></i> <span>View member</span></a></figcaption>
-									</figure>
-									<div class="container">
-										<h2><a href="my_profile.html">Kimberly C.</a></h2>
+									 <figure>
+                                    <img src="{% static '/NA_WebApp/images/avatar.jpg' %}" alt=""/>
+                                    <figcaption><a href="{% url 'NA_WebApp-show_profile' %}?profileid=4"><i class="icon icon-themeenergy_eye2"></i> <span>View member</span></a></figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="{% url 'NA_WebApp-show_profile' %}?profileid=4">Kimberly C.</a></h2>
 										<blockquote><i class="fa fa-quote-left"></i>Traditional dishes and fine bakery products accompanied by beautiful photographs to bend around and attract the tryout! Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</blockquote>
 										<div class="actions">
 											<div>

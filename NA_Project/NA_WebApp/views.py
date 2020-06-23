@@ -9,6 +9,8 @@ def home(request):
     # context = {'posts': posts} // the data ( get it from db / models )
     # return render(request, 'blogapp/home.html', context)
 
+
+
     if request.user.is_authenticated:
         # Do something for authenticated users.
 
@@ -19,8 +21,6 @@ def home(request):
         return render(request, 'NA_WebApp/_home.html', {'title': 'Title of the blog'})
 
 
-def recipes(request):
-    return render(request, 'NA_WebApp/recipes.html', {'data': 'pass the value'})
 
 
 def error(request):

@@ -1,0 +1,93 @@
+{% extends 'NA_WebApp/_masterpage.html' %}
+{% load static %}
+{% block content %}
+
+
+  <!--wrap-->
+		<div class="wrap clearfix">
+			<!--breadcrumbs-->
+			<nav class="breadcrumbs">
+				<ul>
+					<li><a href="index.html" title="Home">Home</a></li>
+					<li>Search for Recipes</li>
+				</ul>
+			</nav>
+			<!--//breadcrumbs-->
+
+			<!--row-->
+			<div class="row">
+				<header class="s-title">
+					<h1>Search for Recipes</h1>
+				</header>
+
+				<!--content-->
+				<section class="content full-width">
+					<!--recipefinder-->
+					<div class="container recipefinder">
+
+
+							 <h3>Search directly by entering a term :</h3>
+							<div class="row">
+								<div class="search one-half">
+									<input type="search" placeholder="Find recipe by name" id="txSearch" />
+									<input type="submit" value="Search" id="btnSearch"/>
+								</div>
+
+
+							</div>
+
+					</div>
+					<!--//recipefinder-->
+
+					<!--results-->
+					<div class="entries">
+
+                        {% for r in recipes %}
+                            <!--item-->
+						<div class="entry one-fourth">
+							<figure>
+								<img src=" {{ r.photo.url }}" onerror="this.src='/static/NA_WebApp/images/img.jpg'"  alt="" />
+								<figcaption><a href="{% url 'NA_WebApp-recipe_details' %}?recipeId={{ r.id }}"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
+							</figure>
+							<div class="container">
+								<h2><a href="{% url 'NA_WebApp-recipe_details' %}?recipeId={{ r.id }}">{{  r.title}}</a></h2>
+								<div class="actions">
+									<div>
+										<div class="difficulty"><i class="ico i-medium"></i><a href="#">{{ r.get_difficulity_display }}</a></div>
+										<div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+										<div class="comments"><i class="fa fa-comment"></i><a href="#">3</a></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--item-->
+                        {% endfor %}
+
+
+
+
+						<div class="quicklinks">
+							<a href="#" class="button">More recipes</a>
+							<a href="javascript:void(0)" class="button scroll-to-top">Back to top</a>
+						</div>
+					</div>
+					<!--//results-->
+				</section>
+				<!--//content-->
+			</div>
+			<!--//row-->
+		</div>
+		<!--//wrap-->
+
+
+
+{% endblock content %}
+
+
+{% block scripts %}
+
+    {#    <script src="{% static 'NA_WebApp/js/jquery.validate.min.js' %}"></script>#}
+        <script src="{% static 'NA_WebApp/js/components/GlobalFunctions.js' %}"></script>
+        <script src="{% static 'NA_WebApp/js/recipe/recipe_search.js' %}"></script>
+
+{% endblock scripts %}

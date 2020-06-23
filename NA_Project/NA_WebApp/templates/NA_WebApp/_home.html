@@ -1,403 +1,422 @@
-
-  {% extends 'NA_WebApp/_masterpage.html' %}
+{% extends 'NA_WebApp/_masterpage.html' %}
 {% load static %}
- {% block content %}
+{% block content %}
 
-  	<!--intro-->
-		<div class="intro">
-			<figure class="bg"><img src="{% static 'NA_WebApp/images/intro.jpg' %}" alt="" /></figure>
+    <!--intro-->
+    <div class="intro">
+        <figure class="bg"><img src="{% static 'NA_WebApp/images/intro.jpg' %}" alt=""/></figure>
 
-			<!--wrap-->
-			<div class="wrap clearfix">
-				<!--row-->
-				<div class="row">
-					<article class="three-fourth text">
-						<h1>Welcome to SocialChef!</h1>
-						<p>SocialChef is the ultimate <strong>cooking social community</strong>, where recipes come to life. Wanna know what you will gain by joining us? Lorem ipsum dolor sit amet, this is some teaser text.</p>
-						<p>You will win awesome prizes, make new friends and share delicious recipes. </p>
-						<a href="{% url 'NA_WebApp-register' %}" class="button white more medium">Join our community <i class="fa fa-chevron-right"></i></a>
-						<p>Already a member? Click <a href="{% url 'NA_WebApp-login' %}">here</a> to login.</p>
-					</article>
+        <!--wrap-->
+        <div class="wrap clearfix">
+            <!--row-->
+            <div class="row">
+                <article class="three-fourth text">
+                    <h1>Welcome to SocialChef!</h1>
+                    <p>SocialChef is the ultimate <strong>cooking social community</strong>, where recipes come to life. Wanna know what you will gain by joining us? Lorem ipsum
+                        dolor sit amet, this is some teaser text.</p>
+                    <p>You will win awesome prizes, make new friends and share delicious recipes. </p>
+                    <a href="{% url 'NA_WebApp-register' %}" class="button white more medium">Join our community <i class="fa fa-chevron-right"></i></a>
+                    <p>Already a member? Click <a href="{% url 'NA_WebApp-login' %}">here</a> to login.</p>
+                </article>
 
-					<!--search recipes widget-->
-					<div class="one-fourth">
-						<div class="widget container">
-							<div class="textwrap">
-								<h3>Search for recipes</h3>
-								<p>All you need to do is enter an igredient, a dish or a keyword. </p>
-								<p>You can also select a specific category from the dropdown.</p>
-								<p>There’s sure to be something tempting for you to try.</p>
-								<p>Enjoy!</p>
-							</div>
-							<form action="find_recipe.html">
-								<div class="f-row">
-									<input type="text" placeholder="Enter your search term" />
-								</div>
-								<div class="f-row">
-									<select>
-										<option>or select a category</option>
-										<option>Apetizers</option>
-										<option>Cocktails</option>
-										<option>Deserts</option>
-										<option>Main courses</option>
-										<option>Snacks</option>
-										<option>Soups</option>
-									</select>
-								</div>
-								<div class="f-row bwrap">
-									<input type="submit" value="Start cooking!" />
-								</div>
-							</form>
-						</div>
-					</div>
-					<!--//search recipes widget-->
-				</div>
-				<!--//row-->
-			</div>
-			<!--//wrap-->
-		</div>
-		<!--//intro-->
+                <!--search recipes widget-->
+                <div class="one-fourth">
+                    <div class="widget container">
+                        <div class="textwrap">
+                            <h3>Search for recipes</h3>
+                            <p>All you need to do is enter an igredient, a dish or a keyword. </p>
+                            <p>You can also select a specific category from the dropdown.</p>
+                            <p>There’s sure to be something tempting for you to try.</p>
+                            <p>Enjoy!</p>
+                        </div>
+                        <form action="find_recipe.html">
+                            <div class="f-row">
+                                <input type="text" placeholder="Enter your search term"/>
+                            </div>
+                            <div class="f-row">
+                                <select>
+                                    <option>or select a category</option>
+                                    <option>Apetizers</option>
+                                    <option>Cocktails</option>
+                                    <option>Deserts</option>
+                                    <option>Main courses</option>
+                                    <option>Snacks</option>
+                                    <option>Soups</option>
+                                </select>
+                            </div>
+                            <div class="f-row bwrap">
+                                <input type="submit" value="Start cooking!"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!--//search recipes widget-->
+            </div>
+            <!--//row-->
+        </div>
+        <!--//wrap-->
+    </div>
+    <!--//intro-->
 
-		<!--wrap-->
-		<div class="wrap clearfix">
-			<!--row-->
-			<div class="row">
-				<!--content-->
-				<section class="content full-width">
-					<div class="icons dynamic-numbers">
-						<header class="s-title">
-							<h2 class="ribbon large">SocialChef in numbers</h2>
-						</header>
+    <!--wrap-->
+    <div class="wrap clearfix">
+        <!--row-->
+        <div class="row">
+            <!--content-->
+            <section class="content full-width">
+                <div class="icons dynamic-numbers">
+                    <header class="s-title">
+                        <h2 class="ribbon large">SocialChef in numbers</h2>
+                    </header>
 
-						<!--row-->
-						<div class="row">
-							<!--item-->
-							<div class="one-sixth">
-								<div class="container">
-									<i class="icon icon-themeenergy_chef-hat"></i>
-									<span class="title dynamic-number" data-dnumber="1730">0</span>
-									<span class="subtitle">members</span>
-								</div>
-							</div>
-							<!--//item-->
+                    <!--row-->
+                    <div class="row">
+                        <!--item-->
+                        <div class="one-sixth">
+                            <div class="container">
+                                <i class="icon icon-themeenergy_chef-hat"></i>
+                                <span class="title dynamic-number" data-dnumber="1730">0</span>
+                                <span class="subtitle">members</span>
+                            </div>
+                        </div>
+                        <!--//item-->
 
-							<!--item-->
-							<div class="one-sixth">
-								<div class="container">
-									<i class="icon icon-themeenergy_pan"></i>
-									<span class="title dynamic-number" data-dnumber="1250">0</span>
-									<span class="subtitle">recipes</span>
-								</div>
-							</div>
-							<!--//item-->
+                        <!--item-->
+                        <div class="one-sixth">
+                            <div class="container">
+                                <i class="icon icon-themeenergy_pan"></i>
+                                <span class="title dynamic-number" data-dnumber="1250">0</span>
+                                <span class="subtitle">recipes</span>
+                            </div>
+                        </div>
+                        <!--//item-->
 
-							<!--item-->
-							<div class="one-sixth">
-								<div class="container">
-									<i class="icon icon-themeenergy_image"></i>
-									<span class="title dynamic-number" data-dnumber="5300">0</span>
-									<span class="subtitle">photos</span>
-								</div>
-							</div>
-							<!--//item-->
+                        <!--item-->
+                        <div class="one-sixth">
+                            <div class="container">
+                                <i class="icon icon-themeenergy_image"></i>
+                                <span class="title dynamic-number" data-dnumber="5300">0</span>
+                                <span class="subtitle">photos</span>
+                            </div>
+                        </div>
+                        <!--//item-->
 
-							<!--item-->
-							<div class="one-sixth">
-								<div class="container">
-									<i class="icon icon-themeenergy_pencil"></i>
-									<span class="title dynamic-number" data-dnumber="2300">0</span>
-									<span class="subtitle">forum posts</span>
-								</div>
-							</div>
-							<!--//item-->
+                        <!--item-->
+                        <div class="one-sixth">
+                            <div class="container">
+                                <i class="icon icon-themeenergy_pencil"></i>
+                                <span class="title dynamic-number" data-dnumber="2300">0</span>
+                                <span class="subtitle">forum posts</span>
+                            </div>
+                        </div>
+                        <!--//item-->
 
-							<!--item-->
-							<div class="one-sixth">
-								<div class="container">
-									<i class="icon icon-themeenergy_chat-bubbles"></i>
-									<span class="title dynamic-number" data-dnumber="7400">0</span>
-									<span class="subtitle">comments</span>
-								</div>
-							</div>
-							<!--//item-->
+                        <!--item-->
+                        <div class="one-sixth">
+                            <div class="container">
+                                <i class="icon icon-themeenergy_chat-bubbles"></i>
+                                <span class="title dynamic-number" data-dnumber="7400">0</span>
+                                <span class="subtitle">comments</span>
+                            </div>
+                        </div>
+                        <!--//item-->
 
-							<!--item-->
-							<div class="one-sixth">
-								<div class="container">
-									<i class="icon icon-themeenergy_stars"></i>
-									<span class="title dynamic-number" data-dnumber="1700">0</span>
-									<span class="subtitle">articles</span>
-								</div>
-							</div>
-							<!--//item-->
+                        <!--item-->
+                        <div class="one-sixth">
+                            <div class="container">
+                                <i class="icon icon-themeenergy_stars"></i>
+                                <span class="title dynamic-number" data-dnumber="1700">0</span>
+                                <span class="subtitle">articles</span>
+                            </div>
+                        </div>
+                        <!--//item-->
 
-							<div class="cta">
-								<a href="login.html" class="button big">Join us!</a>
-							</div>
-						</div>
-						<!--//row-->
-					</div>
-				</section>
-				<!--//content-->
+                        <div class="cta">
+                            <a href="login.html" class="button big">Join us!</a>
+                        </div>
+                    </div>
+                    <!--//row-->
+                </div>
+            </section>
+            <!--//content-->
 
-				<!--content-->
-				<section class="content three-fourth">
-					<!--cwrap-->
-					<div class="cwrap">
-						<!--entries-->
-						<div class="entries row">
-							<!--featured recipe-->
-							<div class="featured two-third">
-								<header class="s-title">
-									<h2 class="ribbon">Recipe of the Day</h2>
-								</header>
-								<article class="entry">
-									<figure>
-										<img src="{% static '/NA_WebApp/images/img.jpg'%}" alt="" />
-										<figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
-									</figure>
-									<div class="container">
-										<h2><a href="recipe.html">Honey Cake</a></h2>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
-										<div class="actions">
-											<div>
-												<a href="#" class="button">See the full recipe</a>
-												<div class="more"><a href="recipes2.html">See past recipes of the day</a></div>
-											</div>
-										</div>
-									</div>
-								</article>
-							</div>
-							<!--//featured recipe-->
+            <!--content-->
+            <section class="content three-fourth">
+                <!--cwrap-->
+                <div class="cwrap">
+                    <!--entries-->
+                    <div class="entries row">
+                        <!--featured recipe-->
+                        <div class="featured two-third">
+                            <header class="s-title">
+                                <h2 class="ribbon">Recipe of the Day</h2>
+                            </header>
+                            <article class="entry">
+                                <figure>
+                                    <img src="{% static '/NA_WebApp/images/img.jpg' %}" alt=""/>
+                                    <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="recipe.html">Honey Cake</a></h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+                                        volutpat. </p>
+                                    <div class="actions">
+                                        <div>
+                                            <a href="#" class="button">See the full recipe</a>
+                                            <div class="more"><a href="recipes2.html">See past recipes of the day</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <!--//featured recipe-->
 
-							<!--featured member-->
-							<div class="featured one-third">
-								<header class="s-title">
-									<h2 class="ribbon star">Featured member</h2>
-								</header>
-								<article class="entry">
-									<figure>
-										<img src="{% static '/NA_WebApp/images/avatar.jpg'%}" alt="" />
-										<figcaption><a href="my_profile.html"><i class="icon icon-themeenergy_eye2"></i> <span>View member</span></a></figcaption>
-									</figure>
-									<div class="container">
-										<h2><a href="my_profile.html">Kimberly C.</a></h2>
-										<blockquote><i class="fa fa-quote-left"></i>Traditional dishes and fine bakery products accompanied by beautiful photographs to bend around and attract the tryout! Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</blockquote>
-										<div class="actions">
-											<div>
-												<a href="#" class="button">Check out her recipes</a>
-												<div class="more"><a href="#">See past featured members</a></div>
-											</div>
-										</div>
-									</div>
-								</article>
-							</div>
-							<!--//featured member-->
-						</div>
-						<!--//entries-->
-					</div>
-					<!--//cwrap-->
+                        <!--featured member-->
+                        <div class="featured one-third">
+                            <header class="s-title">
+                                <h2 class="ribbon star">Featured member</h2>
+                            </header>
+                            <article class="entry">
+                                	 <figure>
+                                    <img src="{% static '/NA_WebApp/images/avatar.jpg' %}" alt=""/>
+                                    <figcaption><a href="{% url 'NA_WebApp-show_profile' %}?profileid=4"><i class="icon icon-themeenergy_eye2"></i> <span>View member</span></a></figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="{% url 'NA_WebApp-show_profile' %}?profileid=4">Kimberly C.</a></h2>
+                                    <blockquote><i class="fa fa-quote-left"></i>Traditional dishes and fine bakery products accompanied by beautiful photographs to bend around and
+                                        attract the tryout! Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                    </blockquote>
+                                    <div class="actions">
+                                        <div>
+                                            <a href="#" class="button">Check out her recipes</a>
+                                            <div class="more"><a href="#">See past featured members</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <!--//featured member-->
+                    </div>
+                    <!--//entries-->
+                </div>
+                <!--//cwrap-->
 
-					<!--cwrap-->
-					<div class="cwrap">
-						<header class="s-title">
-							<h2 class="ribbon bright">Latest recipes</h2>
-						</header>
+                <!--cwrap-->
+                <div class="cwrap">
+                    <header class="s-title">
+                        <h2 class="ribbon bright">Latest recipes</h2>
+                    </header>
 
-						<!--entries-->
-						<div class="entries row">
-							<!--item-->
-							<div class="entry one-third">
-								<figure>
-									<img src="{% static '/NA_WebApp/images/img.jpg'%}" alt="" />
-									<figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
-								</figure>
-								<div class="container">
-									<h2><a href="recipe.html">Thai fried rice with fruit and vegetables</a></h2>
-									<div class="actions">
-										<div>
-											<div class="difficulty"><i class="ico i-medium"></i><a href="#">medium</a></div>
-											<div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
-											<div class="comments"><i class="fa fa-comment"></i><a href="recipe.html#comments">27</a></div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!--item-->
+                    <!--entries-->
+                    <div class="entries row">
+                        <!--item-->
+                        <div class="entry one-third">
+                            <figure>
+                                <img src="{% static '/NA_WebApp/images/img.jpg' %}" alt=""/>
+                                <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
+                            </figure>
+                            <div class="container">
+                                <h2><a href="recipe.html">Thai fried rice with fruit and vegetables</a></h2>
+                                <div class="actions">
+                                    <div>
+                                        <div class="difficulty"><i class="ico i-medium"></i><a href="#">medium</a></div>
+                                        <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                        <div class="comments"><i class="fa fa-comment"></i><a href="recipe.html#comments">27</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--item-->
 
-							<!--item-->
-							<div class="entry one-third">
-								<figure>
-									<img src="{% static '/NA_WebApp/images/img.jpg'%}" alt="" />
-									<figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
-								</figure>
-								<div class="container">
-									<h2><a href="recipe.html">Spicy Morroccan prawns with cherry tomatoes</a></h2>
-									<div class="actions">
-										<div>
-											<div class="difficulty"><i class="ico i-hard"></i><a href="#">hard</a></div>
-											<div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
-											<div class="comments"><i class="fa fa-comment"></i><a href="recipe.html#comments">27</a></div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!--item-->
+                        <!--item-->
+                        <div class="entry one-third">
+                            <figure>
+                                <img src="{% static '/NA_WebApp/images/img.jpg' %}" alt=""/>
+                                <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
+                            </figure>
+                            <div class="container">
+                                <h2><a href="recipe.html">Spicy Morroccan prawns with cherry tomatoes</a></h2>
+                                <div class="actions">
+                                    <div>
+                                        <div class="difficulty"><i class="ico i-hard"></i><a href="#">hard</a></div>
+                                        <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                        <div class="comments"><i class="fa fa-comment"></i><a href="recipe.html#comments">27</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--item-->
 
-							<!--item-->
-							<div class="entry one-third">
-								<figure>
-									<img src="{% static '/NA_WebApp/images/img.jpg'%}" alt="" />
-									<figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
-								</figure>
-								<div class="container">
-									<h2><a href="recipe.html">Super easy blueberry cheesecake</a></h2>
-									<div class="actions">
-										<div>
-											<div class="difficulty"><i class="ico i-easy"></i><a href="#">easy</a></div>
-											<div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
-											<div class="comments"><i class="fa fa-comment"></i><a href="recipe.html#comments">27</a></div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!--item-->
+                        <!--item-->
+                        <div class="entry one-third">
+                            <figure>
+                                <img src="{% static '/NA_WebApp/images/img.jpg' %}" alt=""/>
+                                <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
+                            </figure>
+                            <div class="container">
+                                <h2><a href="recipe.html">Super easy blueberry cheesecake</a></h2>
+                                <div class="actions">
+                                    <div>
+                                        <div class="difficulty"><i class="ico i-easy"></i><a href="#">easy</a></div>
+                                        <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                        <div class="comments"><i class="fa fa-comment"></i><a href="recipe.html#comments">27</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--item-->
 
-							<!--item-->
-							<div class="entry one-third">
-								<figure>
-									<img src="{% static '/NA_WebApp/images/img.jpg'%}" alt="" />
-									<figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
-								</figure>
-								<div class="container">
-									<h2><a href="recipe.html">Refreshing banana split with a twist for adults</a></h2>
-									<div class="actions">
-										<div>
-											<div class="difficulty"><i class="ico i-hard"></i><a href="#">hard</a></div>
-											<div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
-											<div class="comments"><i class="fa fa-comment"></i><a href="recipe.html#comments">27</a></div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!--item-->
+                        <!--item-->
+                        <div class="entry one-third">
+                            <figure>
+                                <img src="{% static '/NA_WebApp/images/img.jpg' %}" alt=""/>
+                                <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
+                            </figure>
+                            <div class="container">
+                                <h2><a href="recipe.html">Refreshing banana split with a twist for adults</a></h2>
+                                <div class="actions">
+                                    <div>
+                                        <div class="difficulty"><i class="ico i-hard"></i><a href="#">hard</a></div>
+                                        <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                        <div class="comments"><i class="fa fa-comment"></i><a href="recipe.html#comments">27</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--item-->
 
-							<!--item-->
-							<div class="entry one-third">
-								<figure>
-									<img src="{% static '/NA_WebApp/images/img.jpg'%}" alt="" />
-									<figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
-								</figure>
-								<div class="container">
-									<h2><a href="recipe.html">Sushi mania: this is the best sushi you have ever tasted</a></h2>
-									<div class="actions">
-										<div>
-											<div class="difficulty"><i class="ico i-easy"></i><a href="#">easy</a></div>
-											<div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
-											<div class="comments"><i class="fa fa-comment"></i><a href="recipe.html#comments">27</a></div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!--item-->
+                        <!--item-->
+                        <div class="entry one-third">
+                            <figure>
+                                <img src="{% static '/NA_WebApp/images/img.jpg' %}" alt=""/>
+                                <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
+                            </figure>
+                            <div class="container">
+                                <h2><a href="recipe.html">Sushi mania: this is the best sushi you have ever tasted</a></h2>
+                                <div class="actions">
+                                    <div>
+                                        <div class="difficulty"><i class="ico i-easy"></i><a href="#">easy</a></div>
+                                        <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                        <div class="comments"><i class="fa fa-comment"></i><a href="recipe.html#comments">27</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--item-->
 
-							<!--item-->
-							<div class="entry one-third">
-								<figure>
-									<img src="{% static '/NA_WebApp/images/img.jpg'%}" alt="" />
-									<figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
-								</figure>
-								<div class="container">
-									<h2><a href="recipe.html">Princess puffs - an old classic at its best</a></h2>
-									<div class="actions">
-										<div>
-											<div class="difficulty"><i class="ico i-hard"></i><a href="#">hard</a></div>
-											<div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
-											<div class="comments"><i class="fa fa-comment"></i><a href="recipe.html#comments">27</a></div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!--item-->
+                        <!--item-->
+                        <div class="entry one-third">
+                            <figure>
+                                <img src="{% static '/NA_WebApp/images/img.jpg' %}" alt=""/>
+                                <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
+                            </figure>
+                            <div class="container">
+                                <h2><a href="recipe.html">Princess puffs - an old classic at its best</a></h2>
+                                <div class="actions">
+                                    <div>
+                                        <div class="difficulty"><i class="ico i-hard"></i><a href="#">hard</a></div>
+                                        <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                        <div class="comments"><i class="fa fa-comment"></i><a href="recipe.html#comments">27</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--item-->
 
-							<div class="quicklinks">
-								<a href="#" class="button">More recipes</a>
-								<a href="javascript:void(0)" class="button scroll-to-top">Back to top</a>
-							</div>
-						</div>
-						<!--//entries-->
-					</div>
-					<!--//cwrap-->
-
-
-
-				</section>
-				<!--//content-->
-
-
-				<!--right sidebar-->
-				<aside class="sidebar one-fourth">
-					<div class="widget">
-						<h3>Recipe Categories</h3>
-						<ul class="boxed">
-							<li class="light"><a href="recipes.html" title="Appetizers"><i class="icon icon-themeenergy_pasta"></i> <span>Apetizers</span></a></li>
-							<li class="medium"><a href="recipes.html" title="Cocktails"><i class="icon icon-themeenergy_margarita2"></i> <span>Cocktails</span></a></li>
-							<li class="dark"><a href="recipes.html" title="Deserts"><i class="icon icon-themeenergy_cupcake"></i> <span>Deserts</span></a></li>
-
-							<li class="medium"><a href="recipes.html" title="Cocktails"><i class="icon icon-themeenergy_eggs"></i> <span>Eggs</span></a></li>
-							<li class="dark"><a href="recipes.html" title="Equipment"><i class="icon icon-themeenergy_blender"></i> <span>Equipment</span></a></li>
-							<li class="light"><a href="recipes.html" title="Events"><i class="icon icon-themeenergy_turkey"></i> <span>Events</span></a></li>
-
-							<li class="dark"><a href="recipes.html" title="Fish"><i class="icon icon-themeenergy_fish2"></i> <span>Fish</span></a></li>
-							<li class="light"><a href="recipes.html" title="Ftness"><i class="icon icon-themeenergy_biceps"></i> <span>Fitness</span></a></li>
-							<li class="medium"><a href="recipes.html" title="Healthy"><i class="icon icon-themeenergy_apple2"></i> <span>Healthy</span></a></li>
-
-							<li class="light"><a href="recipes.html" title="Asian"><i class="icon icon-themeenergy_sushi"></i> <span>Asian</span></a></li>
-							<li class="medium"><a href="recipes.html" title="Mexican"><i class="icon icon-themeenergy_peper"></i> <span>Mexican</span></a></li>
-							<li class="dark"><a href="recipes.html" title="Pizza"><i class="icon  icon-themeenergy_pizza-slice"></i> <span>Pizza</span></a></li>
-
-							<li class="medium"><a href="recipes.html" title="Kids"><i class="icon icon-themeenergy_happy"></i> <span>Kids</span></a></li>
-							<li class="dark"><a href="recipes.html" title="Meat"><i class="icon icon-themeenergy_meat"></i> <span>Meat</span></a></li>
-							<li class="light"><a href="recipes.html" title="Snacks"><i class="icon icon-themeenergy_fried-potatoes"></i> <span>Snacks</span></a></li>
-
-							<li class="dark"><a href="recipes.html" title="Salads"><i class="icon icon-themeenergy_eggplant"></i> <span>Salads</span></a></li>
-							<li class="light"><a href="recipes.html" title="Storage"><i class="icon icon-themeenergy_soup2"></i> <span>Soups</span></a></li>
-							<li class="medium"><a href="recipes.html" title="Vegetarian"><i class="icon icon-themeenergy_plant-symbol"></i> <span>Vegetarian</span></a></li>
-						</ul>
-					</div>
+                        <div class="quicklinks">
+                            <a href="#" class="button">More recipes</a>
+                            <a href="javascript:void(0)" class="button scroll-to-top">Back to top</a>
+                        </div>
+                    </div>
+                    <!--//entries-->
+                </div>
+                <!--//cwrap-->
 
 
-
-					<div class="widget members">
-						<h3>Our members</h3>
-						<div id="members-list-options" class="item-options">
-						  <a href="#">Newest</a>
-						  <a class="selected" href="#">Active</a>
-						  <a href="#">Popular</a>
-						</div>
-						<ul class="boxed">
-							<li><div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg'%}" alt="" /><span>Kimberly C.</span></a></div></li>
-							<li><div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg'%}" /><span>Alex J.</span></a></div></li>
-							<li><div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg'%}" /><span>Denise M.</span></a></div></li>
-							<li><div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg'%}" /><span>Jason H.</span></a></div></li>
-							<li><div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg'%}" /><span>Jennifer W.</span></a></div></li>
-							<li><div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg'%}" /><span>Anabelle Q.</span></a></div></li>
-							<li><div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg'%}" /><span>Thomas M.</span></a></div></li>
-							<li><div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg'%}" /><span>Michelle S.</span></a></div></li>
-							<li><div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg'%}" /><span>Bryan A.</span></a></div></li>
-						</ul>
-					</div>
+            </section>
+            <!--//content-->
 
 
-				</aside>
-			</div>
-			<!--//right sidebar-->
-		</div>
-		<!--//wrap-->
+            <!--right sidebar-->
+            <aside class="sidebar one-fourth">
+                <div class="widget">
+                    <h3>Recipe Categories</h3>
+                    <ul class="boxed">
+                        <li class="light"><a href="recipes.html" title="Appetizers"><i class="icon icon-themeenergy_pasta"></i> <span>Apetizers</span></a></li>
+                        <li class="medium"><a href="recipes.html" title="Cocktails"><i class="icon icon-themeenergy_margarita2"></i> <span>Cocktails</span></a></li>
+                        <li class="dark"><a href="recipes.html" title="Deserts"><i class="icon icon-themeenergy_cupcake"></i> <span>Deserts</span></a></li>
 
- {% endblock content %}
+                        <li class="medium"><a href="recipes.html" title="Cocktails"><i class="icon icon-themeenergy_eggs"></i> <span>Eggs</span></a></li>
+                        <li class="dark"><a href="recipes.html" title="Equipment"><i class="icon icon-themeenergy_blender"></i> <span>Equipment</span></a></li>
+                        <li class="light"><a href="recipes.html" title="Events"><i class="icon icon-themeenergy_turkey"></i> <span>Events</span></a></li>
 
- {% block scripts %}
+                        <li class="dark"><a href="recipes.html" title="Fish"><i class="icon icon-themeenergy_fish2"></i> <span>Fish</span></a></li>
+                        <li class="light"><a href="recipes.html" title="Ftness"><i class="icon icon-themeenergy_biceps"></i> <span>Fitness</span></a></li>
+                        <li class="medium"><a href="recipes.html" title="Healthy"><i class="icon icon-themeenergy_apple2"></i> <span>Healthy</span></a></li>
 
-     	<script src="../../static/NA_WebApp/js/home.js"></script>
- {% endblock scripts %}
+                        <li class="light"><a href="recipes.html" title="Asian"><i class="icon icon-themeenergy_sushi"></i> <span>Asian</span></a></li>
+                        <li class="medium"><a href="recipes.html" title="Mexican"><i class="icon icon-themeenergy_peper"></i> <span>Mexican</span></a></li>
+                        <li class="dark"><a href="recipes.html" title="Pizza"><i class="icon  icon-themeenergy_pizza-slice"></i> <span>Pizza</span></a></li>
+
+                        <li class="medium"><a href="recipes.html" title="Kids"><i class="icon icon-themeenergy_happy"></i> <span>Kids</span></a></li>
+                        <li class="dark"><a href="recipes.html" title="Meat"><i class="icon icon-themeenergy_meat"></i> <span>Meat</span></a></li>
+                        <li class="light"><a href="recipes.html" title="Snacks"><i class="icon icon-themeenergy_fried-potatoes"></i> <span>Snacks</span></a></li>
+
+                        <li class="dark"><a href="recipes.html" title="Salads"><i class="icon icon-themeenergy_eggplant"></i> <span>Salads</span></a></li>
+                        <li class="light"><a href="recipes.html" title="Storage"><i class="icon icon-themeenergy_soup2"></i> <span>Soups</span></a></li>
+                        <li class="medium"><a href="recipes.html" title="Vegetarian"><i class="icon icon-themeenergy_plant-symbol"></i> <span>Vegetarian</span></a></li>
+                    </ul>
+                </div>
+
+
+                <div class="widget members">
+                    <h3>Our members</h3>
+                    <div id="members-list-options" class="item-options">
+                        <a href="#">Newest</a>
+                        <a class="selected" href="#">Active</a>
+                        <a href="#">Popular</a>
+                    </div>
+                    <ul class="boxed">
+                        <li>
+                            <div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg' %}" alt=""/><span>Kimberly C.</span></a></div>
+                        </li>
+                        <li>
+                            <div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg' %}"/><span>Alex J.</span></a></div>
+                        </li>
+                        <li>
+                            <div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg' %}"/><span>Denise M.</span></a></div>
+                        </li>
+                        <li>
+                            <div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg' %}"/><span>Jason H.</span></a></div>
+                        </li>
+                        <li>
+                            <div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg' %}"/><span>Jennifer W.</span></a></div>
+                        </li>
+                        <li>
+                            <div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg' %}"/><span>Anabelle Q.</span></a></div>
+                        </li>
+                        <li>
+                            <div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg' %}"/><span>Thomas M.</span></a></div>
+                        </li>
+                        <li>
+                            <div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg' %}"/><span>Michelle S.</span></a></div>
+                        </li>
+                        <li>
+                            <div class="avatar"><a href="my_profile.html"><img src="{% static '/NA_WebApp/images/avatar.jpg' %}"/><span>Bryan A.</span></a></div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </aside>
+        </div>
+        <!--//right sidebar-->
+    </div>
+    <!--//wrap-->
+
+{% endblock content %}
+
+{% block scripts %}
+
+    <script src="../../static/NA_WebApp/js/home.js"></script>
+{% endblock scripts %}

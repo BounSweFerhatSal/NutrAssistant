@@ -179,6 +179,7 @@ class Recipe(models.Model):
 
     photo = models.ImageField(default='recipe_default.jpg', upload_to='profile_pics')
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
 
 class Recipe_Ingredients(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
