@@ -12,7 +12,7 @@ class TestViews(TestCase):
         self.client = Client()
         self.profile_url = reverse('NA_WebApp-profile')
 
-        self.user = User.objects.create_user('test1@no.com', 'özgecangal@no.com', '30071985Fe')
+        self.user = User.objects.create_user('test1@no.com', 'test1@no.com', '30071985Fe')
         print("Saved User name : " + self.user.username)
 
         logged_in = self.client.login(username='test1@no.com', password='30071985Fe')
