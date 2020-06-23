@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Recipe
+from django.contrib.auth.models import User
 
 import json
 
@@ -9,18 +11,19 @@ def home(request):
     # context = {'posts': posts} // the data ( get it from db / models )
     # return render(request, 'blogapp/home.html', context)
 
-
+    recipe_of_day = Recipe.objects.last()
+    last_recipes = Recipe.objects.all()[:6]
+    showuser = User.objects.first()
+    users = User.objects.all()[:9]
 
     if request.user.is_authenticated:
         # Do something for authenticated users.
 
-        return render(request, 'NA_WebApp/_homeuser.html', {'title': 'Title of the blog'})
+        return render(request, 'NA_WebApp/_homeuser.html', {'recipe': recipe_of_day, 'last': last_recipes, 'usr': showuser, 'users': users})
 
     else:
         # Do something for anonymous users.
-        return render(request, 'NA_WebApp/_home.html', {'title': 'Title of the blog'})
-
-
+        return render(request, 'NA_WebApp/_home.html', {'recipe': recipe_of_day, 'last': last_recipes, 'usr': showuser, 'users': users})
 
 
 def error(request):

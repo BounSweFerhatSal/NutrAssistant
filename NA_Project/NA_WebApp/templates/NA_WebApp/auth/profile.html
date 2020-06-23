@@ -291,7 +291,30 @@
                                 <div class="entry one-third">
                                     <figure>
                                         <img src=" {{ r.photo.url }}" onerror="this.src='/static/NA_WebApp/images/img.jpg'" alt=""/>
-                                        <figcaption><a href="{% url 'NA_WebApp-recipe_details' %}?recipeId={{ r.id }}"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a>
+                                        <figcaption><a href="{% url 'NA_WebApp-recipe_details' %}?recipeId={{ r.id }}"><i class="icon icon-themeenergy_eye2"></i>
+                                            <span>View recipe</span></a>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="container">
+                                        <h2><a href="{% url 'NA_WebApp-recipe_details' %}?recipeId={{ r.id }}">{{ r.title }}</a></h2>
+                                        <div class="actions">
+                                            <div>
+                                                <div class="difficulty"><i class="ico i-medium"></i><a href="#">{{ r.get_difficulity_display }}</a></div>
+                                                <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                                <div class="comments"><i class="fa fa-comment"></i><a href="#">3</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--item-->
+                            {% endfor %}
+                            {% for r in recipes %}
+                                <!--item-->
+                                <div class="entry one-third">
+                                    <figure>
+                                        <img src=" {{ r.photo.url }}" onerror="this.src='/static/NA_WebApp/images/img.jpg'" alt=""/>
+                                        <figcaption><a href="{% url 'NA_WebApp-recipe_details' %}?recipeId={{ r.id }}"><i class="icon icon-themeenergy_eye2"></i>
+                                            <span>View recipe</span></a>
                                         </figcaption>
                                     </figure>
                                     <div class="container">
