@@ -54,8 +54,7 @@ def recipeUpdateInstructions(request):
                 #      then add selecteds :
                 for l in labels:
                     lab = Labels.objects.get(id=l)
-                    Recipe_Labels.objects.create(recipe_id=r_id,label=lab)
-
+                    Recipe_Labels.objects.create(recipe_id=r_id, label=lab)
 
                 return HttpResponse(json.dumps({'success': 'true'}))
 
@@ -192,7 +191,9 @@ def recipe_search(request):
         if 'term' in request.GET:
             term = request.GET['term']
 
-        recipes = Recipe.objects.filter(title__icontains=term, description__icontains=term, instructions__icontains=term)
+        recipes = Recipe.objects.filter(Q(title__icontains=term) | Q(description__icontains=term) | Q(instructions__icontains=term))
+        print(recipes.query)
+
         return render(request, 'NA_WebApp/recipe/recipe_search.html', {'recipes': recipes})
 
     except Exception as e:

@@ -2,6 +2,10 @@
 
     "use strict";
 
+
+    $('.entry > figure').height($('.entry > figure').first().width());
+    $('.entry > figure > img').height($('.entry > figure').first().width());
+
     var home = {
 
         load: function () {
